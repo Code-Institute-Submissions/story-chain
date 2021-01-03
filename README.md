@@ -379,7 +379,7 @@ Credits
 
 **Image credits**
 
-* [Hero header image]( https://pixabay.com/nl/users/bru-no-1161770/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3237961)
+* [Hero header image](https://pixabay.com/nl/photos/voorjaar-schrijven-communiceren-3237961/)
 
 **Special thanks**
 * My Yoda-mentor [Simen Daehlin](https://github.com/Eventyret) for being there when I lost my way and didn't know how to get back. And for being the kick-ass person that he is.
