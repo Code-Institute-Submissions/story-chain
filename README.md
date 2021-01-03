@@ -27,7 +27,9 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 * As a user, I want to be able to delete my account.
 
 ### Site owner goals ###
-
+* To have an appealing website that writes use to write stories. 
+* To have a great functionality so the user feels like this website enables them to practice writing or just enjoy reading what other user have wrote.
+* To make the website more personal, by having everything the user has written, be on display on their profile page.
 
 ## User Requirements and Expectations
 ### Requirements ###
