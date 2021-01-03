@@ -40,6 +40,9 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 * Ability to edit and delete any entries
 
 ### Expectations ###
+* When you have multiple stories, it should be easy to decern them and edit or delete them when necessary
+* To have a profile page where all the necessary information is visible 
+* It should be easy to add a new story or add onto an existing story
 
 ## Design Choices ##
 
