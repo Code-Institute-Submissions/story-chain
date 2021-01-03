@@ -50,7 +50,7 @@ I have based the designs for this website on the image used for the hero header.
 ### Colors ###
 I have used [Coolors](https://coolors.co/) for creating a color scheme.
 
-[Color scheme]()
+[Color scheme](/assets/wireframe/colorscheme.png)
 
 * #F8F8FF: This is a more off white color, to keep the more darker toned colors together and create a more warming atmosphere. This will be the background color.
 * #000000: This will be the main font color. 
