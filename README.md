@@ -13,6 +13,18 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 * Visually appealing website 
 
 ### User Stories ###
+* As a user, I would like to be able to register for the website so I can have my personal environment. 
+* As a user, I want to login after I created an account and see my previous inserted information. 
+* As a user, I would like to have a personal environment (profile page) where I can see everything I have posted. 
+* As a user, I want to be able to add a new story.
+* As a user, I want to be able to add content to an existing story. 
+* As a user, I want to be able to edit the new story or the content I have added to an existing story. 
+* As a user, I want to be able to delete the stories I have started or contributed to.
+* As a user, I want the website to be easy to use. 
+* As a user, I want the process to add / edit / delete info to be easy. 
+* As a user, I want to be able to logout of my profile.
+* As a user, I want to be able to change my username and password.
+* As a user, I want to be able to delete my account.
 
 ### Site owner goals ###
 
