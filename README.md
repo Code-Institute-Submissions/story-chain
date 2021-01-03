@@ -45,10 +45,27 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 * It should be easy to add a new story or add onto an existing story
 
 ## Design Choices ##
+I have based the designs for this website on the image used for the hero header. I wanted to create an atmosphere of warmth and welcome any user to join the fun.
 
 ### Colors ###
+I have used [Coolors](https://coolors.co/) for creating a color scheme.
 
+[Color scheme]()
+
+* #F8F8FF: This is a more off white color, to keep the more darker toned colors together and create a more warming atmosphere. This will be the background color.
+* #000000: This will be the main font color. 
+* #BC5609: This will be the font color for the logo and the titles on the homepage.
+* 5F2121: This will be the color of the lines and borders.
+
+I have used a contrast checker in order to make sure that the contrast is sufficient. This way my content will be easily readable.
 ### Fonts ###
+The fonts I’ll be using are:
+
+[Indie Flower:](https://fonts.google.com/specimen/Indie+Flower?query=Indie) For the logo, header and titles
+
+[Raleway:](https://fonts.google.com/specimen/Raleway?query=raleway) For the content
+
+Fonts are from [Google Fonts](https://fonts.google.com/)
 
 ### Structure ###
 
