@@ -65,7 +65,7 @@ The fonts I’ll be using are:
 
 [Raleway:](https://fonts.google.com/specimen/Raleway?query=raleway) For the content
 
-Fonts are from [Google Fonts](https://fonts.google.com/)
+Fonts are from [Google Fonts.](https://fonts.google.com/)
 
 ### Icons ###
 Icons used are from [Font Awesome.](https://fontawesome.com/) The are used in moderation and match the colors and overall feel of the design.
@@ -105,34 +105,45 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 ## Features ##
 
 ### Features that are implemented ###
+* Registration functionality 
+* Sign-In and Out functionality 
+* Add a new story
+* Add to an existing story
+    * CRUD Functions: 
+        * Create: possibility to create a new story
+        * Read: home page with stories in progress that non-members can also read, as well as a profile page where members can see what the have added.
+        * Update: possibility to edit the content that a member has added and change username and/or password.
+        * Delete: possibility to delete content that a member has added and delete account.
 
 ### Features to be implemented ###
+* Have a 'forget password' functionality
+* Add a search functionality 
 
 ## Technologies used ##
 
 ### Languages ###
-* HTML
-* CSS
-* JavaScript
-* Python
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+* [JS](https://nl.wikipedia.org/wiki/JavaScript)
+* [Python](https://www.python.org/)
 
 ### Libraries and Frameworks ###
-* Font Awesome
-* Bulma
-* Google Fonts
-* jQuery
+* [Font Awesome](https://fontawesome.com/)
+* [Bulma](https://bulma.io/)
+* [Google Fonts](https://fonts.google.com/)
+* [jQuery](https://jquery.com/)
 
 ### Tools ###
-* Git
-* GitPod
-* Heroku
-* Pencil
-* W3C HTML Validation Service
-* W3C CSS Validation Service
-* MongoDB Atlas
-* Flask
-* PyMongo
-* Jinja
+* [Git](https://git-scm.com/)
+* [GitPod](https://www.gitpod.io/)
+* [Heroku](https://www.heroku.com/)
+* [Pencil](https://pencil.evolus.vn/)
+* [W3C HTML Validation Service](https://validator.w3.org/)
+* [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+* [MongoDB Atlas](https://www.mongodb.com/)
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+* [PyMongo](https://api.mongodb.com/python/current/tutorial.html)
+* [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 
 ## Testing ##
 ### Registration ###
