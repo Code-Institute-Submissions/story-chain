@@ -359,7 +359,7 @@ This project can be ran locally by following the following steps: ( I used Gitpo
 
     3. The Procfile should contain the following line:
        web: python app.py
-       
+
     4. Scroll down to "deployment method"-section. Choose "Github" for automatic deployment.
     5. From the inputs below, make sure your github user is selected, and then enter the name for your repo. Click "search". When it finds the repo, click the "connect" button.
     6. Scroll back up and click "settings". Scroll down and click "Reveal config vars". Set up the same variables as in your env.py (IP, PORT, SECRET_KEY, MONGO_URI and MONGODB_NAME): !You shouldn't set the DEBUG variable in under config vars, only in your env.py to prevent DEBUG being active on live website.
@@ -374,4 +374,18 @@ This project can be ran locally by following the following steps: ( I used Gitpo
 
 ## Credit ##
 
+Credits
+    • Texts are all created by myself.
+    
+**Image credits**
 
+* [Hero header image]( <a href="https://pixabay.com/nl/users/bru-no-1161770/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3237961">Bruno /Germany</a> via <a href="https://pixabay.com/nl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3237961">Pixabay</a>)
+
+**Special thanks**
+* My Yoda-mentor [Simen Daehlin](https://github.com/Eventyret) for being there when I lost my way and didn't know how to get back. And for being the kick-ass person that he is.
+* [Anouk Smet](https://github.com/AnoukSmet), for her awesome README
+* Everybody at Slack for their support, tips and humor! 
+
+For his undying love and support and always being there, my love, you know who you are ;)
+
+**Site for educational purposes only!**
