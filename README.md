@@ -278,6 +278,38 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 
 ## Bugs ##
 
+**Name**
+
+* Bug description
+
+* Fix
+
+* Verdict
+
+**Name**
+
+* Bug description
+
+* Fix
+
+* Verdict
+
+**Name**
+
+* Bug description
+
+* Fix
+
+* Verdict
+
+**Name**
+
+* Bug description
+
+* Fix
+
+* Verdict
+
 ## Deployment ##
 
 ### Local Deployment ###
