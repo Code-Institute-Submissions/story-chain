@@ -6,6 +6,11 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 
 ## UX ##
 ### User Goals ###
+* The website has to work well on all kind of devices like mobile phones, tables and desktops 
+* The login procedure should be clear and feedback should be given when appropriate
+* The registration process should be clear, easy to do and feedback should be given when appropriate
+* The website has to be easy to use and easy to update information 
+* Visually appealing website 
 
 ### User Stories ###
 
