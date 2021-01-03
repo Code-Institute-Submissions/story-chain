@@ -376,10 +376,10 @@ This project can be ran locally by following the following steps: ( I used Gitpo
 
 Credits
     • Texts are all created by myself.
-    
+
 **Image credits**
 
-* [Hero header image]( <a href="https://pixabay.com/nl/users/bru-no-1161770/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3237961">Bruno /Germany</a> via <a href="https://pixabay.com/nl/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3237961">Pixabay</a>)
+* [Hero header image]( https://pixabay.com/nl/users/bru-no-1161770/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3237961)
 
 **Special thanks**
 * My Yoda-mentor [Simen Daehlin](https://github.com/Eventyret) for being there when I lost my way and didn't know how to get back. And for being the kick-ass person that he is.
