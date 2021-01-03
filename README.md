@@ -33,6 +33,11 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 
 ## User Requirements and Expectations
 ### Requirements ###
+* Easy to navigate by using the few buttons 
+* Appealing profile page with a functional overview 
+* Easy way to add a a new story
+* Easy way to add onto an existing story 
+* Ability to edit and delete any entries
 
 ### Expectations ###
 
