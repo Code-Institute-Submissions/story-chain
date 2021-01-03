@@ -146,21 +146,135 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 * [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 
 ## Testing ##
-### Registration ###
+***Registration***
 
-### Sign In ###
+**User story: As a user, I would like to be able to register for the website so I can have my personal environment**
 
-### Profile ###
+* Plan
 
-### Add new story ###
+* Implementation
 
-### Add to existing story ###
+* Test
 
-### Edit story piece provided by user ###
+* Result
 
-### Delete story piece provided by user ###
+    * Verdict The test has passed all the criteria and works like planned.
 
-### Log Out ###
+***Sign In***
+
+**User story: As a user, I want to login after I created an account and see my previous inserted information.**
+
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+***Profile Page***
+
+**User story: As a user, I would like to have a personal environment (profile page) where I can see everything I have posted.**
+
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+***Add content***
+
+**User story: As a user, I want to be able to add a new story.**
+
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+**User story: As a user, I want to be able to add content to an existing story.** 
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+***Edit new and/or existing story***
+
+**User story: As a user, I want to be able to edit the new story or the content I have added to an existing story.** 
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+***Delete added content by member***
+
+**User story: As a user, I want to be able to delete the stories I have started or contributed to.**
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+***Account options***
+
+**User story: As a user, I want to be able to change my username and password.**
+
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+**User story: As a user, I want to be able to delete my account.**
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
+
+***Log out***
+**User story: As a user, I want to be able to log out of my profile.**
+
+* Plan
+
+* Implementation
+
+* Test
+
+* Result
+
+    * Verdict: The test has passed all the criteria and works like planned.
 
 ## Bugs ##
 
