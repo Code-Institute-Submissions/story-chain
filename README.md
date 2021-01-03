@@ -67,18 +67,40 @@ The fonts I’ll be using are:
 
 Fonts are from [Google Fonts](https://fonts.google.com/)
 
+### Icons ###
+Icons used are from [Font Awesome.](https://fontawesome.com/) The are used in moderation and match the colors and overall feel of the design.
+
 ### Structure ###
+For the structure I have used [Bulma.](https://bulma.io/) I wanted to challenge myself to not use Bootstrap (as I have done in former projects) or Materialize, but found it important (and fun!) to use something completely different. 
 
 ## Wireframes, Flowcharts and Data Models ##
 
 ### Wireframes ###
 
+For wireframing I have used [Pencil.](https://pencil.evolus.vn/)
+
+You can find my wireframes below:
+
+**Desktop Wireframes:**
+
+**Tablet Wireframes:**|
+
+**Mobile Wireframes:**
+
 ### Flowcharts ###
+I have decided to make a flowchart for the sign-in / register / delete account / change username and/or password process to completely understand each step of the process.
+
+I have used !!!!! to make this flowchart which you can view below:
+
+![Flowchart]()
 
 ### Data Models ###
+I also created a conceptual data model to get a feel for the needed entities, relationships and attributes, which have also helped me form the user stories.
+
+![Conceptual Data Model]()
 
 #### Database Structure ####
-For this project I have used MongoDB with the following collections:
+For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with the following collections:
 
 ## Features ##
 
