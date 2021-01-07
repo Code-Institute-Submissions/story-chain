@@ -88,16 +88,16 @@ You can find my wireframes below:
 **Mobile Wireframes:**
 
 ### Flowcharts ###
-I have decided to make a flowchart for the sign-in / register / delete account / change username and/or password process to completely understand each step of the process.
+I have decided to make a flowchart for the sign-in / register process to completely understand each step of the process.
 
-I have used !!!!! to make this flowchart which you can view below:
+You can view this below:
 
-![Flowchart]()
+![Flowchart](/assets/wireframes/flowchart.jpg)
 
 ### Data Models ###
 I also created a conceptual data model to get a feel for the needed entities, relationships and attributes, which have also helped me form the user stories.
 
-![Conceptual Data Model]()
+![Conceptual Data Model](/assets/wireframes/conceptualdatamodel.jpg)
 
 #### Database Structure ####
 For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with the following collections:
