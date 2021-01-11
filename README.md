@@ -54,8 +54,8 @@ I have used [Coolors](https://coolors.co/) for creating a color scheme.
 
 * #F8F8FF: This is a more off white color, to keep the more darker toned colors together and create a more warming atmosphere. This will be the background color.
 * #000000: This will be the main font color. 
-* #BC5609: This will be the font color for the logo and the titles on the homepage.
-* 5F2121: This will be the color of the lines and borders.
+* #BC5609: This will be the color of the lines and borders.
+* 5F2121: This will be the font color for the logo and the titles on the homepage.
 
 I have used a contrast checker in order to make sure that the contrast is sufficient. This way my content will be easily readable.
 ### Fonts ###
