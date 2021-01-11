@@ -79,7 +79,7 @@ For the structure I have used [Bulma.](https://bulma.io/) I wanted to challenge 
 
 For wireframing I have used [Pencil.](https://pencil.evolus.vn/)
 
-View my wireframes [here](https://github.com/byIlsa/story-chain/tree/master/wireframes/wireframes.pdf).
+View my wireframes [here](https://github.com/byIlsa/story-chain/blob/master/assets/wireframes/wireframes.pdf).
 
 ### Flowcharts ###
 I have decided to make a flowchart for the sign-in / register process to completely understand each step of the process.
