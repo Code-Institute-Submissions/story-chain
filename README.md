@@ -50,7 +50,7 @@ I have based the designs for this website on the image used for the hero header.
 ### Colors ###
 I have used [Coolors](https://coolors.co/) for creating a color scheme.
 
-![Color scheme](/assets/wireframes/colorscheme.png)
+![Color scheme](/wireframes/colorscheme.png)
 
 * #F8F8FF: This is a more off white color, to keep the more darker toned colors together and create a more warming atmosphere. This will be the background color.
 * #000000: This will be the main font color. 
@@ -86,7 +86,7 @@ I have decided to make a flowchart for the sign-in / register process to complet
 
 You can view this below:
 
-![Flowchart](/assets/wireframes/flowchart.jpg)
+![Flowchart](/wireframes/flowchart.jpg)
 
 ### Data Models ###
 I also created a conceptual data model to get a feel for the needed entities, relationships and attributes, which have also helped me form the user stories.
