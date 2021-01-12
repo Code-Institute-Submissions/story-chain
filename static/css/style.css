@@ -1,0 +1,21 @@
+
+/* Navbar styling */
+.hero.is-info {
+    background-color: transparent;
+    color: #bc5609;
+}
+
+.hero.is-info a.navbar-item.is-active {
+    background-color: transparent;
+    color: #bc5609;
+}
+
+.hero.is-info .navbar-item {
+    background-color: transparent;
+    color: #bc5609;
+}
+
+.button.is-info.is-inverted {
+    background-color: #5f2121;
+    color: #bc5609;
+}
