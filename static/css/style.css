@@ -1,20 +1,37 @@
+/* Google font import link */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600;700&family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
+
+html {
+    font-size: 62.5%;
+    position: relative;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 2rem;
+    font-family: "Raleway", sans-serif;
+    color: #f8f8ff;
+    overflow-x: hidden;
+}
 /* Navbar styling */
-.hero.is-info {
+.navbar-item img {
+    max-height: 5.75rem;
+}
+
+.hero.is-info,
+.hero.is-info a.navbar-item.is-active,
+.hero.is-info a.navbar-item:hover,
+.hero.is-info .navbar-item   {
     background-color: transparent;
     color: #bc5609;
 }
 
-.hero.is-info a.navbar-item.is-active {
-    background-color: transparent;
-    color: #bc5609;
+.button {
+    font-size: 2rem;;
 }
-
-.hero.is-info .navbar-item {
-    background-color: transparent;
-    color: #bc5609;
-}
-
 .button.is-info.is-inverted {
     background-color: #5f2121;
     color: #bc5609;
