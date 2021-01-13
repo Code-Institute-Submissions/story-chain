@@ -26,6 +26,36 @@ def home():
     return render_template('pages/home.html')
 
 
+@app.route('/login', methods=["GET", "POST"])
+def log_in():
+    """
+    Allows user to sign in with username and password
+    Redirects user to profile
+    """
+    if request.method == "POST":
+        user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if user:
+            if check_password_hash(
+                    user["password"], request.form.get("password")):
+                        session["user"] = request.form.get("username").lower()
+                        flash("Welcome, {}".format(
+                            request.form.get("username")))
+                        return redirect(url_for(
+                            "profile", username=session["user"]))
+            else:
+                flash("Incorrect username and/or Password")
+                return redirect(url_for("sign_in"))
+
+        else:
+            flash("Incorrect username and/or Password")
+            return redirect(url_for("sign_in"))
+
+    return render_template("pages/authenticate.html")
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
