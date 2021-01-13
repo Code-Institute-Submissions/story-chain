@@ -46,3 +46,7 @@ body {
     background-color: #5f2121;
     color: #bc5609;
 }
+
+.column {
+    text-align: center;
+}
