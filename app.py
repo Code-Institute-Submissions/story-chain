@@ -52,10 +52,7 @@ def register():
             user = mongo.db.users.find_one({'username': username})
             user_id = user['_id']
             session['user_id'] = str(user_id)
-            title = mongo.db.stories.find({"title": request.form.get("title")})
-            stories = mongo.db.stories.find({"title": title})
-            return redirect(url_for("profile", user_id=user_id,
-                                    stories=stories))
+            return redirect(url_for("profile", user_id=user_id))
 
     return render_template("pages/authentication.html", register=True)
 

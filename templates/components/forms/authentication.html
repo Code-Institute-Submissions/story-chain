@@ -16,18 +16,19 @@
 <div class="field">
   <label class="label">Password</label>
   {% if register == True %}
-  <span class="pattern">Password should be 25 or more characters</span>
+  <span class="pattern">Password should be 6 or more characters</span>
   {% endif %}
   <div class="control">
-    <input class="input" type="password" placeholder="Password" required pattern=".{25,}" title="25 or more characters">
+    <input class="input" type="password" placeholder="Password" required pattern=".{6,}" title="6 or more characters">
   </div>
 </div>
 
 <div class="field">
   <p class="control">
-    <button class="button is-success">
-      {% if register == True %} Sign me Up! {% else %} Sign In {% endif %}
-    </button>
+    <a href="{{ url_for('register') }}" class="button is-rounded is-info is-inverted mb-6" role="button" rel="noopener"
+                aria-label="Log In button">
+      {% if register == True %} Join Us! {% else %} Log Me In {% endif %}
+  </a>
   </p>
 </div>
 </form>
