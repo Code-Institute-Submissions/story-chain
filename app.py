@@ -26,6 +26,40 @@ def home():
     return render_template('pages/home.html')
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """
+    Allows the user to register at the website
+    Checks if username already exists in Database
+    Redirects user to the dashboard
+    """
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
+
+        username = request.form.get("username").lower()
+        password = generate_password_hash(request.form.get("password"))
+
+        mongo.db.users.insert_one({
+            'username': username,
+            'password': password})
+
+        if mongo.db.users.find_one({'username': username}) is not None:
+            user = mongo.db.users.find_one({'username': username})
+            user_id = user['_id']
+            session['user_id'] = str(user_id)
+            title = mongo.db.stories.find({"title": request.form.get("title")})
+            stories = mongo.db.stories.find({"title": title})
+            return redirect(url_for("profile", user_id=user_id,
+                                    stories=stories))
+
+    return render_template("pages/authentication.html", register=True)
+
+
 @app.route('/login', methods=["GET", "POST"])
 def log_in():
     """
