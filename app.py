@@ -57,7 +57,7 @@ def register():
             return redirect(url_for("profile", user_id=user_id,
                                     stories=stories))
 
-    return render_template("pages/authentication.html", register=True)
+    return render_template("pages/register.html", register=True)
 
 
 @app.route('/login', methods=["GET", "POST"])
