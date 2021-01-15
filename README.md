@@ -272,15 +272,20 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 
     * Verdict: The test has passed all the criteria and works like planned.
 
-## Bugs ##
+## Bugs
 
-**Name**
+### In development:
 
-* Bug description
+**Name:** Navbar collapse not working.
 
-* Fix
+* Bug description:
+After finishing the basic and extended navbar, I quickly noticed that the hamburger menu wasn't behaving as expected.
 
-* Verdict
+* Fix:
+ I looked on the bulma.io site and quickly realized that bulma did not have JS baked in, as bootstrap does have. The fix was on the bottom of the navbar documentation page, both a Vanilla JS and a JQuery snippet.
+
+* Verdict:
+JQuery code added to the scripts.js file worked like a charm and the navbar is now working as expected.
 
 **Name**
 

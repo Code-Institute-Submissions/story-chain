@@ -1,6 +1,5 @@
 /* Google font import link */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600;700&family=Raleway&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Raleway:wght@200;500&display=swap');
 
 
 html {
@@ -44,14 +43,40 @@ body {
 }
 .button.is-info.is-inverted {
     background-color: #5f2121;
-    color: #bc5609;
+    color: #f8f8ff;
+
 }
 
 .column {
     text-align: center;
 }
 
-@media screen and (max-width: 1023px)
+/* About */
+.title {
+    color:#bc5609;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Indie Flower', cursive;
+}
+
+#about {
+    color: #000;
+    text-align: center;
+}
+
+.sub-heading {
+    font-size: 2.5rem;
+    color: #bc5609;
+    font-family: 'Indie Flower', cursive;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
+.content ol {
+    list-style-position: inside;
+}
+
+@media screen and (max-width: 1023px) {
 .hero.is-info .navbar-menu {
     background-color: rgba(248, 248, 255, 0.7);
-}
+} }
