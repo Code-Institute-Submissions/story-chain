@@ -57,10 +57,10 @@ def register():
             return redirect(url_for("profile", user_id=user_id,
                                     stories=stories))
 
-    return render_template("pages/register.html", register=True)
+    return render_template("pages/authentication.html", register=True)
 
 
-@app.route('/login', methods=["GET", "POST"])
+@app.route('/log-in', methods=["GET", "POST"])
 def log_in():
     """
     Allows user to sign in with username and password
@@ -80,7 +80,8 @@ def log_in():
 
                 if profile:
                     user_id = profile["_id"]
-                    return redirect(url_for("profile", username=session["user"], ))
+                    return redirect(url_for("profile",
+                        username=session["user"], ))
             else:
                 flash("Incorrect username and/or Password")
                 return redirect(url_for("sign_in"))
@@ -89,7 +90,7 @@ def log_in():
             flash("Incorrect username and/or Password")
             return redirect(url_for("sign_in"))
 
-    return render_template("pages/authenticate.html")
+    return render_template("pages/authentication.html")
 
 
 if __name__ == "__main__":
