@@ -1,46 +1,34 @@
-{% extends 'layout/base.html' %}
-{% block content %}
-{% include 'components/navigation/basic_navigation.html' %}
+{% if register == True %}
+<form action="{{ url_for('register') }}" method="POST"> 
+{% else %}
+<form action="{{ url_for('log_in') }}" method="POST">
+{% endif %}
+    <div class="field">
+  <label class="label">Username</label>
+  {% if register == True %}
+  <span class="pattern">Username can only have letters (either case) and numbers. No special characters</span>
+  {% endif %}
+  <div class="control">
+    <input class="input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]+" required title="Only letters (either case) and numbers. No special characters">
+  </div>
+</div>
 
-    {% if register == True %}
+<div class="field">
+  <label class="label">Password</label>
+  {% if register == True %}
+  <span class="pattern">Password should be 25 or more characters</span>
+  {% endif %}
+  <div class="control">
+    <input class="input" type="password" placeholder="Password" required pattern=".{25,}" title="25 or more characters">
+  </div>
+</div>
 
-    <div class="container is-fluid mt-6">
-        <div class="columns mt-6" id="register">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Register here to start your personal story telling journey!
-                        </p>
-                    </div>
-                    {% include 'components/flash_messages/flash_messages.html' %}
-                    {% include 'components/forms/authentication.html' %}
-                </div>
-            </div>  
-            <div class="column"></div>
-        </div>
-    </div>
-
-    {% else %}
-
-    <div class="container is-fluid mt-6">
-        <div class="columns mt-6" id="log-in">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Log in
-                        </p>
-                    </div>
-                    {% include 'components/flash_messages/flash_messages.html' %}
-                    {% include 'components/forms/authentication.html' %}
-                </div>
-            </div>
-            <div class="column"></div>
-        </div>
-    </div>
-
-    {% endif %}
-{% endblock %}
+<div class="field">
+  <p class="control">
+    <button class="button is-success">
+      {% if register == True %} Sign me Up! {% else %} Sign In {% endif %}
+    </button>
+  </p>
+</div>
+</form>
+</form>
