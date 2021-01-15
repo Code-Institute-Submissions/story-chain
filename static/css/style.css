@@ -14,6 +14,7 @@ body {
     font-family: "Raleway", sans-serif;
     color: #f8f8ff;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 /* Navbar styling */
 .navbar-item img {
@@ -29,7 +30,7 @@ body {
 }
 .hero.is-info {
     background-image: url("../../../static/images/hero-header.jpg");
-    height: 75vh;
+    height: 55vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -62,6 +63,7 @@ body {
 #about {
     color: #000;
     text-align: center;
+    border: solid black 1px;
 }
 
 .sub-heading {
@@ -74,6 +76,7 @@ body {
 
 .content ol {
     list-style-position: inside;
+    margin-right: 2em;
 }
 
 @media screen and (max-width: 1023px) {
