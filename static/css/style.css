@@ -50,3 +50,8 @@ body {
 .column {
     text-align: center;
 }
+
+@media screen and (max-width: 1023px)
+.hero.is-info .navbar-menu {
+    background-color: rgba(248, 248, 255, 0.7);
+}

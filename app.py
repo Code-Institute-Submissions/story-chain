@@ -37,13 +37,16 @@ def log_in():
             {"username": request.form.get("username").lower()})
 
         if user:
-            if check_password_hash(
-                    user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("username")))
-                        return redirect(url_for(
-                            "profile", username=session["user"]))
+            if check_password_hash(user["password"],
+                request.form.get("password")):
+                user_id = str(user['_id'])
+                session['user_id'] = str(user_id)
+
+                profile = mongo.db.user.find_one({"user_id": user_id})
+
+                if profile:
+                    user_id = profile["_id"]
+                    return redirect(url_for("profile", username=session["user"], ))
             else:
                 flash("Incorrect username and/or Password")
                 return redirect(url_for("sign_in"))
@@ -53,7 +56,6 @@ def log_in():
             return redirect(url_for("sign_in"))
 
     return render_template("pages/authenticate.html")
-
 
 
 if __name__ == "__main__":
