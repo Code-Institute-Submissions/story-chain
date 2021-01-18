@@ -17,18 +17,12 @@
                         <a href="{{url_for('home')}}" class="navbar-item is-active">
                             Home
                         </a>
-                        <a href="{{url_for('profile')}}" class="navbar-item">
+                        <a href="{{url_for('profile', username=username)}}" class="navbar-item">
                             Profile
                         </a>
-                        <a href="{{url_for('/')}}" class="navbar-item">
-                            Add Story
-                        </a>
-                        <a href="{{url_for('/logout')}}" class="navbar-item">
-                            Log Out
-                        </a>
                         <span class="navbar-item">
-                            <a class="button is-rounded is-info is-inverted">
-                                <span>Log Out</span>
+                            <a href="{{url_for('log_out')}}" class="button is-rounded is-info is-inverted">
+                                Log Out
                             </a>
                         </span>
                     </div>
