@@ -287,13 +287,33 @@ After finishing the basic and extended navbar, I quickly noticed that the hambur
 * Verdict:
 JQuery code added to the scripts.js file worked like a charm and the navbar is now working as expected.
 
-**Name**
+**Name** Flash messages not showing
 
 * Bug description
+The flash messages for log in and registration error handling weren't showing.
 
-* Fix
+* Fix:
+Forgot to put 
+```     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="columns">
+                    <div class="column"></div>
+                    <div class="column is-8">
+                        <p class="flashes">
+                        {{ message }}
+                        </p>
+                    </div>
+                    <div class="column"></div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+```
+in the flash_messages file.
 
-* Verdict
+* Verdict:
+Now working as expected.
 
 **Name**
 

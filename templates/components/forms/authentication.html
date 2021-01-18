@@ -1,46 +1,65 @@
-{% extends 'layout/base.html' %}
-{% block content %}
-{% include 'components/navigation/basic_navigation.html' %}
-
-    {% if register == True %}
-
-    <div class="container is-fluid mt-6">
-        <div class="columns mt-6" id="register">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Register here to start your personal story telling journey!
-                        </p>
-                    </div>
-                    {% include 'components/flash_messages/flash_messages.html' %}
-                    {% include 'components/forms/authentication.html' %}
-                </div>
-            </div>  
-            <div class="column"></div>
+{% if register == True %}
+<form action="{{ url_for('register') }}" method="POST">
+{% else %}
+<form action="{{ url_for('log_in') }}" method="POST">
+{% endif %}
+    <div class="field">
+        {% if register == True %}
+        {% endif %}
+        <label class="label">Username</label>
+        <div class="control has-icons-left">
+            <input id="username" name="username" type="text" placeholder="Username" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+                title="Only letters (either case) and numbers. No special characters">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+                <p class="help">Only letters (either case) and numbers. No special characters</p>
         </div>
     </div>
 
-    {% else %}
+    <div class="field">
+        {% if register == True %}
+        {% endif %}
+        <label class="label">Password</label>
+        <div class="control has-icons-left">
+            <input id="password" name="password" type="password" placeholder="Password" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+                title="6 or more characters">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+                <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
+        </div>
+    </div>
 
-    <div class="container is-fluid mt-6">
-        <div class="columns mt-6" id="log-in">
+    <div class="field">
+        <p class="control">
+            <button type="submit" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Log In button">
+                {% if register == True %} Register {% else %} Log Me In {% endif %}
+            </button>    
+        </p>
+    </div>
+</form>
+    <div class="columns">
+        <div class="column"></div>
+            <div class="column is-6">
+            {% if register == True %}
+            <h4>Already have an account?</h4>
+            {% else %}
+            <h4> Don't have an account yet?</h4>
             <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Log in
-                        </p>
-                    </div>
-                    {% include 'components/flash_messages/flash_messages.html' %}
-                    {% include 'components/forms/authentication.html' %}
-                </div>
+            {% endif %}
             </div>
-            <div class="column"></div>
-        </div>
     </div>
 
-    {% endif %}
-{% endblock %}
+    <div class="columns">
+        <div class="column is-6">
+            {% if register == True %}
+            <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Click here to Log in</a>
+            {% else %}
+            <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Click here to register</a>
+            {% endif %}
+        </div>
+        <div class="column is-6">
+            <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
+        </div>
+    </div>

@@ -1,4 +1,5 @@
 import os
+import pymongo
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -28,12 +29,8 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """
-    Allows the user to register at the website
-    Checks if username already exists in Database
-    Redirects user to the dashboard
-    """
     if request.method == "POST":
+        # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -41,21 +38,15 @@ def register():
             flash("Username already exists")
             return redirect(url_for("register"))
 
-        username = request.form.get("username").lower()
-        password = generate_password_hash(request.form.get("password"))
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
 
-        mongo.db.users.insert_one({
-            'username': username,
-            'password': password})
-
-        if mongo.db.users.find_one({'username': username}) is not None:
-            user = mongo.db.users.find_one({'username': username})
-            user_id = user['_id']
-            session['user_id'] = str(user_id)
-            title = mongo.db.stories.find({"title": request.form.get("title")})
-            stories = mongo.db.stories.find({"title": title})
-            return redirect(url_for("profile", user_id=user_id,
-                                    stories=stories))
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("pages/authentication.html", register=True)
 
@@ -67,30 +58,50 @@ def log_in():
     Redirects user to profile
     """
     if request.method == "POST":
-        user = mongo.db.users.find_one(
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
-        if user:
-            if check_password_hash(user["password"],
-                request.form.get("password")):
-                user_id = str(user['_id'])
-                session['user_id'] = str(user_id)
-
-                profile = mongo.db.user.find_one({"user_id": user_id})
-
-                if profile:
-                    user_id = profile["_id"]
-                    return redirect(url_for("profile",
-                        username=session["user"], ))
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                        session["user"] = request.form.get("username").lower()
+                        return redirect(url_for(
+                            "profile", username=session["user"]))
             else:
-                flash("Incorrect username and/or Password")
-                return redirect(url_for("sign_in"))
+                # invalid password match
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("log_in"))
 
         else:
-            flash("Incorrect username and/or Password")
-            return redirect(url_for("sign_in"))
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("log_in"))
 
     return render_template("pages/authentication.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    if session["user"]:
+        return render_template("pages/profile.html", username=username)
+
+    return redirect(url_for("log_in"))
+
+
+@app.route('/logout')
+def log_out():
+    """
+    Allows the user to log out
+    Takes user back to home
+    """
+    session.clear()
+    return render_template("pages/home.html")
 
 
 if __name__ == "__main__":
