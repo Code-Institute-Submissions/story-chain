@@ -1,4 +1,5 @@
 import os
+import pymongo
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -52,6 +53,7 @@ def register():
             user = mongo.db.users.find_one({'username': username})
             user_id = user['_id']
             session['user_id'] = str(user_id)
+            flash("Registration Successful!")
             return redirect(url_for("profile", user_id=user_id))
 
     return render_template("pages/authentication.html", register=True)

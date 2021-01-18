@@ -1,35 +1,60 @@
 {% if register == True %}
-<form action="{{ url_for('register') }}" method="POST"> 
+<form action="{{ url_for('register') }}" method="POST">
 {% else %}
 <form action="{{ url_for('log_in') }}" method="POST">
 {% endif %}
     <div class="field">
-  <label class="label">Username</label>
-  {% if register == True %}
-  <span class="pattern">Username can only have letters (either case) and numbers. No special characters</span>
-  {% endif %}
-  <div class="control">
-    <input class="input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]+" required title="Only letters (either case) and numbers. No special characters">
-  </div>
-</div>
+        <label class="label">Username</label>
+        {% if register == True %}
+        <span class="pattern">Username can only have letters (either case) and numbers. No special characters</span>
+        {% endif %}
+        <div class="control">
+            <input class="input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]+" required
+                title="Only letters (either case) and numbers. No special characters">
+        </div>
+    </div>
 
-<div class="field">
-  <label class="label">Password</label>
-  {% if register == True %}
-  <span class="pattern">Password should be 6 or more characters</span>
-  {% endif %}
-  <div class="control">
-    <input class="input" type="password" placeholder="Password" required pattern=".{6,}" title="6 or more characters">
-  </div>
-</div>
+    <div class="field">
+        <label class="label">Password</label>
+        {% if register == True %}
+        <span class="pattern">Password should be 6 or more characters</span>
+        {% endif %}
+        <div class="control">
+            <input class="input" type="password" placeholder="Password" required pattern=".{6,}"
+                title="6 or more characters">
+        </div>
+    </div>
 
-<div class="field">
-  <p class="control">
-    <a href="{{ url_for('register') }}" class="button is-rounded is-info is-inverted mb-6" role="button" rel="noopener"
-                aria-label="Log In button">
-      {% if register == True %} Join Us! {% else %} Log Me In {% endif %}
-  </a>
-  </p>
-</div>
+    <div class="field">
+        <p class="control">
+            <a href="{{ url_for('register') }}" class="button is-rounded is-info is-inverted mb-6" role="button"
+                rel="noopener" aria-label="Log In button">
+                {% if register == True %} Register {% else %} Log Me In {% endif %}
+            </a>
+        </p>
+    </div>
 </form>
-</form>
+    <div class="columns">
+        <div class="column"></div>
+            <div class="column is-6">
+            {% if register == True %}
+            <h4>Do you already have an account?</h4>
+            {% else %}
+            <h4> You don't have an account yet?</h4>
+            <div class="column"></div>
+            {% endif %}
+            </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-6">
+            {% if register == True %}
+            <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Click here to Log in</a>
+            {% else %}
+            <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Click here to register</a>
+            {% endif %}
+        </div>
+        <div class="column is-6">
+            <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
+        </div>
+    </div>
