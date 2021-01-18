@@ -94,7 +94,6 @@ def profile(username):
     return redirect(url_for("log_in"))
 
 
-<<<<<<< HEAD
 @app.route('/logout')
 def log_out():
     """
@@ -105,8 +104,6 @@ def log_out():
     return render_template("pages/home.html")
 
 
-=======
->>>>>>> 28f5d1e86c5ef83f5f8a9eb4fadead30b2f7290d
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
