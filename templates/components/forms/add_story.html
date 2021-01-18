@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include 'components/navigation/extended_navigation.html' %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-8">
+        <p class="title">
+            Add a new story
+        </p>
+    </div>
+    <div class="column"></div>
+</div>
+
+<input class="input" type="text" placeholder="Title">
+<textarea class="textarea" placeholder="Type your text here!"></textarea>
+    <div class="field">
+        <p class="control">
+            <button type="submit" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit story">
+            </button>    
+        </p>
+    </div>
+
+{% endblock %}
