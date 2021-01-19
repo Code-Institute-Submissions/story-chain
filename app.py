@@ -122,6 +122,7 @@ def add_story():
     if request.method == "POST":
         story = {
             "story_title": request.form.get("story_title"),
+            "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
             "created_by": session["user"]
         }
@@ -130,6 +131,16 @@ def add_story():
         return redirect(url_for("profile", username=session["user"]))
 
     return render_template("pages/add_story.html")
+
+
+@app.route('/read_story/<story_id>')
+def read_story(story_id):
+    """
+    Displays whole story and gives a logged in user the
+    opportunity to add to this story.
+    """
+    selected_story = mongo.db.stories.find_one({"_id":ObjectId(story_id)})
+    return render_template("read_story.html", selected_story=selected_story)
 
 
 if __name__ == "__main__":
