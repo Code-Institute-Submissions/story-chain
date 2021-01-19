@@ -36,7 +36,7 @@
                 <footer class="card-footer">
                     <p class="card-footer-item">
                         <span>
-                            <a href=" {{ url_for(read_story', story_id=story_id }}">Read More</a>
+                            <a href=" {{ url_for('read_story', story_id=story._id, selected_story=selected_story) }} ">Read More</a>
                         </span>
                     </p>
                 </footer>

@@ -1,5 +1,4 @@
 import os
-import pymongo
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -59,7 +58,7 @@ def register():
     return render_template("pages/authentication.html", register=True)
 
 
-@app.route('/log-in', methods=["GET", "POST"])
+@app.route("/log-in", methods=["GET", "POST"])
 def log_in():
     """
     Allows user to sign in with username and password
@@ -90,7 +89,7 @@ def log_in():
     return render_template("pages/authentication.html")
 
 
-@app.route('/profile', methods=["GET", "POST"])
+@app.route("/profile", methods=["GET", "POST"])
 def profile():
     """
     This function renders the profile page. This page displays the images
@@ -104,7 +103,7 @@ def profile():
     return redirect(url_for("log_in"))
 
 
-@app.route('/logout')
+@app.route("/logout")
 def log_out():
     """
     Allows the user to log out
@@ -139,8 +138,8 @@ def read_story(story_id):
     Displays whole story and gives a logged in user the
     opportunity to add to this story.
     """
-    selected_story = mongo.db.stories.find_one({"_id":ObjectId(story_id)})
-    return render_template("read_story.html", selected_story=selected_story)
+    story = mongo.db.stories.find_one({"_id":ObjectId(story_id)})
+    return render_template("pages/read_story.html", story=story)
 
 
 if __name__ == "__main__":

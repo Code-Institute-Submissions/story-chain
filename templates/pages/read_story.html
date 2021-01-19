@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include 'components/navigation/extended_navigation.html' %}
+
+    <div class="container is-fluid mt-6">
+        <div class="columns mt-6" id="read_story">
+            <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        {{ story.story_title }}
+                    </p>
+                    <p class="summary">
+                        {{ story.story_summary }}
+                    </p>
+                    <p class="summary">
+                        {{ story.story_content }}
+                    </p>
+                    <p class="subtitle">
+                        Author: {{ story.created_by }}
+                    </p>
+                </div>
+            <div class="column"></div>
+        </div>
+    </div>
+{% endblock %}
