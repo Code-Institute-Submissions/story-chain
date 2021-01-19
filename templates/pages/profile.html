@@ -1,8 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 {% include 'components/navigation/extended_navigation.html' %}
-
-
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
@@ -13,4 +11,30 @@
         <div class="column"></div>
     </div>
 
+{% for story in stories %}
+    <div class="columns mt-6" id="story-cards">
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        {{ story.story_title }}
+                    </p>
+                    <p class="subtitle">
+                        Author: {{ story.created_by }}
+                    </p>
+                    <p class="summary">
+                        {{ story.story_content }}
+                    </p>
+                </div>
+                <footer class="card-footer">
+                    <p class="card-footer-item">
+                        <span>
+                            <a href="/">Read More</a>
+                        </span>
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+{% endfor %}
 {% endblock %}

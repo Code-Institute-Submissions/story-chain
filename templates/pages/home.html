@@ -13,68 +13,24 @@
                     <li>Find a story.<br> Make sure you are logged in (or register to join the fun!), scroll to the bottom of the story and write away!</li>
                     <li>Start your own story. <br> Make sure you are logged in, click "add" in the menu, add your piece of the story, click the "Add" button and you're done!</li>
                     </ol>
-                        <p id="teaser=text"> Now the waiting starts... How will the story unfold?</p>
+                        <p class="title"> Now the waiting starts... How will the story unfold?</p>
                 </div>
         </div>
         <div class="column"></div>
     </div>
-
+{% for story in stories %}
     <div class="columns mt-6" id="story-cards">
         <div class="column is-4">
             <div class="card">
                 <div class="card-content">
                     <p class="title">
-                        “Title: .”
+                        {{ story.story_title }}
                     </p>
                     <p class="subtitle">
-                        Author:
+                        Author: {{ story.created_by }}
                     </p>
                     <p class="summary">
-                        Summary of story
-                    </p>
-                </div>
-                <footer class="card-footer">
-                    <p class="card-footer-item">
-                        <span>
-                            <a href="/">Read More</a>
-                        </span>
-                    </p>
-                </footer>
-            </div>
-        </div>
-        <div class="column is-4">
-            <div class="card">
-                <div class="card-content">
-                    <p class="title">
-                        “Title: .”
-                    </p>
-                    <p class="subtitle">
-                        Author:
-                    </p>
-                    <p class="summary">
-                        Summary of story
-                    </p>
-                </div>
-                <footer class="card-footer">
-                    <p class="card-footer-item">
-                        <span>
-                            <a href="/">Read More</a>
-                        </span>
-                    </p>
-                </footer>
-            </div>
-        </div>
-        <div class="column is-4">
-            <div class="card">
-                <div class="card-content">
-                    <p class="title">
-                        “Title: .”
-                    </p>
-                    <p class="subtitle">
-                        Author:
-                    </p>
-                    <p class="summary">
-                        Summary of story
+                        {{ story.story_content }}
                     </p>
                 </div>
                 <footer class="card-footer">
@@ -87,5 +43,6 @@
             </div>
         </div>
     </div>
+{% endfor %}
 </div>
 {% endblock %}

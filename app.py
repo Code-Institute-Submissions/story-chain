@@ -97,7 +97,8 @@ def profile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template("pages/profile.html", username=username)
+        stories = list(mongo.db.stories.find())
+        return render_template('pages/profile.html', username=username, stories=stories)
 
     return redirect(url_for("log_in"))
 
