@@ -90,15 +90,16 @@ def log_in():
     return render_template("pages/authentication.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
-    if session["user"]:
-        stories = list(mongo.db.stories.find())
-        return render_template('pages/profile.html', username=username, stories=stories)
+@app.route('/profile', methods=["GET", "POST"])
+def profile():
+    """
+    This function renders the profile page. This page displays the images
+    uploaded by the currently logged in user and is only visible for him.
+    """
+    stories = list(mongo.db.stories.find().sort('_id', -1))
+    if session:
+        return render_template('pages/profile.html',
+        username=session["user"], stories=stories)
 
     return redirect(url_for("log_in"))
 
