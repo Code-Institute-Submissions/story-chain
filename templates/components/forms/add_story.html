@@ -1,23 +1,22 @@
-{% extends 'layout/base.html' %}
-{% block content %}
-{% include 'components/navigation/extended_navigation.html' %}
-<div class="columns">
-    <div class="column"></div>
-    <div class="column is-8">
-        <p class="title">
-            Add a new story
-        </p>
-    </div>
-    <div class="column"></div>
-</div>
 
-<input class="input" type="text" placeholder="Title">
-<textarea class="textarea" placeholder="Type your text here!"></textarea>
+<form method="POST" action="{{ url_for('add_story', user_id=user_id ) }}">
+    <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+            <input id="story_title" name="story_title" type="text" placeholder="Story title" class="input" required>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Type your story here</label>
+        <div class="control">
+            <textarea id="story_content" name="story_content" placeholder="Textarea" class="validate" minlength="20" maxlength="300" required></textarea>
+        </div>
+    </div>
     <div class="field">
         <p class="control">
-            <button type="submit" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit story">
+            <button type="submit" placeholder="Submit Story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit story">Submit Story
             </button>    
         </p>
     </div>
-
-{% endblock %}
+</form>

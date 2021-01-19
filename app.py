@@ -22,13 +22,21 @@ mongo = PyMongo(app)
 @app.route('/')
 def home():
     """
-    Function for loading the home page
+    Function for loading the home page and showing
+    existing stories.
     """
-    return render_template('pages/home.html')
+    stories = list(mongo.db.stories.find())
+    return render_template('pages/home.html', stories=stories)
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Function for registering a new user.
+    Also checks if username and/or password
+    already exists in the database.
+    Redirects to profile
+    """
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -102,6 +110,24 @@ def log_out():
     """
     session.clear()
     return render_template("pages/home.html")
+
+
+@app.route('/add_story', methods=["GET", "POST"])
+def add_story():
+    """
+    Allows a user to add a new story
+    """
+    if request.method == "POST":
+        story = {
+            "story_title": request.form.get("story_title"),
+            "story_content": request.form.get("story_content"),
+            "created_by": session["user"]
+        }
+        mongo.db.stories.insert_one(story)
+        flash("Story Successfully Added")
+        return redirect(url_for("profile", username=session["user"]))
+
+    return render_template("pages/add_story.html")
 
 
 if __name__ == "__main__":
