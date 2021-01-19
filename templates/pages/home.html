@@ -26,17 +26,17 @@
                     <p class="title">
                         {{ story.story_title }}
                     </p>
-                    <p class="summary">
-                        {{ story.story_summary }}
-                    </p>
                     <p class="subtitle">
                         Author: {{ story.created_by }}
+                    </p>
+                    <p class="summary">
+                        {{ story.story_summary }}
                     </p>
                 </div>
                 <footer class="card-footer">
                     <p class="card-footer-item">
                         <span>
-                            <a href=" {{ url_for('read_story', story_id=story._id, selected_story=selected_story) }} ">Read More</a>
+                            <a href=" {{ url_for('read_story', story_id=story._id ) }} ">Read More</a>
                         </span>
                     </p>
                 </footer>
