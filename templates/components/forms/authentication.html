@@ -4,8 +4,6 @@
 <form action="{{ url_for('log_in') }}" method="POST">
 {% endif %}
     <div class="field">
-        {% if register == True %}
-        {% endif %}
         <label class="label">Username</label>
         <div class="control has-icons-left">
             <input id="username" name="username" type="text" placeholder="Username" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
@@ -18,8 +16,6 @@
     </div>
 
     <div class="field">
-        {% if register == True %}
-        {% endif %}
         <label class="label">Password</label>
         <div class="control has-icons-left">
             <input id="password" name="password" type="password" placeholder="Password" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
@@ -63,3 +59,4 @@
             <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
         </div>
     </div>
+</form>

@@ -1,42 +1,37 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 {% include 'components/navigation/extended_navigation.html' %}
+<div class="container is-fluid mt-6">
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
             <p class="title">
-                    {{ username }}'s Profile
+                    Profile
             </p>
         </div>
         <div class="column"></div>
     </div>
-
-{% for story in stories %}
-{% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="columns mt-6" id="story-cards">
+</div>
+{% if story_count == 0 %}
+    <div class="columns mt-6" id="blank_profile">
         <div class="column is-4">
             <div class="card">
                 <div class="card-content">
                     <p class="title">
-                        {{ story.story_title }}
+                        Add a story and it will be displayed here
                     </p>
-                    <p class="summary">
-                        {{ story.story_content }}
-                    </p>
-                    <p class="subtitle">
-                        Author: {{ story.created_by }}
-                    </p>
+                    <a href="{{url_for('add_story', user_id=user_id)}}" class="button is-rounded is-info is-inverted" aria-label="Add story">Add</a>
                 </div>
-                <footer class="card-footer">
-                    <p class="card-footer-item">
-                        <span>
-                            <a href=" {{ url_for('read_story', story_id=story._id ) }} ">Read More</a>
-                        </span>
-                    </p>
-                </footer>
             </div>
         </div>
     </div>
+{% else %}
+<div class="container is-fluid mt-6">   
+    {% if story_count > 1 %}
+        {% for story in stories %}
+        {% include 'components/partials/storycard.html' %}
+        {% endfor %}
+</div>
+    {% endif %}
 {% endif %}
-{% endfor %}
 {% endblock %}

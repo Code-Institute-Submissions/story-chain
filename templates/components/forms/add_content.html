@@ -1,0 +1,39 @@
+
+<form method="POST" action="{{ url_for('add_content', user_id=user_id ) }}">
+    <div class="field">
+        <label class="label">Type your story here</label>
+        <div class="control">
+            <textarea id="story_content" name="story_content" placeholder="Textarea" class="validate" minlength="20" maxlength="3000" required></textarea>
+        </div>
+    </div>
+
+    <div class="field">
+        <p class="control">
+            <button type="submit" placeholder="Submit Story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit story">Submit Story
+            </button>    
+        </p>
+    </div>
+</form>
+
+
+<div class="columns">
+    <div class="column"></div>
+        <div class="column is-6">
+            <p class="title">You need to be logged in to add content to this story!</p>
+        </div>    
+        <div class="column"></div>
+</div>
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-2">
+        <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Click here to register</a>
+    </div>
+    <div class="column is-2">
+        <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Click here to Log in</a>
+    </div>
+    <div class="column is-2">
+    <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
+    </div>
+    <div class="column"></div>
+</div>
