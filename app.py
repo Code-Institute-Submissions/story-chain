@@ -140,9 +140,9 @@ def filled_profile(user_id, story_id):
         if session['user_id'] == str(user["_id"]):
             stories = list(mongo.db.stories.find().sort('_id', -1))
             return render_template('pages/profile.html',
-                            user_id=user_id,
-                            story_count=story_count,
-                            story_id=story_id)
+                                    user_id=user_id,
+                                    story_count=story_count,
+                                    story_id=story_id)
 
 
 
