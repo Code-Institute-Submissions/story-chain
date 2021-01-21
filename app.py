@@ -37,7 +37,6 @@ def register():
     Redirects to profile
     """
     if request.method == "POST":
-        # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -53,6 +52,7 @@ def register():
 
         # put the new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
+        flash("Thank you and welcome! Let the fun begin!")
         return redirect(url_for("profile", username=session["user"]))
 
     return render_template("pages/authentication.html", register=True)
@@ -69,16 +69,20 @@ def log_in():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            if check_password_hash(existing_user["password"],request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        return redirect(url_for(
-                            "profile", username=session["user"]))
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}!".format(request.form.get("username")),
+                      "success")
+                return redirect(url_for("profile", log_in=True))
             else:
-                flash("Incorrect Username and/or Password")
+                flash("Incorrect username and/or password. Please try again.",
+                      "error")
                 return redirect(url_for("log_in"))
 
         else:
-            flash("Incorrect Username and/or Password")
+            flash("Incorrect username and/or password. Please try again.",
+                  "error")
             return redirect(url_for("log_in"))
 
     return render_template("pages/authentication.html")
@@ -138,11 +142,13 @@ def read_story(story_id):
     return render_template("pages/read_story.html", story=story)
 
 
+# Figure out how to show new story and new content seperate, whilst adding them on homepage!
 @app.route('/add_content', methods=["GET", "POST"])
 def add_content():
     """
     Let's an a logged in user add content to
     an existing story.
+    Redirects to profile
     """
     if request.method == "POST":
         story = {
@@ -151,7 +157,7 @@ def add_content():
         }
         mongo.db.stories.insert_one(story)
         flash("Content Successfully Added")
-        return redirect(url_for("read_story"))
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("pages/add_content.html")
 

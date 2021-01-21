@@ -5,12 +5,11 @@
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
-            <p class="page-title">
-                    Profile
-            </p>
+            <p class="page-title">You are logged in as {{ username }}</p>
         </div>
         <div class="column"></div>
     </div>
+    {% include 'components/flash_messages/flash_messages.html' %}
 </div>
     <div class="columns mt-6">
         <div class="class column"></div>

@@ -33,6 +33,24 @@
             </div>
             <div class="column"></div>
         </div>
+        {% if log_in == True %}
+        <div class="columns mt-6" id="add_story">
+            <div class="column"></div>
+            <div class="column is-8">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title">
+                            Add content
+                        </p>
+                        {% include 'components/flash_messages/flash_messages.html' %}
+                    </div>
+                    {% include 'components/forms/add_content.html' %}
+                </div>
+            </div>  
+            <div class="column"></div>
+        </div>
+    </div>
+        {% else %}
         <div class="columns">
             <div class="column"></div>
             <div class="column is-three-fifths">
@@ -52,21 +70,5 @@
             </div>
             <div class="column"></div>
         </div>
-<!--Must be logged in to view this part -->
-        <div class="columns mt-6" id="add_story">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Add content
-                        </p>
-                        {% include 'components/flash_messages/flash_messages.html' %}
-                    </div>
-                    {% include 'components/forms/add_content.html' %}
-                </div>
-            </div>  
-            <div class="column"></div>
-        </div>
-    </div>
+        {% endif %}
 {% endblock %}
