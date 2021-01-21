@@ -37,6 +37,7 @@ def register():
     Redirects to profile
     """
     if request.method == "POST":
+        # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
@@ -44,106 +45,58 @@ def register():
             flash("Username already exists")
             return redirect(url_for("register"))
 
-        username = request.form.get("username").lower()
-        password = generate_password_hash(request.form.get("password"))
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
 
-        mongo.db.users.insert_one({
-            'username': username,
-            'password': password})
-
-        if mongo.db.users.find_one({'username': username}) is not None:
-            user = mongo.db.users.find_one({'username': username})
-            user_id = user['_id']
-            session['user_id'] = str(user_id)
-            stories = mongo.db.stories.find({"user_id": user_id})
-            story_count = stories.count()
-            return redirect(url_for("empty_profile",
-                                    user_id=user_id,
-                                    story_count=story_count))
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        return redirect(url_for("profile", username=session["user"]))
 
     return render_template("pages/authentication.html", register=True)
 
 
-@app.route("/log-in", methods=["GET", "POST"])
+@app.route('/log-in', methods=["GET", "POST"])
 def log_in():
     """
     Allows user to sign in with username and password
     Redirects user to profile
     """
     if request.method == "POST":
-        user = mongo.db.users.find_one(
+        existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
 
-        if user:
-            if check_password_hash(user["password"],
-                request.form.get("password")):
-                user_id = str(user['_id'])
-                session['user_id'] = str(user_id)
-
-                story = mongo.db.stories.find_one({"user_id": user_id})
-
-                if story:
-                    story_id = story["_id"]
-                    stories = mongo.db.stories.find({"user_id": user_id})
-                    story_count = stories.count()
-                    return redirect(url_for("filled_profile",
-                                            user_id=user_id,
-                                            story_id=story_id,
-                                            story_count=story_count))
-
-                else:
-                    stories = mongo.db.stories.find({"user_id": user_id})
-                    story_count = stories.count()
-                    return redirect(url_for("empty_profile",
-                                            user_id=user_id,
-                                            story_count=story_count))
+        if existing_user:
+            if check_password_hash(existing_user["password"],request.form.get("password")):
+                        session["user"] = request.form.get("username").lower()
+                        return redirect(url_for(
+                            "profile", username=session["user"]))
             else:
-                # invalid password match
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("log_in"))
 
         else:
-            # username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("log_in"))
 
     return render_template("pages/authentication.html")
 
 
-@app.route("/profile/<user_id>")
-def empty_profile(user_id):
+@app.route('/profile', methods=["GET", "POST"])
+def profile():
     """
-    When a user hasn't written any stories yes,
-    this function renders an empty profile page.
+    This function renders the profile page. This page displays the stories
+    submitted by the currently logged in user and is only visible for that
+    user.
     """
-    stories = mongo.db.stories.find({"user_id": user_id})
-    story_count = stories.count()
-    return render_template('pages/profile.html',
-                            user_id=user_id,
-                            story_count=story_count)
+    stories = list(mongo.db.stories.find().sort('_id', -1))
+    if session:
+        return render_template('pages/profile.html',
+        username=session["user"], stories=stories)
 
-
-@app.route("/profile/<user_id>/<story_id>", methods=["GET", "POST"])
-def filled_profile(user_id, story_id):
-    """
-    When a user has written at least one story,
-    this will be displayed on the profile.
-    """
-    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    stories = mongo.db.stories.find({"user_id": user_id})
-    story_count = stories.count()
-
-    if user is None:
-        return redirect(url_for("sign_in"))
-
-    if session.get('user_id'):
-        if session['user_id'] == str(user["_id"]):
-            stories = list(mongo.db.stories.find().sort('_id', -1))
-            return render_template('pages/profile.html',
-                                    user_id=user_id,
-                                    story_count=story_count,
-                                    story_id=story_id)
-
+    return redirect(url_for("log_in"))
 
 
 @app.route("/logout")

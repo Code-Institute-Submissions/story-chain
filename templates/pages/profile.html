@@ -5,15 +5,15 @@
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
-            <p class="title">
+            <p class="page-title">
                     Profile
             </p>
         </div>
         <div class="column"></div>
     </div>
 </div>
-{% if story_count == 0 %}
-    <div class="columns mt-6" id="blank_profile">
+    <div class="columns mt-6">
+        <div class="class column"></div>
         <div class="column is-4">
             <div class="card">
                 <div class="card-content">
@@ -24,14 +24,13 @@
                 </div>
             </div>
         </div>
+        <div class="class column"></div>
     </div>
-{% else %}
-<div class="container is-fluid mt-6">   
-    {% if story_count > 1 %}
-        {% for story in stories %}
-            {% include 'components/partials/storycard.html' %}
-        {% endfor %}
-</div>
-    {% endif %}
+{% for story in stories %}
+{% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
+    <div class="container is-fluid mt-6">
+        {% include 'components/partials/storycard.html' %}
+    </div>
 {% endif %}
+{% endfor %}
 {% endblock %}

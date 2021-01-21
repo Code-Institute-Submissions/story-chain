@@ -5,7 +5,7 @@
         <div class="columns">
             <div class="column"></div>
             <div class="column is-three-fifths" id="read_story">
-                <p class="title">
+                <p class="page-title">
                 Read Story
                 </p>
             </div>
@@ -33,6 +33,40 @@
             </div>
             <div class="column"></div>
         </div>
-{% include 'components/forms/add_content.html' %}
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column is-three-fifths">
+                <p class="title">
+                    You must be logged in to add to this story!
+                </p>
+            </div>
+            <div class="column"></div>
+        </div>
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column is-2">
+                <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Click here to Log in</a>
+            </div>
+            <div class="column is-2">
+            <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
+            </div>
+            <div class="column"></div>
+        </div>
+<!--Must be logged in to view this part -->
+        <div class="columns mt-6" id="add_story">
+            <div class="column"></div>
+            <div class="column is-8">
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title">
+                            Add content
+                        </p>
+                        {% include 'components/flash_messages/flash_messages.html' %}
+                    </div>
+                    {% include 'components/forms/add_content.html' %}
+                </div>
+            </div>  
+            <div class="column"></div>
+        </div>
     </div>
 {% endblock %}
