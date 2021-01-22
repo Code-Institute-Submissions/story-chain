@@ -99,7 +99,9 @@ def profile():
     stories = list(mongo.db.stories.find().sort('_id', -1))
     if session:
         return render_template('pages/profile.html',
-        username=session["user"], stories=stories, contennt=content)
+        username=session["user"],
+        stories=stories,
+        content=content)
 
     return redirect(url_for("log_in"))
 
@@ -138,7 +140,7 @@ def add_story():
 def edit_story(story_id):
     """
     Allows the user that has created the story,
-    to edit the story. After doing so succesfully,
+    to edit the story. After doing so,
     the user is then redirected to the 'Read Story' page.
     """
     if request.method == "POST":
@@ -150,7 +152,7 @@ def edit_story(story_id):
         }
         mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
         flash("Story Successfully Updated")
-        return redirect(url_for("read_story", username=session["user"]))
+        return redirect(url_for("read_story", story_id=story_id))
 
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/edit_story.html", story=story)
