@@ -14,26 +14,11 @@
         <div class="columns">        
             <div class="column"></div>
             <div class="column is-three-fifths">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            {{ story.story_title }}
-                        </p>
-                        <p class="subtitle">
-                            Author: {{ story.created_by }}
-                        </p>
-                        <p class="summary">
-                            {{ story.story_summary }}
-                        </p><br>
-                        <p class="summary">
-                            {{ story.story_content }}
-                        </p>
-                    </div>
-                </div>
+                {% include 'components/partials/storycard.html' %}
             </div>
             <div class="column"></div>
         </div>
-        {% if log_in == True %}
+        {% if (session.user|lower == session.user|lower or session.user|lower == "admin"|lower) %}
         <div class="columns mt-6" id="add_story">
             <div class="column"></div>
             <div class="column is-8">

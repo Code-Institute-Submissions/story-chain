@@ -74,7 +74,7 @@ def log_in():
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}!".format(request.form.get("username")),
                       "success")
-                return redirect(url_for("profile", log_in=True))
+                return redirect(url_for("profile"))
             else:
                 flash("Incorrect username and/or password. Please try again.",
                       "error")
@@ -95,10 +95,11 @@ def profile():
     submitted by the currently logged in user and is only visible for that
     user.
     """
+    content = list(mongo.db.content.find().sort('_id', -1))
     stories = list(mongo.db.stories.find().sort('_id', -1))
     if session:
         return render_template('pages/profile.html',
-        username=session["user"], stories=stories)
+        username=session["user"], stories=stories, contennt=content)
 
     return redirect(url_for("log_in"))
 
@@ -133,6 +134,22 @@ def add_story():
     return render_template("pages/add_story.html")
 
 
+@app.route("/edit_story/<story_id>", methods=["GET", "POST"])
+def edit_story(story_id):
+    if request.method == "POST":
+        submit = {
+            "story_title": request.form.get("story_title"),
+            "story_summary": request.form.get("story_summary"),
+            "story_content": request.form.get("story_content"),
+            "created_by": session["user"]
+        }
+        mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
+        flash("Story Successfully Updated")
+
+    story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
+    return render_template("read_story.html", story=story)
+
+
 @app.route('/read_story/<story_id>')
 def read_story(story_id):
     """
@@ -151,11 +168,11 @@ def add_content():
     Redirects to profile
     """
     if request.method == "POST":
-        story = {
-            "story_content": request.form.get("story_content"),
+        content = {
+            "content": request.form.get("content"),
             "created_by": session["user"]
         }
-        mongo.db.stories.insert_one(story)
+        mongo.db.content.insert_one(content)
         flash("Content Successfully Added")
         return redirect(url_for("profile", username=session["user"]))
 
