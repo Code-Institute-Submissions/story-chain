@@ -9,8 +9,8 @@
         <div class="column"></div>
     </div>
 
-    <div class="columns mt-6">
-        <div class="class column"></div>
+    <div class="columns mt-6 mb-6">
+        <div class="column"></div>
         <div class="column is-4">
             <div class="card">
                 <div class="card-content">
@@ -21,19 +21,25 @@
                 </div>
             </div>
         </div>
-        <div class="class column"></div>
+        <div class="column"></div>
     </div>
+    
 {% for story in stories %}
 {% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="container is-fluid mt-6">
-        {% include 'components/partials/storycard.html' %}
+    <div class="columns is-desktop">
+        <div class="column is-2 is-offset-4">
+            {% include 'components/partials/storycard.html' %}
+        </div>
     </div>
 {% endif %}
 {% endfor %}
+
 {% for content in content %}
 {% if (session.user|lower == content.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="container is-fluid mt-6">
-        {% include 'components/partials/contentcard.html' %}
+    <div class="columns is-desktop">
+        <div class="column is-2">
+            {% include 'components/partials/contentcard.html' %}
+        </div>
     </div>
 {% endif %}
 {% endfor %}

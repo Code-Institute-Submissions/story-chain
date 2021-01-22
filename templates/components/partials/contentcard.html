@@ -1,25 +1,20 @@
-<div class="columns mt-6" id="story-cards">
-    <div class="column"></div>
-    <div class="column is-2">
-        <div class="card">
-            <div class="card-content">
-                <p class="title">
-                </p>
-                <p class="subtitle">
-                    Author: {{ content.created_by }}
-                </p>
-                <p class="summary">
-                    {{ content.content }}
-                </p>
-            </div>
-            <footer class="card-footer">
-                <p class="card-footer-item">
-                    <span>
-                        <a href="/">Edit content</a>
-                    </span>
-                </p>
-            </footer>
-        </div>
+<div class="card">
+    <div class="card-content">
+        <p class="title">
+        </p>
+        <p class="subtitle">
+            Author: {{ content.created_by }}
+        </p>
+        <p class="summary">
+            {{ content.content }}
+        </p>
     </div>
-    <div class="column"></div>
+    <footer class="card-footer">
+        <p class="card-footer-item">
+            <span>
+                <a href="/">Edit content</a>
+            </span>
+        </p>
+    </footer>
 </div>
+
