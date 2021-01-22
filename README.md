@@ -224,9 +224,11 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 ***Delete added content by member***
 
 **User story: As a user, I want to be able to delete the stories I have started or contributed to.**
-* Plan
+* Plan:
+The plan was that a user could delete content they had created. But during development I suddenly got an image in my head of 'broken' stories because people where removing pieces of the chain story. I couldn't let that happen.
 
-* Implementation
+* Implementation:
+No implementation of this one, I didn't want the story chain to 'break', so ive dropped the 'delete' function for new story and added content.
 
 * Test
 
