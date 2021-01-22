@@ -1,5 +1,7 @@
 
-<form method="POST" action="{{ url_for('add_content', user_id=user_id ) }}">
+<form method="POST" action="{{ url_for('add_content', user_id=user_id, story_id=story_id ) }}">
+    <p class="title">{{ title }}</p>
+
     <div class="field">
         <label class="label">Type your story here</label>
         <div class="control">
@@ -9,7 +11,7 @@
 
     <div class="field">
         <p class="control">
-            <button type="submit" placeholder="Submit Story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit story">Submit Story
+            <button type="submit" placeholder="Submit Content" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit content">Submit Content
             </button>    
         </p>
     </div>

@@ -168,23 +168,25 @@ def read_story(story_id):
 
 
 # Figure out how to show new story and new content seperate, whilst adding them on homepage!
-@app.route('/add_content', methods=["GET", "POST"])
-def add_content():
+@app.route('/add_content<story_id>', methods=["GET", "POST"])
+def add_content(story_id):
     """
     Let's an a logged in user add content to
     an existing story.
     Redirects to profile
     """
+    title = mongo.db.stories.find_one({}, {"story_title"})
     if request.method == "POST":
         content = {
             "content": request.form.get("content"),
             "created_by": session["user"]
         }
         mongo.db.content.insert_one(content)
+        # Want to retrieve the title from the stories collection and associate document and display that
         flash("Content Successfully Added")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(url_for("profile", content=content, title=title, username=session["user"]))
 
-    return render_template("pages/add_content.html")
+    return render_template("pages/add_content.html", story_id=story_id)
 
 
 if __name__ == "__main__":

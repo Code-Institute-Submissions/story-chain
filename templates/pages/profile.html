@@ -4,7 +4,7 @@
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
-            <p class="page-title">You are logged in as {{ username }}</p>
+            <p class="page-title">Profile</p>
         </div>
         <div class="column"></div>
     </div>
@@ -27,6 +27,13 @@
 {% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
     <div class="container is-fluid mt-6">
         {% include 'components/partials/storycard.html' %}
+    </div>
+{% endif %}
+{% endfor %}
+{% for content in content %}
+{% if (session.user|lower == content.created_by|lower or session.user|lower == "admin"|lower) %}
+    <div class="container is-fluid mt-6">
+        {% include 'components/partials/contentcard.html' %}
     </div>
 {% endif %}
 {% endfor %}
