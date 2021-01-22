@@ -234,7 +234,7 @@ No implementation of this one, I didn't want the story chain to 'break', so ive 
 
 * Result
 
-    * Verdict: The test has passed all the criteria and works like planned.
+    *
 
 ***Account options***
 

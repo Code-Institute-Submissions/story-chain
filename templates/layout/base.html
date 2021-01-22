@@ -42,7 +42,7 @@
                             <div class="navbar-end">
                                 <a href="{{url_for('home')}}" class="navbar-item">Home</a>
                                 {% if session.user %}
-                                <a href="{{url_for('profile', user_id=user_id, story_id=story_id)}}" class="navbar-item">Profile</a>
+                                <a href="{{url_for('profile', user_id=user_id, story_id=story_id)}}" class="navbar-item">Profile ( {{ session.user }} )</a>
                                 <a href="{{url_for('add_story')}}" class="navbar-item">Add</a>
                                 <span class="navbar-item">
                                     <a href="{{url_for('log_out')}}" class="button is-rounded is-info is-inverted" aria-label="Log out">Log Out</a>
