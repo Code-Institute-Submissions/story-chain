@@ -16,7 +16,10 @@
             <footer class="card-footer">
                 <p class="card-footer-item">
                     <span>
-                        <a href=" {{ url_for('read_story', story_id=story._id ) }} ">Read More</a>
+                        <a href=" {{ url_for('read_story', story_id=story._id) }} ">Read More</a>
+                    </span>
+                    <!-- Edit button only for user that has created the story!-->
+                    <span><a href="{{ url_for('edit_story', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Edit story">Edit story</a>
                     </span>
                 </p>
             </footer>

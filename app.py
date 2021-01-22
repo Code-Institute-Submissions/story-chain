@@ -136,6 +136,11 @@ def add_story():
 
 @app.route("/edit_story/<story_id>", methods=["GET", "POST"])
 def edit_story(story_id):
+    """
+    Allows the user that has created the story,
+    to edit the story. After doing so succesfully,
+    the user is then redirected to the 'Read Story' page.
+    """
     if request.method == "POST":
         submit = {
             "story_title": request.form.get("story_title"),
@@ -145,9 +150,10 @@ def edit_story(story_id):
         }
         mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
         flash("Story Successfully Updated")
+        return redirect(url_for("read_story", username=session["user"]))
 
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
-    return render_template("read_story.html", story=story)
+    return render_template("pages/edit_story.html", story=story)
 
 
 @app.route('/read_story/<story_id>')
