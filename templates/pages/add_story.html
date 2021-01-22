@@ -1,22 +1,17 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-{% include 'components/navigation/extended_navigation.html' %}
-
-    <div class="container is-fluid mt-6">
-        <div class="columns mt-6" id="add_story">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Add a new story
-                        </p>
-                        {% include 'components/flash_messages/flash_messages.html' %}
-                    </div>
-                    {% include 'components/forms/add_story.html' %}
-                </div>
-            </div>  
-            <div class="column"></div>
+<div class="columns mt-6" id="add_story">
+    <div class="column"></div>
+    <div class="column is-8">
+        <div class="card">
+            <div class="card-content">
+                <p class="title">
+                    Add a new story
+                </p>
+            </div>
+            {% include 'components/forms/add_story.html' %}
         </div>
-    </div>
+    </div>  
+    <div class="column"></div>
+</div>
 {% endblock %}

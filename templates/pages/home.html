@@ -1,7 +1,5 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-{% include 'components/navigation/basic_navigation.html' %}
-<div class="container is-fluid mt-6">
     <div class="columns">
         <div class="column"></div>
         <div class="column is-three-fifths" id="about">
@@ -21,5 +19,4 @@
 {% for story in stories %}
     {% include 'components/partials/storycard.html' %}
 {% endfor %}
-</div>
 {% endblock %}

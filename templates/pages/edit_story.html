@@ -1,8 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-{% include 'components/navigation/extended_navigation.html' %}
 {% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="container is-fluid mt-6">
         <div class="columns mt-6" id="add_story">
             <div class="column"></div>
             <div class="column is-8">
@@ -11,14 +9,12 @@
                         <p class="page-title">
                             Edit Story
                         </p>
-                        {% include 'components/flash_messages/flash_messages.html' %}
                     </div>
                     {% include 'components/forms/edit_story.html' %}
                 </div>
             </div>  
             <div class="column"></div>
         </div>
-    </div>
 {% endif %}
 
 <!--Add an else for user that havent submitted the story, error handling-->
