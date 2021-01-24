@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="columns mt-6" id="change-username">
+    <div class="column"></div>
+    <div class="column is-8">
+        <div class="card">
+            <div class="card-content">
+                <p class="title">
+                    Change username
+                </p>
+            </div>
+            {% include 'components/forms/change_username.html' %}
+        </div>
+    </div>  
+    <div class="column"></div>
+</div>
+{% endblock %}

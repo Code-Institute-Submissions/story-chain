@@ -113,7 +113,7 @@ def change_password(username):
     if request.method == "POST":
         submit = {
             "username": session["user"],
-            "password": generate_password_hash(request.form.get("password")),
+            "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.update({"username": username.lower()}, submit)
         flash("Your password has been updated")
@@ -123,6 +123,24 @@ def change_password(username):
         return render_template("pages/change_password.html", username=username)
 
     return redirect(url_for("log_in"))
+
+
+@app.route("/change/username/<username>", methods=["GET", "POST"])
+def change_username(username):
+    """
+    This function renders the change username page, where a logged
+    in user can change the username.
+    """
+    if request.method == "POST":
+        mongo.db.users.update_one(
+                {"username": username},
+                {"$set": {"username": request.form["new_username"]}}, upsert=True)
+        flash("Your username has been updated. Please login with your new username")
+        session.pop("user", None)
+        return redirect(url_for("log_in"))
+
+    return render_template("pages/change_username.html",
+                            username=session["user"])
 
 
 @app.route("/logout")
