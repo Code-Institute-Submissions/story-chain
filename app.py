@@ -101,7 +101,7 @@ def profile():
         return render_template('pages/profile.html',
         username=session["user"],
         stories=stories,
-        content=content)
+        add_content=add_content)
 
     return redirect(url_for("log_in"))
 
@@ -127,7 +127,7 @@ def add_story():
             "story_title": request.form.get("story_title"),
             "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
-            "created_by": session["user"]
+            "Author": session["user"]
         }
         mongo.db.stories.insert_one(story)
         flash("Story Successfully Added")
@@ -148,7 +148,7 @@ def edit_story(story_id):
             "story_title": request.form.get("story_title"),
             "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
-            "created_by": session["user"]
+            "author": session["user"]
         }
         mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
         flash("Story Successfully Updated")
@@ -164,10 +164,11 @@ def read_story(story_id):
     Displays whole story.
     """
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
-    return render_template("pages/read_story.html", story=story)
+    return render_template("pages/read_story.html",
+                            story=story,
+                            add_content=add_content) #this can dissapear as soon as the add_content function works
 
 
-# Figure out how to show new story and new content seperate, whilst adding them on homepage!
 @app.route('/add_content<story_id>', methods=["GET", "POST"])
 def add_content(story_id):
     """
@@ -175,16 +176,21 @@ def add_content(story_id):
     an existing story.
     Redirects to profile
     """
-    title = mongo.db.stories.find_one({}, {"story_title"})
     if request.method == "POST":
-        content = {
-            "content": request.form.get("content"),
+        add_content = {
+            "_id": ObjectId(),
+            "add_content": request.form.get("add_content"),
             "created_by": session["user"]
         }
-        mongo.db.content.insert_one(content)
-        # Want to retrieve the title from the stories collection and associate document and display that
+        insert_content_intoDB = mongo.db.stories.insert_one(add_content)
+        mongo.db.stories.update_one(
+            {"_id": ObjectId(story_id)},
+            {"$push": {"add_content": insert_content_intoDB.inserted_id}})
+
         flash("Content Successfully Added")
-        return redirect(url_for("profile", content=content, title=title, username=session["user"]))
+        return redirect(url_for("profile",
+                        add_content=insert_content_intoDB.inserted_id,
+                        username=session["user"], story_id=story_id))
 
     return render_template("pages/add_content.html", story_id=story_id)
 

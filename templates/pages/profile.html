@@ -1,6 +1,5 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
@@ -26,20 +25,24 @@
     
 {% for story in stories %}
 {% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="columns is-desktop">
-        <div class="column is-2 is-offset-4">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-third">
             {% include 'components/partials/storycard.html' %}
         </div>
+        <div class="column"></div>
     </div>
 {% endif %}
 {% endfor %}
 
 {% for content in content %}
 {% if (session.user|lower == content.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="columns is-desktop">
-        <div class="column is-2">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-one-third">
             {% include 'components/partials/contentcard.html' %}
         </div>
+        <div class="column"></div>
     </div>
 {% endif %}
 {% endfor %}
