@@ -227,19 +227,13 @@ def add_content(story_id):
     Redirects to profile
     """
     if request.method == "POST":
-        add_content = {
-            "_id": ObjectId(),
-            "add_content": request.form.get("add_content"),
-            "created_by": session["user"]
-        }
-        insert_content_intoDB = mongo.db.stories.insert_one(add_content)
-        mongo.db.stories.update_one(
-            {"_id": ObjectId(story_id)},
-            {"$push": {"add_content": insert_content_intoDB.inserted_id}})
-
+        mongo.db.stories.update({"_id": ObjectId(story_id)},
+        {"$push": {"add_content": [{"_id": ObjectId(),
+        "add_content": request.form.get("add_content"),
+        "created_by": session["user"]}]}})
         flash("Content Successfully Added")
         return redirect(url_for("profile",
-                        add_content=insert_content_intoDB.inserted_id,
+                        add_content=add_content,
                         username=session["user"], story_id=story_id))
 
     return render_template("pages/add_content.html", story_id=story_id)
