@@ -143,6 +143,19 @@ def change_username(username):
                             username=session["user"])
 
 
+@app.route("/delete/account<username>")
+def delete_account(username):
+    """
+    This function removes a user from the "users" collection
+    in the database. Ti removes the user from the session
+    cookies and redirects to the homepage
+    """
+    mongo.db.users.remove({"username": username.lower()})
+    session.pop("user")
+    flash("Your account has been removed. Sad to see you go!")
+    return redirect(url_for("home"))
+
+
 @app.route("/logout")
 def log_out():
     """
