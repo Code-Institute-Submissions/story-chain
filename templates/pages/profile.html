@@ -22,6 +22,21 @@
         </div>
         <div class="column"></div>
     </div>
+
+    <div class="columns mt-6 mb-6">
+        <div class="column"></div>
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        Account settings
+                    </p>
+                    <a href="{{ url_for('change_password', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="change-password" aria-label="Change your password">Change Password</a>
+                </div>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
     
 {% for story in stories %}
 {% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
@@ -29,18 +44,6 @@
         <div class="column"></div>
         <div class="column is-one-third">
             {% include 'components/partials/storycard.html' %}
-        </div>
-        <div class="column"></div>
-    </div>
-{% endif %}
-{% endfor %}
-
-{% for content in content %}
-{% if (session.user|lower == content.created_by|lower or session.user|lower == "admin"|lower) %}
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column is-one-third">
-            {% include 'components/partials/contentcard.html' %}
         </div>
         <div class="column"></div>
     </div>

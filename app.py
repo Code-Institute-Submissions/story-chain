@@ -72,36 +72,55 @@ def log_in():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}!".format(request.form.get("username")),
-                      "success")
+                flash("Welcome, {}!".format(request.form.get("username")))
                 return redirect(url_for("profile"))
             else:
-                flash("Incorrect username and/or password. Please try again.",
-                      "error")
+                flash("Incorrect username and/or password. Please try again.")
                 return redirect(url_for("log_in"))
 
         else:
-            flash("Incorrect username and/or password. Please try again.",
-                  "error")
+            flash("Incorrect username and/or password. Please try again.")
             return redirect(url_for("log_in"))
 
     return render_template("pages/authentication.html")
 
 
-@app.route('/profile', methods=["GET", "POST"])
+@app.route("/profile", methods=["GET", "POST"])
 def profile():
     """
     This function renders the profile page. This page displays the stories
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    content = list(mongo.db.content.find().sort('_id', -1))
+    #this can maybe go once new add_content function works
+    #content = list(mongo.db.stories.find(add_content).sort('_id', -1))
     stories = list(mongo.db.stories.find().sort('_id', -1))
     if session:
-        return render_template('pages/profile.html',
+        return render_template("pages/profile.html",
         username=session["user"],
-        stories=stories,
-        add_content=add_content)
+        stories=stories)
+        #add_content=add_content)
+
+    return redirect(url_for("log_in"))
+
+
+@app.route("/change/password/<username>", methods=["GET", "POST"])
+def change_password(username):
+    """
+    This function renders the change password page which is only
+    visible for the logged in user.
+    """
+    if request.method == "POST":
+        submit = {
+            "username": session["user"],
+            "password": generate_password_hash(request.form.get("password")),
+        }
+        mongo.db.users.update({"username": username.lower()}, submit)
+        flash("Your password has been updated")
+        return redirect(url_for("profile", username=session["user"]))
+
+    if session:
+        return render_template("pages/change_password.html", username=username)
 
     return redirect(url_for("log_in"))
 
