@@ -1,58 +1,58 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column is-three-fifths" id="read_story">
-            <p class="page-title">
-            Read Story
-            </p>
-        </div>
-        <div class="column"></div>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-three-fifths" id="read_story">
+        <p class="page-title">
+        Read Story
+        </p>
     </div>
-    <div class="columns">        
-        <div class="column"></div>
-        <div class="column is-three-fifths">
-            {% include 'components/partials/storycard.html' %}
-        </div>
-        <div class="column"></div>
+    <div class="column"></div>
+</div>
+<div class="columns">        
+    <div class="column"></div>
+    <div class="column is-three-fifths">
+        {% include 'components/partials/storycard.html' %}
     </div>
-    {% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
-        <div class="columns mt-6" id="edit_story">
-            <div class="column"></div>
-                <div class="column is-8">
-                    <span><a href="{{ url_for('edit_story', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Edit story">Edit story</a>
-                    </span>
-                    <div class="column"></div>
-                </div>
-        </div>
-        {% elif (session.user|lower or session.user|lower == "admin"|lower) %}
-        <div class="columns mt-6" id="add_content">
-            <div class="column"></div>
-            <div class="column">
-                <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
-                </span>
-            </div>
+    <div class="column"></div>
+</div>
+{% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
+<div class="columns mt-6" id="edit_story">
+    <div class="column"></div>
+        <div class="column is-8">
+            <span><a href="{{ url_for('edit_story', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Edit story">Edit story</a>
+            </span>
             <div class="column"></div>
         </div>
-    {% else %}
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column is-three-fifths">
-            <p class="title">
-                You must be logged in to add to this story!
-            </p>
-        </div>
-        <div class="column"></div>
+</div>
+{% elif (session.user|lower or session.user|lower == "admin"|lower) %}
+<div class="columns mt-6" id="add_content">
+    <div class="column"></div>
+    <div class="column">
+        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
+        </span>
     </div>
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column is-2">
-            <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Click here to Log in</a>
-        </div>
-        <div class="column is-2">
-        <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
-        </div>
-        <div class="column"></div>
+    <div class="column"></div>
+</div>
+{% else %}
+<div class="columns mt-6 mb-6">
+    <div class="column"></div>
+    <div class="column is-three-fifths">
+        <p class="title">
+            You must be logged in to add to this story!
+        </p>
     </div>
-    {% endif %}
+    <div class="column"></div>
+</div>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-2">
+        <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Log In</a>
+    </div>
+    <div class="column is-2">
+    <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
+    </div>
+    <div class="column"></div>
+</div>
+{% endif %}
 {% endblock %}
