@@ -1,42 +1,38 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 
-    {% if register == True %}
+{% if register == True %}
 
-        <div class="columns mt-6" id="register">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Register here to start your personal story telling journey!
-                        </p>
-                    </div>
-                    {% include 'components/forms/authentication.html' %}
-                </div>
-            </div>  
-            <div class="column"></div>
-        </div>
-
-
-    {% else %}
-
- 
-        <div class="columns mt-6" id="log-in">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="title">
-                            Log in
-                        </p>
-                    </div>
-                    {% include 'components/forms/authentication.html' %}
-                </div>
+<div class="columns mt-6" id="register">
+    <div class="column">
+        <div class="card">
+            <div class="card-content">
+                <p class="title">
+                    Register here to start your personal story telling journey!
+                </p>
             </div>
-            <div class="column"></div>
+            {% include 'components/forms/authentication.html' %}
         </div>
+    </div>
+</div>
 
 
-    {% endif %}
+{% else %}
+
+
+<div class="columns mt-6" id="log-in">
+    <div class="column">
+        <div class="card">
+            <div class="card-content">
+                <p class="title">
+                    Log in
+                </p>
+            </div>
+            {% include 'components/forms/authentication.html' %}
+        </div>
+    </div>
+</div>
+
+
+{% endif %}
 {% endblock %}

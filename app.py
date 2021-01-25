@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -92,14 +93,11 @@ def profile():
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    #this can maybe go once new add_content function works
-    #content = list(mongo.db.stories.find(add_content).sort('_id', -1))
     stories = list(mongo.db.stories.find().sort('_id', -1))
     if session:
         return render_template("pages/profile.html",
         username=session["user"],
         stories=stories)
-        #add_content=add_content)
 
     return redirect(url_for("log_in"))
 
@@ -174,11 +172,13 @@ def add_story():
     Allows a user to add a new story
     """
     if request.method == "POST":
+        date_created = datetime.today().strftime('%Y-%m-%d')
         story = {
             "story_title": request.form.get("story_title"),
             "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
-            "Author": session["user"]
+            "Author": session["user"],
+            "created_on": date_created
         }
         mongo.db.stories.insert_one(story)
         flash("Story Successfully Added")
@@ -209,6 +209,9 @@ def edit_story(story_id):
     return render_template("pages/edit_story.html", story=story)
 
 
+# Make function for delete story, only for admin user
+
+
 @app.route('/read/story/<story_id>')
 def read_story(story_id):
     """
@@ -226,6 +229,7 @@ def add_content(story_id):
     an existing story.
     Redirects to profile
     """
+    # Needs to add to the story document
     if request.method == "POST":
         mongo.db.stories.update({"_id": ObjectId(story_id)},
         {"$push": {"add_content": [{"_id": ObjectId(),
@@ -237,6 +241,9 @@ def add_content(story_id):
                         username=session["user"], story_id=story_id))
 
     return render_template("pages/add_content.html", story_id=story_id)
+
+
+# Make function for delete content, admin only
 
 
 @app.errorhandler(404)
