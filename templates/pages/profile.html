@@ -1,14 +1,15 @@
 {% extends 'layout/base.html' %}
 {% block content %}
     <div class="columns">
-        <div class="column"></div>
-        <div class="column is-8">
+        <div class="column is-full" id="profile">
             <p class="page-title">Profile</p>
+        <div class="column is-full is-flex is-horizontal-center" id="profile_image">
+            <figure class="image is-128x128">
+                <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+            </figure>
+            </div>
         </div>
-        <div class="column"></div>
     </div>
-
-{% include 'components/partials/account_settings.html' %}
 
 {% for story in stories %}
 {% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
@@ -18,5 +19,9 @@
 {% endif %}
 {% endfor %}
 <div class="profile-story-header" mt-4 mb-4>Stories you have contributed to:</div>
+
 <!-- contentcard-->
+
+{% include 'components/partials/account_settings.html' %}
+
 {% endblock %}

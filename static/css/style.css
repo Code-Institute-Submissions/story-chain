@@ -50,7 +50,7 @@ body {
 .navbar-item img {
     max-height: 5.75rem;
 }
-/* Hero header stylin */
+/* Hero header styling */
 .hero.is-info,
 .hero.is-info a.navbar-item.is-active,
 .hero.is-info a.navbar-item:hover,
@@ -113,13 +113,27 @@ body {
     overflow: hidden;
     position: relative;
 }
+
+#change-username,
+#change-password,
+#delete-account {
+    color: #5f2121;
+    background-color: #bc5609;
+}
 .profile-story-header {
     color: #5f2121;
     text-align: center;
     font-size: 5rem;
     font-family: 'Indie Flower', cursive;
 }
+#profile {
+    background-color: #5f2121;
+    color: #bc5609;
+}
 
+.is-horizontal-center {
+    justify-content: center;
+}
 /* For dropdown arrow in collapsible elements and Read More links in story cards */
 a {
     color: #5f2121;
@@ -146,6 +160,23 @@ a {
     padding: 3rem 1.5rem 2rem;
 }
 
+.error {
+    background-color: #5f2121;
+    background-image: url("../../../static/images/stationery-670870_1920.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.error-title {
+    color: #bc5609;
+    font-size: 20rem;
+    font-family: 'Indie Flower', cursive;
+}
+.error-subtitle {
+    color: #bc5609;
+    font-size: 5rem;
+    font-family: 'Raleway'
+}
 @media screen and (max-width: 1023px) {
 .hero.is-info .navbar-menu {
     background-color: rgba(248, 248, 255, 0.7);
