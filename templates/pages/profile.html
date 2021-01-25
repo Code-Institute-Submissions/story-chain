@@ -13,9 +13,10 @@
 {% for story in stories %}
 {% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
 <div class="profile-story-header" mt-4 mb-4>Stories you have written:</div>
-    {% include 'components/partials/storycard.html' %}
+    {% include 'components/partials/feature_storycard.html' %}
 
 {% endif %}
 {% endfor %}
 <div class="profile-story-header" mt-4 mb-4>Stories you have contributed to:</div>
+<!-- contentcard-->
 {% endblock %}

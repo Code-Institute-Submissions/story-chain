@@ -199,7 +199,7 @@ def edit_story(story_id):
             "story_title": request.form.get("story_title"),
             "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
-            "author": session["user"]
+            "Author": session["user"]
         }
         mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
         flash("Story Successfully Updated")

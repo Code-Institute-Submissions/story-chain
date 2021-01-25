@@ -1,21 +1,17 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-{% if (session.user|lower == story.created_by|lower or session.user|lower == "admin"|lower) %}
-        <div class="columns mt-6" id="add_story">
-            <div class="column"></div>
-            <div class="column is-8">
-                <div class="card">
-                    <div class="card-content">
-                        <p class="page-title">
-                            Edit Story
-                        </p>
-                    </div>
-                    {% include 'components/forms/edit_story.html' %}
-                </div>
-            </div>  
-            <div class="column"></div>
-        </div>
+{% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
+<p class="page-title">Edit Story</p>
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-4">
+{% include 'components/forms/edit_story.html' %}
+    </div>
+    <div class="column"></div>
+</div>
 {% endif %}
 
-<!--Add an else for user that havent submitted the story, error handling-->
 {% endblock %}
+
+<!--Add an else for user that havent submitted the story, error handling-->

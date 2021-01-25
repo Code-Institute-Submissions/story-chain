@@ -1,8 +1,7 @@
 {% extends 'layout/base.html' %}
 {% block content %}
     <div class="columns mb-6">
-        <div class="column"></div>
-        <div class="column is-three-fifths" id="about">
+        <div class="column" id="about">
             <p class="title mt-6"> How does this work?</p>
             <p id="about-text"> Writing stories can be fun. But writing stories with total strangers is way better!</p><br>
             <p class="sub-heading"> This is the deal:</p>
@@ -14,10 +13,9 @@
                         <p class="title"> Now the waiting starts... How will the story unfold?</p>
                 </div>
         </div>
-        <div class="column"></div>
     </div>
     <div class="profile-story-header" mt-4 mb-4>Stories</div>
 {% for story in stories %}
-    {% include 'components/partials/storycard.html' %}
+    {% include 'components/partials/feature_storycard.html' %}
 {% endfor %}
 {% endblock %}

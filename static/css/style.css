@@ -17,10 +17,6 @@ body {
     overflow-y: hidden;
 }
 
-.column {
-    text-align: center;
-}
-
 .title {
     color:#bc5609;
     text-align: center;
@@ -73,6 +69,10 @@ body {
     background: rgba(248, 248, 255, 0.7);
 }
 
+.navbar-burger {
+    margin-top: 1.5rem;
+}
+
 /* Buttons */
 .button {
     font-size: 2rem;;
@@ -80,9 +80,11 @@ body {
 .button.is-info.is-inverted {
     background-color: #5f2121;
     color: #f8f8ff;
-
 }
 
+#join-button {
+    text-align: center;
+}
 
 #about {
     color: #000;
@@ -121,6 +123,27 @@ body {
 /* For dropdown arrow in collapsible elements and Read More links in story cards */
 a {
     color: #5f2121;
+}
+
+/* For forms */
+.label {
+    color: #5f2121;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.field:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+/* Footer */
+#footer {
+    color: #5f2121;
+    font-size: 3rem;
+    font-family: 'Indie Flower', cursive;
+    background-color: #fff;
+    padding: 3rem 1.5rem 2rem;
 }
 
 @media screen and (max-width: 1023px) {
