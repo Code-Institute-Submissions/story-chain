@@ -160,9 +160,10 @@ a {
     padding: 3rem 1.5rem 2rem;
 }
 
+/* Styling for 404 and 500 error pages */
 .error {
     background-color: #5f2121;
-    background-image: url("../../../static/images/stationery-670870_1920.jpg");
+    background-image: url("../../../static/images/errorbackground.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

@@ -404,6 +404,7 @@ Credits
 **Image credits**
 
 * [Hero header image](https://pixabay.com/nl/photos/voorjaar-schrijven-communiceren-3237961/)
+* [Error pages background](https://pixabay.com/nl/illustrations/briefpapier-canvas-afbeelding-670870/)
 
 **Special thanks**
 * My Yoda-mentor [Simen Daehlin](https://github.com/Eventyret) for being there when I lost my way and didn't know how to get back. And for being the kick-ass person that he is.
