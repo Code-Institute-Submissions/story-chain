@@ -215,8 +215,7 @@ def read_story(story_id):
     """
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/read_story.html",
-                            story=story,
-                            add_content=add_content) #this can dissapear as soon as the add_content function works
+                            story=story)
 
 
 @app.route('/add_content<story_id>', methods=["GET", "POST"])

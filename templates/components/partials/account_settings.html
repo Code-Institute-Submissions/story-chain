@@ -1,0 +1,15 @@
+<div class="card is-fullwidth mt-4 mb-4">
+	<header class="card-header">
+	<p class="card-header-title">Account Settings</p>
+		<a class="card-header-icon card-toggle">
+			<i class="fa fa-angle-down"></i>
+        </a>
+    </header>
+    <div class="card-content is-hidden">
+        <div class="columns">
+        <div class="column"><a href="{{ url_for('change_password', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="change-password" aria-label="Change your password">Change Password</a></div>
+        <div class="column"><a href="{{ url_for('change_username', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="change-username" aria-label="Change your username">Change Username</a></div>
+        <div class="column"><a href="{{ url_for('delete_account', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="delete-account" aria-label="Delete account">Delete Account</a></div>
+        </div> 
+    </div>
+</div>

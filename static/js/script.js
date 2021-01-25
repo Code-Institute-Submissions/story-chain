@@ -8,3 +8,13 @@ $(document).ready(function () {
         $(".navbar-menu").toggleClass("is-active");
     });
 });
+
+// For collapsible cards, taken from: https://codepen.io/brussell98/pen/mEwxjP?js-preprocessor=livescript
+document.addEventListener('DOMContentLoaded', function() {
+	let cardToggles = document.getElementsByClassName('card-toggle');
+	for (let i = 0; i < cardToggles.length; i++) {
+		cardToggles[i].addEventListener('click', e => {
+			e.currentTarget.parentElement.parentElement.childNodes[3].classList.toggle('is-hidden');
+		});
+	}
+});

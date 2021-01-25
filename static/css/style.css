@@ -60,10 +60,17 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 
+.card-header-title {
+    color:#bc5609;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Indie Flower', cursive;
+}
+
 #about {
     color: #000;
     text-align: center;
-    border: solid black 1px;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
 }
 
 .sub-heading {
@@ -87,6 +94,27 @@ body {
 }
 
 .flashes {
+    color: #5f2121;
+}
+
+#account-settings {
+    background-color: #fff;
+    border-radius: .25rem;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+    color: #4a4a4a;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.profile-story-header {
+    color: #5f2121;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Indie Flower', cursive;
+}
+
+/* For dropdown arrow in collapsible elements and Read More links in story cards */
+a {
     color: #5f2121;
 }
 
