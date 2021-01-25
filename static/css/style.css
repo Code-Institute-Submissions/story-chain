@@ -1,7 +1,7 @@
 /* Google font import link */
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Raleway:wght@200;500&display=swap');
 
-
+/* General styling */
 html {
     font-size: 62.5%;
     position: relative;
@@ -16,11 +16,45 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
+
+.column {
+    text-align: center;
+}
+
+.title {
+    color:#bc5609;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Indie Flower', cursive;
+}
+
+.card-header-title {
+    color:#bc5609;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Indie Flower', cursive;
+}
+
+.sub-heading {
+    font-size: 2.5rem;
+    color: #bc5609;
+    font-family: 'Indie Flower', cursive;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+}
+
+.page-title {
+    color:#bc5609;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Indie Flower', cursive;
+}
+
 /* Navbar styling */
 .navbar-item img {
     max-height: 5.75rem;
 }
-
+/* Hero header stylin */
 .hero.is-info,
 .hero.is-info a.navbar-item.is-active,
 .hero.is-info a.navbar-item:hover,
@@ -39,6 +73,7 @@ body {
     background: rgba(248, 248, 255, 0.7);
 }
 
+/* Buttons */
 .button {
     font-size: 2rem;;
 }
@@ -48,24 +83,6 @@ body {
 
 }
 
-.column {
-    text-align: center;
-}
-
-/* About */
-.title {
-    color:#bc5609;
-    text-align: center;
-    font-size: 3rem;
-    font-family: 'Indie Flower', cursive;
-}
-
-.card-header-title {
-    color:#bc5609;
-    text-align: center;
-    font-size: 2.5rem;
-    font-family: 'Indie Flower', cursive;
-}
 
 #about {
     color: #000;
@@ -73,30 +90,18 @@ body {
     box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
 }
 
-.sub-heading {
-    font-size: 2.5rem;
-    color: #bc5609;
-    font-family: 'Indie Flower', cursive;
-    text-decoration-line: underline;
-    text-decoration-style: wavy;
-}
-
-.page-title {
-    color:#bc5609;
-    text-align: center;
-    font-size: 5rem;
-    font-family: 'Indie Flower', cursive;
-}
-
+/* List styling */
 .content ol {
     list-style-position: inside;
     margin-right: 2em;
 }
 
+/* Flash Messages styling */
 .flashes {
     color: #5f2121;
 }
 
+/* Profile Styling */
 #account-settings {
     background-color: #fff;
     border-radius: .25rem;
