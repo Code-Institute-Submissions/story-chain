@@ -409,6 +409,7 @@ Credits
 **Special thanks**
 * My Yoda-mentor [Simen Daehlin](https://github.com/Eventyret) for being there when I lost my way and didn't know how to get back. And for being the kick-ass person that he is.
 * [Anouk Smet](https://github.com/AnoukSmet), for her awesome README
+* [SuzanneNL](https://github.com/SuzanneNL), for her project as a whole. Ive learned so much from just reading through your code, talking to you about it and from the way you've written your testing and bugs section really helped to understand what is going on.
 * Everybody at Slack for their support, tips and humor! 
 
 For his undying love and support and always being there, my love, you know who you are ;)
