@@ -58,7 +58,7 @@ def register():
     return render_template("pages/authentication.html", register=True)
 
 
-@app.route('/log-in', methods=["GET", "POST"])
+@app.route('/login', methods=["GET", "POST"])
 def log_in():
     """
     Allows user to sign in with username and password
@@ -134,7 +134,8 @@ def change_username(username):
     if request.method == "POST":
         mongo.db.users.update_one(
                 {"username": username},
-                {"$set": {"username": request.form["new_username"]}}, upsert=True)
+                {"$set": {"username": request.form["new_username"]}},
+                    upsert=True)
         flash("Your username has been updated. Please login with your new username")
         session.pop("user", None)
         return redirect(url_for("log_in"))
@@ -167,7 +168,7 @@ def log_out():
     return render_template("pages/home.html", stories=stories)
 
 
-@app.route('/add_story', methods=["GET", "POST"])
+@app.route('/add/story', methods=["GET", "POST"])
 def add_story():
     """
     Allows a user to add a new story
@@ -186,7 +187,7 @@ def add_story():
     return render_template("pages/add_story.html")
 
 
-@app.route("/edit_story/<story_id>", methods=["GET", "POST"])
+@app.route("/edit/story/<story_id>", methods=["GET", "POST"])
 def edit_story(story_id):
     """
     Allows the user that has created the story,
@@ -208,7 +209,7 @@ def edit_story(story_id):
     return render_template("pages/edit_story.html", story=story)
 
 
-@app.route('/read_story/<story_id>')
+@app.route('/read/story/<story_id>')
 def read_story(story_id):
     """
     Displays whole story.
@@ -218,7 +219,7 @@ def read_story(story_id):
                             story=story)
 
 
-@app.route('/add_content<story_id>', methods=["GET", "POST"])
+@app.route('/add/content<story_id>', methods=["GET", "POST"])
 def add_content(story_id):
     """
     Let's an a logged in user add content to
