@@ -3,12 +3,13 @@
 {% include 'components/navigation/hero_navbar.html' %}
 
 {% if submit == True %}
-<div class="columns mt-6" id="change-password">
+<div class="container">
+<div class="columns mt-6">
     <div class="column"></div>
     <div class="column is-8">
         <div class="card">
             <div class="card-content">
-                <p class="title">
+                <p class="page-title">
                     Change password
                 </p>
             </div>
@@ -20,12 +21,12 @@
 </div>
 {% else %}
 
-<div class="columns mt-6" id="change-username">
+<div class="columns mt-6">
     <div class="column"></div>
     <div class="column is-8">
         <div class="card">
             <div class="card-content">
-                <p class="title">
+                <p class="page-title">
                     Change username
                 </p>
             </div>
@@ -36,5 +37,6 @@
     <div class="column"></div>
 </div>
 {% endif %}
+</div>
 {% include 'components/footer/footer.html' %}
 {% endblock %}

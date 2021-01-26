@@ -1,6 +1,7 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 {% include 'components/navigation/hero_navbar.html' %}
+<div class="container">
     <div class="columns mb-6">
         <div class="column" id="about">
             <p class="title mt-6"> How does this work?</p>
@@ -19,5 +20,6 @@
 {% for story in stories %}
     {% include 'components/cards/feature_storycard.html' %}
 {% endfor %}
+</div>  
 {% include 'components/footer/footer.html' %}
 {% endblock %}

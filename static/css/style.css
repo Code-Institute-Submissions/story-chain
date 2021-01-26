@@ -114,9 +114,9 @@ body {
     position: relative;
 }
 
-#change-username,
-#change-password,
-#delete-account {
+.change-username,
+.change-password,
+.delete-account {
     color: #5f2121;
     background-color: #bc5609;
 }

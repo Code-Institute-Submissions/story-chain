@@ -4,9 +4,9 @@
 <form action="{{ url_for('log_in') }}" method="POST">
 {% endif %}
     <div class="field">
-        <label class="label">Username</label>
+        <label class="label" for="username">Username</label>
         <div class="control has-icons-left">
-            <input id="username" name="username" type="text" placeholder="Only letters (either case) and numbers. No special characters" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+            <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
                 title="Only letters (either case) and numbers. No special characters">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
@@ -18,7 +18,7 @@
     <div class="field">
         <label class="label">Password</label>
         <div class="control has-icons-left">
-            <input id="password" name="password" type="password" placeholder="Only letters (either case) and numbers, 6 or more characters" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+            <input id="password" name="password" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
                 title="6 or more characters">
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
