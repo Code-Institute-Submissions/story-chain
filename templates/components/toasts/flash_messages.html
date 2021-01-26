@@ -1,0 +1,15 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="columns">
+                <div class="column"></div>
+                <div class="column is-8">
+                    <p class="flashes">
+                    {{ message }}
+                    </p>
+                </div>
+                <div class="column"></div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}

@@ -1,17 +1,20 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-<div class="columns mt-6" id="change-username">
+{% include 'components/navigation/hero_navbar.html' %}
+<div class="columns mt-6" id="add_content">
     <div class="column"></div>
     <div class="column is-8">
         <div class="card">
             <div class="card-content">
                 <p class="title">
-                    Change username
+                    Add content
                 </p>
             </div>
-            {% include 'components/forms/change_username.html' %}
+            {% include 'components/toasts/flash_messages.html' %}
+            {% include 'components/forms/add_content.html' %}
         </div>
     </div>  
     <div class="column"></div>
 </div>
+{% include 'components/footer/footer.html' %}
 {% endblock %}

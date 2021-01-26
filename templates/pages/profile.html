@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
+{% include 'components/navigation/hero_navbar.html' %}
     <div class="columns">
         <div class="column is-full" id="profile">
             <p class="page-title">Profile</p>
@@ -14,7 +15,7 @@
 {% for story in stories %}
 {% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
 <div class="profile-story-header" mt-4 mb-4>Stories you have written:</div>
-    {% include 'components/partials/feature_storycard.html' %}
+    {% include 'components/cards/feature_storycard.html' %}
 
 {% endif %}
 {% endfor %}
@@ -23,5 +24,5 @@
 <!-- contentcard-->
 
 {% include 'components/partials/account_settings.html' %}
-
+{% include 'components/footer/footer.html' %}
 {% endblock %}

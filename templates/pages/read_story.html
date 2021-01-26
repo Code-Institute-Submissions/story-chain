@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
+{% include 'components/navigation/hero_navbar.html' %}
 <div class="columns">
     <div class="column"></div>
     <div class="column is-three-fifths" id="read_story">
@@ -12,7 +13,7 @@
 <div class="columns">        
     <div class="column"></div>
     <div class="column is-three-fifths">
-        {% include 'components/partials/full_storycard.html' %}
+        {% include 'components/cards/full_storycard.html' %}
     </div>
     <div class="column"></div>
 </div>
@@ -55,4 +56,5 @@
     <div class="column"></div>
 </div>
 {% endif %}
+{% include 'components/footer/footer.html' %}
 {% endblock %}

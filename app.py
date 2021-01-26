@@ -86,6 +86,17 @@ def log_in():
     return render_template("pages/authentication.html")
 
 
+@app.route("/logout")
+def log_out():
+    """
+    Allows the user to log out
+    Takes user back to home
+    """
+    session.clear()
+    stories = list(mongo.db.stories.find())
+    return render_template("pages/home.html", stories=stories)
+
+
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     """
@@ -117,10 +128,7 @@ def change_password(username):
         flash("Your password has been updated")
         return redirect(url_for("profile", username=session["user"]))
 
-    if session:
-        return render_template("pages/change_password.html", username=username)
-
-    return redirect(url_for("log_in"))
+    return render_template("pages/account_settings.html", submit=True, username=username)
 
 
 @app.route("/change/username/<username>", methods=["GET", "POST"])
@@ -138,11 +146,11 @@ def change_username(username):
         session.pop("user", None)
         return redirect(url_for("log_in"))
 
-    return render_template("pages/change_username.html",
+    return render_template("pages/account_settings.html",
                             username=session["user"])
 
 
-@app.route("/delete/account<username>")
+@app.route("/delete/account/<username>")
 def delete_account(username):
     """
     This function removes a user from the "users" collection
@@ -155,18 +163,7 @@ def delete_account(username):
     return redirect(url_for("home"))
 
 
-@app.route("/logout")
-def log_out():
-    """
-    Allows the user to log out
-    Takes user back to home
-    """
-    session.clear()
-    stories = list(mongo.db.stories.find())
-    return render_template("pages/home.html", stories=stories)
-
-
-@app.route('/add/story', methods=["GET", "POST"])
+@app.route("/add/story/", methods=["GET", "POST"])
 def add_story():
     """
     Allows a user to add a new story
@@ -184,7 +181,7 @@ def add_story():
         flash("Story Successfully Added")
         return redirect(url_for("profile", username=session["user"]))
 
-    return render_template("pages/add_story.html")
+    return render_template("pages/story.html", story=True)
 
 
 @app.route("/edit/story/<story_id>", methods=["GET", "POST"])
@@ -201,12 +198,12 @@ def edit_story(story_id):
             "story_content": request.form.get("story_content"),
             "Author": session["user"]
         }
-        mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
+        mongo.db.stories.update({"_id": ObjectId(story_id)}, submit).maxTimeMS(86400000)
         flash("Story Successfully Updated")
         return redirect(url_for("read_story", story_id=story_id))
 
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
-    return render_template("pages/edit_story.html", story=story)
+    return render_template("pages/story.html", story=story)
 
 
 # Make function for delete story, only for admin user
@@ -240,7 +237,7 @@ def add_content(story_id):
                         add_content=add_content,
                         username=session["user"], story_id=story_id))
 
-    return render_template("pages/add_content.html", story_id=story_id)
+    return render_template("pages/content.html", story_id=story_id)
 
 
 # Make function for delete content, admin only
@@ -252,7 +249,7 @@ def page_not_found(error):
     Renders a custom 404 error page with a button
     that takes the user back home
     """
-    return render_template("/pages/404error.html"), 404
+    return render_template("/pages/error.html"), 404
 
 
 @app.errorhandler(500)
@@ -261,7 +258,7 @@ def something_went_wrong(error):
     Renders a custom 500 error page with a button
     that takes the user back home
     """
-    return render_template("/pages/500error.html"), 500
+    return render_template("/pages/error.html"), 500
 
 
 if __name__ == "__main__":

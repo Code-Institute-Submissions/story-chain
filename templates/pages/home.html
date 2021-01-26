@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
+{% include 'components/navigation/hero_navbar.html' %}
     <div class="columns mb-6">
         <div class="column" id="about">
             <p class="title mt-6"> How does this work?</p>
@@ -16,6 +17,7 @@
     </div>
     <div class="profile-story-header" mt-4 mb-4>Stories</div>
 {% for story in stories %}
-    {% include 'components/partials/feature_storycard.html' %}
+    {% include 'components/cards/feature_storycard.html' %}
 {% endfor %}
+{% include 'components/footer/footer.html' %}
 {% endblock %}
