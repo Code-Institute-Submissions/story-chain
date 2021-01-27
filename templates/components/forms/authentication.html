@@ -6,7 +6,7 @@
     <div class="field">
         <label class="label" for="username">Username</label>
         <div class="control has-icons-left">
-            <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+            <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{2,15}$" class="input" required
                 title="Only letters (either case) and numbers. No special characters">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
@@ -53,7 +53,7 @@
             <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Click here to register</a>
             {% endif %}
         </div>
-        <div class="column">
+        <div class="column has-text-centered">
             <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
         </div>
     </div>

@@ -23,6 +23,10 @@ body {
     font-size: 3rem;
     font-family: 'Indie Flower', cursive;
 }
+.card {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 
 .card-header-title {
     color:#bc5609;
@@ -83,6 +87,10 @@ body {
 }
 
 #join-button {
+    text-align: center;
+}
+
+.control {
     text-align: center;
 }
 
@@ -149,6 +157,8 @@ a {
 
 .field:not(:last-child) {
     margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 /* Footer */
