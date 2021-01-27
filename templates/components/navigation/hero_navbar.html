@@ -17,16 +17,16 @@
                 <div id="navbarMenuHeroB" class="navbar-menu">
                     <div class="navbar-end">
                         <a href="{{url_for('home')}}" class="navbar-item">Home</a>
-                        {% if session['user_id'] %}
-                        <a href="{{url_for('profile', user_id=user._id)}}" class="navbar-item">Profile ( get name of user )</a>
+                        {% if session.user %}
+                        <a href="{{url_for('profile', user=session.user)}}" class="navbar-item {% if 'profile' in request.path %} active {% endif %}">Profile ( {{ session.user }} )</a>
                         <a href="{{url_for('add_story')}}" class="navbar-item">Add</a>
                         <span class="navbar-item">
                             <a href="{{url_for('log_out')}}" class="button is-rounded is-info is-inverted" aria-label="Log out">Log Out</a>
                         </span>
                         {% else %}
-                        <a href="{{url_for('register')}}" class="navbar-item">Register</a>
+                        <a href="{{url_for('register')}}" class="navbar-item {% if 'register' in request.path %} active {% endif %}">Register</a>
                         <span class="navbar-item">
-                            <a href="{{url_for('log_in')}}" class="button is-rounded is-info is-inverted" aria-label="Log out">Log In</a>
+                            <a href="{{url_for('log_in')}}" class="button is-rounded is-info is-inverted {% if 'login' in request.path %} active {% endif %}" aria-label="Log In">Log In</a>
                         </span>
                         {% endif %}
                     </div>
@@ -34,7 +34,7 @@
             </div>
         </nav>
     </div>
-    {% if not session['user_id'] %}
+    {% if not session.user %}
     <div class="columns">
         <div class="column"></div>
             <div class="column mb-6" id="join-button">

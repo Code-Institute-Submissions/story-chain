@@ -19,6 +19,11 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# MongoDb collection variables
+users_coll = mongo.db.users
+stories_coll = mongo.db.stories
+
+
 @app.route('/')
 def home():
     """
@@ -37,58 +42,81 @@ def register():
     already exists in the database.
     Redirects to profile
     """
+    # checks if user is not already logged in
+    if 'user' in session:
+        flash('You are already registered!')
+        return redirect(url_for('home'))
+
     if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+        form = request.form.to_dict()
+        if form['password'] == form['password1']:
+            registered_user = users_coll.find_one({"username": form['username']})
 
-        if existing_user:
-            flash("Username already exists")
-            return redirect(url_for("register"))
+            if registered_user:
+                flash("Username already taken")
+                return redirect(url_for('register'))
 
-        username = request.form.get("username").lower()
-        password = generate_password_hash(request.form.get("password"))
+            else:
+                hashed_password = generate_password_hash(form['password'])
+                
+                users_coll.insert_one(
+                    {
+                        'username': form['username'],
+                        'password': hashed_password
+                    }
+                )
+                user_in_db = users_coll.find_one({"username": form['username']})
+                if user_in_db:
+                    session['user'] = user_in_db['username']
+                    return redirect(url_for('profile', user=user_in_db['username']))
 
-        mongo.db.users.insert_one({
-            'username': username,
-            'password': password})
+                else:
+                    flash("There was a problem saving your profile")
+                    return redirect(url_for('register'))
 
-        # put the new user into 'session' cookie
-        if mongo.db.users.find_one({'username': username}) is not None:
-            user = mongo.db.users.find_one({'username': username})
-            user_id = user['_id']
-            session['user_id'] = str(user_id)
-            flash("Thank you and welcome! Let the fun begin!")
-            return redirect(url_for("profile", user_id=user_id))
+        else:
+            flash("Passwords don't match")
+            return redirect(url_for('register'))
 
-    return render_template("pages/authentication.html", register=True)
+    return render_template('pages/authentication.html', register=True)
 
 
-@app.route('/login', methods=["GET", "POST"])
+@app.route('/login', methods=["GET"])
 def log_in():
     """
     Allows user to sign in with username and password
     Redirects user to profile
     """
-    if request.method == "POST":
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+    if 'user' in session:
+        user_in_db = users_coll.find_one({"username": session['user']})
+        if user_in_db:
+            # If so redirect user to his profile
+            flash("You are logged in already!")
+            return redirect(url_for('profile', user=user_in_db['username']))
 
-        if existing_user:
-            if check_password_hash(existing_user["password"], request.form.get("password")):
-                user_id = str(existing_user['_id'])
-                session['user_id'] = str(user_id)
+    else:
+            # Render the page for user to be able to log in
+        return render_template('pages/authentication.html')
 
-                return redirect(url_for("profile", user_id=user_id))
 
-            else:
-                flash("Incorrect username and/or password. Please try again.")
-                return redirect(url_for("log_in"))
+@app.route('/user_auth', methods=['POST'])
+def user_auth():
+    form = request.form.to_dict()
+    user_in_db = users_coll.find_one({"username": form['username']})
+
+    if user_in_db:
+        if check_password_hash(user_in_db['password'], form['password']):
+            session['user'] = form['username']
+            flash("You were logged in")
+            return redirect(url_for('profile', user=user_in_db['username']))
 
         else:
-            flash("Incorrect username and/or password. Please try again.")
-            return redirect(url_for("log_in"))
+            flash("Wrong password or username")
+            return redirect(url_for('login'))
 
-    return render_template("pages/authentication.html")
+    else:
+        flash("You must be registered")
+        return redirect(url_for('register'))
 
 
 @app.route("/logout")
@@ -102,50 +130,57 @@ def log_out():
     return render_template("pages/home.html", stories=stories)
 
 
-@app.route("/profile/<user_id>", methods=["GET", "POST"])
-def profile(user_id):
+@app.route("/profile/<user>", methods=["GET", "POST"])
+def profile(user):
     """
     This function renders the profile page. This page displays the stories
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    stories = list(mongo.db.stories.find().sort('_id', -1))
-    existing_user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-
-    if existing_user is None:
-        return redirect(url_for('log_in'))
-
-    if session.get('user_id'):
-        if session['user_id'] == str(existing_user["_id"]):
-            return render_template("pages/profile.html", user_id=user_id,
-                    stories=stories)
+    if 'user' in session:
+        user_in_db = users_coll.find_one({"username": user})
+        return render_template('pages/profile.html', user=user_in_db)
+    else:
+        flash("You must be logged in!")
+        return redirect(url_for('home'))
 
 
-@app.route("/change/password/<user_id>", methods=["GET", "POST"])
-def change_password(user_id):
+@app.route("/change/password/<user>", methods=["GET", "POST"])
+def change_password(user):
     """
     This function renders the change password page which is only
     visible for the logged in user.
     """
-    username_edit = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    if 'user' not in session:
+        flash("You must be logged in to change password")
+    users = users_coll
+    user = users.find_one({'username': session['user']})['username']
+    old_password = request.form.get('old_password')
+    new_password = request.form.get('new_password')
+    confirm_password = request.form.get("confirm_new_password")
 
-    if request.method == "POST":
-        if username_edit:
-            if check_password_hash(username_edit["password"],
-            request.form.get("password")):
-                user_id = str(username_edit['_id'])
-                session['user_id'] = str(user_id)
-            mongo.db.users.update({'_id': ObjectId(user_id)},
-            {"password": generate_password_hash(request.form.get("password"))})
-            flash("Your password has been updated")
-            return redirect(url_for("profile", user_id=user_id))
+    if check_password_hash(users.find_one({'username': user}) ['password'], old_password):
+        if new_password == confirm_password:
+            users.update_one({'username': user},
+            {'$set': {'password': generate_password_hash(request.form['new_password'])}})
 
-    return render_template("pages/account_settings.html", submit=True, user_id=user_id)
+            flash("Your password was updated")
+            return redirect(url_for('profile', username=session["username"]))
+
+        else:
+            flash("New passwords don't match")
+            return redirect(url_for("change_password", username=session["username"]))
+
+    else:
+        flash("Incorrect original password")
+        return redirect(url_for("change_password", username=session["username"]))
+
+    return render_template("pages/account_settings.html", submit=True, user=user)
 
 
 
-@app.route("/change/username/<user_id>", methods=["GET", "POST"])
-def change_username(user_id):
+@app.route("/change/username/<user>", methods=["GET", "POST"])
+def change_username(user):
     """
     This function renders the change username page, where a logged
     in user can change the username.
@@ -168,8 +203,8 @@ def change_username(user_id):
                             user_id=user_id)
 
 
-@app.route("/delete/account/<user_id>")
-def delete_account(user_id):
+@app.route("/delete/account/<user>")
+def delete_account(user):
     """
     This function removes a user from the "users" collection
     in the database. Ti removes the user from the session

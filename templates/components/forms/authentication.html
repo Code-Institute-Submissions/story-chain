@@ -1,7 +1,7 @@
 {% if register == True %}
-<form action="{{ url_for('register') }}" method="POST">
+<form action="/register" method="POST">
 {% else %}
-<form action="{{ url_for('log_in') }}" method="POST">
+<form action="/user_auth" method="POST">
 {% endif %}
     <div class="field">
         <label class="label" for="username">Username</label>
@@ -24,6 +24,18 @@
                     <i class="fas fa-lock"></i>
                 </span>
                 <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Confirm password</label>
+        <div class="control has-icons-left">
+            <input id="password1" name="password1" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+                title="6 or more characters">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
         </div>
     </div>
 
