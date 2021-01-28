@@ -145,47 +145,6 @@ def profile(user):
         return redirect(url_for('home'))
 
 
-@app.route("/change/password/<user>", methods=["GET", "POST"])
-def change_password(user):
-    """
-    This function renders the change password page which is only
-    visible for the logged in user.
-    """
-    if 'user' not in session:
-        flash("You must be logged in to change password")
-    users = users_coll
-    form = request.form.to_dict()
-    user_in_db = users_coll.find_one({"username": session['user']})
-    if user_in_db:
-        session['user'] = user_in_db['username']
-        form['old_password'] = form['old_password']
-        new_password = form["new_password"]
-        confirm_password = form["confirm_new_password"]
-
-    if check_password_hash(user_in_db['password'], form['user_password']):
-
-        if new_password == confirm_password:
-            users.update_one({'username': user},
-            {'$set': {'password': generate_password_hash
-                        (form['new_password'])}})
-
-            flash("Your password was updated")
-            return redirect(url_for('profile', user=user_in_db))
-
-        else:
-            flash("New passwords don't match")
-            return redirect(url_for("change_password", user=user_in_db))
-
-    else:
-        flash("Incorrect original password")
-        return redirect(url_for("change_password", user=user_in_db))
-
-    return render_template("pages/account_settings.html",
-                            submit=True,
-                            user=user_in_db)
-
-
-
 @app.route("/change/username/<user>", methods=["GET", "POST"])
 def change_username(user):
     """
