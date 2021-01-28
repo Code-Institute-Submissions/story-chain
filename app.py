@@ -112,7 +112,7 @@ def user_auth():
 
         else:
             flash("Wrong password or username")
-            return redirect(url_for('login'))
+            return redirect(url_for('log_in'))
 
     else:
         flash("You must be registered")
@@ -159,7 +159,7 @@ def change_password(username):
         }
         mongo.db.users.update({"username": username.lower()}, submit)
         flash("Your password has been updated")
-        return redirect(url_for("profile", username=session["user"]))
+        return redirect(url_for("profile", user=session["user"]))
 
     if session:
         return render_template("pages/changePassword.html", username=username)
@@ -234,7 +234,7 @@ def edit_story(story_id):
             "Author": session["user"]
         }
         mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
-        flash("Story Successfully Updated")
+        flash("Content Successfully Added")
         return redirect(url_for("home"))
 
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
@@ -276,15 +276,16 @@ def add_content(story_id):
     #grab story id. link content id's to story id.
     # Needs to add to the story document
     if request.method == "POST":
-        mongo.db.stories.update({"_id": ObjectId(story_id)},
-        {"$push": {"add_content": [{"_id": ObjectId(),
-        "add_content": request.form.get("add_content"),
-        "created_by": session["user"]}]}})
-        flash("Content Successfully Added")
-        return redirect(url_for("profile",
-                        add_content=add_content,
-                        username=session["user"], story_id=story_id))
-    return render_template("pages/add_content.html", story_id=story_id)
+        date_created = datetime.today().strftime('%Y-%m-%d')
+        content = {
+            "add_content": request.form.get("add_content"),
+            "created_by": session["user"],
+            "created_on": date_created
+        }
+        mongo.db.content.insert_one(content)
+        flash("Story Successfully Added")
+        return redirect(url_for("home"))
+    return render_template("pages/content.html", story_id=story_id)
 
 
 # Make function for delete content, for author only, modal/flash with warning

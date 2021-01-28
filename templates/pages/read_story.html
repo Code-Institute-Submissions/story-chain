@@ -17,7 +17,7 @@
     </div>
     <div class="column"></div>
 </div>
-{% if (session.user|lower == story.Author) %}
+{% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
 <div class="columns mt-6" id="edit_story">
     <div class="column"></div>
     <div class="column has-text-centered">
@@ -32,11 +32,11 @@
     </div>
     <div class="column"></div>
 </div>
-{% elif (session.user|lower != story.Author) %}
+{% elif (session.user|lower or session.user|lower == "admin"|lower) %}
 <div class="columns mt-6" id="add_content">
     <div class="column"></div>
     <div class="column has-text-centered">
-        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story.id, user_id=user_id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
+        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story.id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
         </span>
     </div>
     <div class="column"></div>
