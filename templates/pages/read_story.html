@@ -17,20 +17,26 @@
     </div>
     <div class="column"></div>
 </div>
-{% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
+{% if (session.user|lower == story.Author) %}
 <div class="columns mt-6" id="edit_story">
     <div class="column"></div>
     <div class="column has-text-centered">
-        <span><a href="{{ url_for('edit_story', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Edit story">Edit story</a>
+        <span><a href="{{ url_for('edit_story', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted" aria-label="Edit story">Edit story</a>
+        </span>
+    </div>
+    <div class="column"></div>
+    <div class="column"><p class="title">Warning! Deleting this story affects the flow of the story! Are you sure?</p></div>
+    <div class="column has-text-centered">
+        <span><a href="{{ url_for('delete_story', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Delete story">Delete story</a>
         </span>
     </div>
     <div class="column"></div>
 </div>
-{% elif (session.user|lower or session.user|lower == "admin"|lower) %}
+{% elif (session.user|lower) %}
 <div class="columns mt-6" id="add_content">
     <div class="column"></div>
     <div class="column has-text-centered">
-        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story._id, user=user) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
+        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content') }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
         </span>
     </div>
     <div class="column"></div>

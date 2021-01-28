@@ -11,18 +11,20 @@
                     Add a new story
                 </p>
             </div>
+            {% include 'components/toasts/flash_messages.html' %}
             {% include 'components/forms/add_story.html' %}
         </div>
     </div>  
     <div class="column"></div>
 </div>
 {% else %}
-    {% if (session.user|lower == story.Author|lower or session.user|lower == "admin"|lower) %}
+    {% if (session.user|lower == story.Author|lower) %}
     <p class="page-title">Edit Story</p>
     <div class="columns">
             <div class="column"></div>
             <div class="column is-4">
-    {% include 'components/forms/edit_story.html' %}
+                {% include 'components/toasts/flash_messages.html' %}
+                {% include 'components/forms/edit_story.html' %}
             </div>
             <div class="column"></div>
     </div>

@@ -144,48 +144,26 @@ def profile(user):
         flash("You must be logged in!")
         return redirect(url_for('home'))
 
-
-@app.route("/change/username/<user>", methods=["GET", "POST"])
-def change_username(user):
-    """
-    This function renders the change username page, where a logged
-    in user can change the username.
-    """
-    username_edit = mongo.db.users.find_one({"_id": ObjectId(user_id)})
-    
-    if request.method == "POST":
-        if username_edit:
-            if check_password_hash(username_edit["password"],
-            request.form.get("password")):
-                user_id = str(username_edit['_id'])
-                session['user_id'] = str(user_id)
-            mongo.db.users.update({'_id': ObjectId(user_id)},
-            {"username": request.form.get("new_username")})
-
-        flash("Your username has been updated.")
-        return redirect(url_for("log_in"))
-
-    return render_template("pages/account_settings.html",
-                            user_id=user_id)
-
-
+"""
 @app.route("/delete/account/<user>")
 def delete_account(user):
-    """
+    
     This function removes a user from the "users" collection
     in the database. Ti removes the user from the session
     cookies and redirects to the homepage
-    """
-    username_edit = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+    
+    if 'user' in session:
+        user_in_db = users_coll.find_one({"username": user})
 
-    if username_edit:
-        if check_password_hash(username_edit["password"], request.form.get("password")):
-            user_id = str(username_edit['_id'])
-            session['user_id'] = str(user_id)
-        mongo.db.users.remove({'_id': ObjectId(user_id)})
-        session.pop("user_id")
-        flash("Your account has been removed. Sad to see you go!")
-        return redirect(url_for("home"))
+        if user_in_db:
+            mongo.db.users.remove({"username": user})
+            session.pop("user")
+            flash("Your account has been removed", "success")
+            return redirect(url_for("sign_up"))
+    else:
+        flash("You must be logged in to use this function")
+        return redirect(url_for('home'))
+"""
 
 
 @app.route("/add/story/", methods=["GET", "POST"])
@@ -204,7 +182,7 @@ def add_story():
         }
         mongo.db.stories.insert_one(story)
         flash("Story Successfully Added")
-        return redirect(url_for("profile"))
+        return redirect(url_for("home"))
 
     return render_template("pages/story.html", story=True)
 
@@ -223,15 +201,26 @@ def edit_story(story_id):
             "story_content": request.form.get("story_content"),
             "Author": session["user"]
         }
-        mongo.db.stories.update({"_id": ObjectId(story_id)}, submit).maxTimeMS(86400000)
+        mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
         flash("Story Successfully Updated")
-        return redirect(url_for("read_story", story_id=story_id))
+        return redirect(url_for("home"))
 
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html", story=story)
 
 
-# Make function for delete story, only for admin user
+@app.route("/delete/story/<story_id>")
+def delete_story(story_id):
+    """
+    This functions allows for the user to delete their story.
+    Because this obstructs the flow of the story, a warning
+    is shown
+    """
+    mongo.db.stories.remove({"_id": ObjectId(story_id)})
+    flash("Your story has been removed")
+    return redirect(url_for("home"))
+
+# Make function for delete story, for author only, modal/flash with warning
 
 
 @app.route('/read/story/<story_id>')
@@ -244,6 +233,7 @@ def read_story(story_id):
                             story=story)
 
 
+# Needs work
 @app.route('/add/content<story_id>, <user>', methods=["GET", "POST"])
 def add_content(story_id, user):
     """
@@ -258,14 +248,12 @@ def add_content(story_id, user):
         "add_content": request.form.get("add_content"),
         "created_by": session["user"]}]}})
         flash("Content Successfully Added")
-        return redirect(url_for("profile",
-                        add_content=add_content,
-                        user=user, story_id=story_id))
+        return redirect(url_for("home"))
 
-    return render_template("pages/content.html", story_id=story_id)
+    return render_template("pages/content.html", story_id=story_id, user=user)
 
 
-# Make function for delete content, admin only
+# Make function for delete content, for author only, modal/flash with warning
 
 
 @app.errorhandler(404)
