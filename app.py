@@ -22,6 +22,7 @@ mongo = PyMongo(app)
 # MongoDb collection variables
 users_coll = mongo.db.users
 stories_coll = mongo.db.stories
+content_coll = mongo.db.content
 
 
 @app.route('/')
@@ -30,8 +31,9 @@ def home():
     Function for loading the home page and showing
     existing stories.
     """
-    stories = list(mongo.db.stories.find())
-    return render_template('pages/home.html', stories=stories)
+    stories = list(stories_coll.find())
+    return render_template('pages/home.html',
+                            stories=stories)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -50,7 +52,8 @@ def register():
     if request.method == "POST":
         form = request.form.to_dict()
         if form['password'] == form['password1']:
-            registered_user = users_coll.find_one({"username": form['username']})
+            registered_user = users_coll.find_one(
+                            {"username": form['username']})
 
             if registered_user:
                 flash("Username already taken")
@@ -58,22 +61,21 @@ def register():
 
             else:
                 hashed_password = generate_password_hash(form['password'])
-                
                 users_coll.insert_one(
                     {
                         'username': form['username'],
                         'password': hashed_password
                     }
                 )
-                user_in_db = users_coll.find_one({"username": form['username']})
+                user_in_db = users_coll.find_one(
+                        {"username": form['username']})
                 if user_in_db:
                     session['user'] = user_in_db['username']
-                    return redirect(url_for('profile', user=user_in_db['username']))
-
+                    return redirect(url_for('profile',
+                                    user=user_in_db['username']))
                 else:
                     flash("There was a problem saving your profile")
                     return redirect(url_for('register'))
-
         else:
             flash("Passwords don't match")
             return redirect(url_for('register'))
@@ -126,7 +128,7 @@ def log_out():
     Takes user back to home
     """
     session.clear()
-    stories = list(mongo.db.stories.find())
+    stories = list(stories_coll.find())
     return render_template("pages/home.html", stories=stories)
 
 
@@ -137,10 +139,12 @@ def profile(user):
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    stories = list(mongo.db.stories.find().sort('_id', -1))
+    stories = list(stories_coll.find().sort('_id', -1))
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": user})
-        return render_template('pages/profile.html', user=user_in_db, stories=stories)
+        return render_template('pages/profile.html',
+                                user=user_in_db, 
+                                stories=stories)
     else:
         flash("You must be logged in!")
         return redirect(url_for('home'))
@@ -157,12 +161,13 @@ def change_password(username):
             "username": session["user"],
             "password": generate_password_hash(request.form.get("password")),
         }
-        mongo.db.users.update({"username": username.lower()}, submit)
+        users_coll.update({"username": username.lower()}, submit)
         flash("Your password has been updated")
         return redirect(url_for("profile", user=session["user"]))
 
     if session:
-        return render_template("pages/changePassword.html", username=username)
+        return render_template("pages/changePassword.html",
+                                username=username)
 
     return redirect(url_for("log_in"))
 
@@ -174,9 +179,10 @@ def change_username(username):
     in user can change the username.
     """
     if request.method == "POST":
-        mongo.db.users.update_one(
+        users_coll.update_one(
                 {"username": username},
-                {"$set": {"username": request.form["new_username"]}}, upsert=True)
+                {"$set": {"username": request.form["new_username"]}},
+                            upsert=True)
         flash("Your username has been updated. Please login with your new username")
         session.pop("user", None)
         return redirect(url_for("log_in"))
@@ -192,7 +198,7 @@ def delete_account(username):
     in the database. Ti removes the user from the session
     cookies and redirects to the homepage
     """
-    mongo.db.users.remove({"username": username.lower()})
+    users_coll.remove({"username": username.lower()})
     session.pop("user")
     flash("Your account has been removed. Sad to see you go!")
     return redirect(url_for("home"))
@@ -212,7 +218,7 @@ def add_story():
             "Author": session["user"],
             "created_on": date_created
         }
-        mongo.db.stories.insert_one(story)
+        stories_coll.insert_one(story)
         flash("Story Successfully Added")
         return redirect(url_for("home"))
 
@@ -226,6 +232,7 @@ def edit_story(story_id):
     to edit the story. After doing so,
     the user is then redirected to the 'Read Story' page.
     """
+
     if request.method == "POST":
         submit = {
             "story_title": request.form.get("story_title"),
@@ -233,11 +240,11 @@ def edit_story(story_id):
             "story_content": request.form.get("story_content"),
             "Author": session["user"]
         }
-        mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
+        stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story succesfull")
         return redirect(url_for("home"))
 
-    story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
+    story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html", story=story)
 
 
@@ -248,11 +255,9 @@ def delete_story(story_id):
     Because this obstructs the flow of the story, a warning
     is shown
     """
-    mongo.db.stories.remove({"_id": ObjectId(story_id)})
+    stories_coll.remove({"_id": ObjectId(story_id)})
     flash("Your story has been removed")
     return redirect(url_for("home"))
-
-# Make function for delete story, for author only, modal/flash with warning
 
 
 @app.route('/read/story/<story_id>')
@@ -260,13 +265,17 @@ def read_story(story_id):
     """
     Displays whole story.
     """
-    story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
+    story = stories_coll.find_one({"_id": ObjectId(story_id)})
+
+    newcontent = content_coll.find_all(
+        {"_id": ObjectId(story.get({"_id": ObjectId()}))})
     return render_template("pages/read_story.html",
-                            story=story)
+                            story=story,
+                            newcontent=newcontent)
 
 
 # Needs work
-@app.route('/add/content<story_id>', methods=["GET", "POST"])
+@app.route('/add/content/<story_id>', methods=["GET", "POST"])
 def add_content(story_id):
     """
     Let's an a logged in user add content to
@@ -282,8 +291,12 @@ def add_content(story_id):
             "created_by": session["user"],
             "created_on": date_created
         }
-        mongo.db.content.insert_one(content)
-        flash("Story Successfully Added")
+        insert_content_into_db = content_coll.insert_one(content)
+
+        stories_coll.update_one(
+            {"_id": ObjectId(story_id)},
+            {"$push": {"content": insert_content_into_db.inserted_id}})
+        flash("Content succesfully added")
         return redirect(url_for("home"))
     return render_template("pages/content.html", story_id=story_id)
 

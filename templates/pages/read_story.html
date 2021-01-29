@@ -34,7 +34,7 @@
 <div class="columns mt-6" id="add_content">
     <div class="column"></div>
     <div class="column has-text-centered">
-        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story.id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
+        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
         </span>
     </div>
     <div class="column"></div>

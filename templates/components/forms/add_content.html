@@ -1,7 +1,6 @@
 
-<form method="POST" action="{{ url_for('add_content', story_id=story_id, user_id=user_id ) }}">
-    <p class="title">{{ title }}</p>
-
+<form method="POST" action="{{ url_for('add_content', story_id=story_id) }}">
+    <p class="title">Content</p>
     <div class="field">
         <label class="label">Type your story here</label>
         <div class="control">

@@ -86,6 +86,11 @@ body {
     color: #f8f8ff;
 }
 
+.button.is-info.is-inverted.is-hovered, 
+.button.is-info.is-inverted:hover {
+    background-color: #bc5609
+}
+
 #join-button {
     text-align: center;
 }
