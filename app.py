@@ -234,14 +234,14 @@ def edit_story(story_id):
             "Author": session["user"]
         }
         mongo.db.stories.update({"_id": ObjectId(story_id)}, submit)
-        flash("Content Successfully Added")
+        flash("Edit story succesfull")
         return redirect(url_for("home"))
 
     story = mongo.db.stories.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html", story=story)
 
 
-@app.route("/delete/story/<story_id>", methods=["DELETE"])
+@app.route("/delete/story/<story_id>", methods=["GET", "DELETE"])
 def delete_story(story_id):
     """
     This functions allows for the user to delete their story.

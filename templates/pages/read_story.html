@@ -25,11 +25,9 @@
         </span>
     </div>
     <div class="column"></div>
-    <div class="column"><p class="title">Warning! Deleting this story affects the flow of the story! Are you sure?</p></div>
-    <div class="column has-text-centered">
-        <span><a href="{{ url_for('delete_story', story_id=story._id) }}" class="button is-rounded is-info is-inverted" aria-label="Delete story">Delete story</a>
-        </span>
-    </div>
+
+    <div class="button is-rounded is-info is-inverted delete_story" id="delete_story" aria-label="Delete">Delete</div>
+{% include 'components/modals/modals.html' %}
     <div class="column"></div>
 </div>
 {% elif (session.user|lower or session.user|lower == "admin"|lower) %}

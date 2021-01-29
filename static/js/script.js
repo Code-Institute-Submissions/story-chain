@@ -7,7 +7,14 @@ $(document).ready(function () {
         $(".navbar-burger").toggleClass("is-active");
         $(".navbar-menu").toggleClass("is-active");
     });
-});
+
+    $("#delete_story").click(function() {
+        $(".modal").addClass("is-active");
+    });
+    $(".cancel").click(function() {
+        $(".modal").removeClass("is-active");
+})});  
+
 
 // For collapsible cards and other elements, taken from: https://codepen.io/brussell98/pen/mEwxjP?js-preprocessor=livescript
 document.addEventListener('DOMContentLoaded', function() {

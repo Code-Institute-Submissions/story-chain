@@ -1,0 +1,24 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+    <header class="modal-card-head">
+        <p class="modal-card-title">Delete story</p>
+        <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+    Deleting this damages the flow of the story. Are you sure? This action cannot be undone!
+    </section>
+    <footer class="modal-card-foot">
+        <form method="DELETE" action="{{ url_for('delete_story', story_id=story._id) }}">
+        <p class="control">
+        <button type="submit" placeholder="Delete story" id="delete_story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Delete story">Delete Story
+        </button>  
+    </p>
+    </form>
+    <button class="cancel button is-rounded button is-info is-inverted" aria-label="Cancel">Cancel</button>  
+    </footer>
+    </div>
+</div>
+{% endblock %}
