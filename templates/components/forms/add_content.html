@@ -7,12 +7,11 @@
             <textarea id="add_content" name="add_content" placeholder="Textarea" class="validate" minlength="20" maxlength="3000" required></textarea>
         </div>
     </div>
-
     <div class="field">
         <p class="control">
             <button type="submit" placeholder="Submit Content" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit content">Submit Content
             </button>    
         </p>
+        <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted" aria-label="Cancel">Cancel</a>
     </div>
 </form>
-

@@ -101,7 +101,7 @@ def log_in():
         return render_template('pages/authentication.html')
 
 
-@app.route('/user_auth', methods=['POST'])
+@app.route('/userauth', methods=['POST'])
 def user_auth():
     form = request.form.to_dict()
     user_in_db = users_coll.find_one({"username": form['username']})
@@ -267,11 +267,10 @@ def read_story(story_id):
     """
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
 
-    newcontent = content_coll.find_all(
-        {"_id": ObjectId(story.get({"_id": ObjectId()}))})
+    #newcontent = content_coll.find_all(
+        #{"_id": ObjectId(story.get({"_id": ObjectId()}))})
     return render_template("pages/read_story.html",
-                            story=story,
-                            newcontent=newcontent)
+                            story=story)
 
 
 # Needs work

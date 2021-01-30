@@ -1,7 +1,7 @@
 {% if register == True %}
 <form action="/register" method="POST">
 {% else %}
-<form action="/user_auth" method="POST">
+<form action="/userauth" method="POST">
 {% endif %}
     <div class="field">
         <label class="label" for="username">Username</label>
@@ -14,7 +14,6 @@
                 <p class="help">Only letters (either case) and numbers. No special characters</p>
         </div>
     </div>
-
     <div class="field">
         <label class="label">Password</label>
         <div class="control has-icons-left">
@@ -26,7 +25,6 @@
                 <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
         </div>
     </div>
-
     <div class="field">
         <label class="label">Confirm password</label>
         <div class="control has-icons-left">
@@ -38,7 +36,6 @@
             <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
         </div>
     </div>
-
     <div class="field has-text-centered mb-6">
         <p class="control">
             <button type="submit" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Log In button">
@@ -56,7 +53,6 @@
             </div>
             {% endif %}
     </div>
-
     <div class="columns">
         <div class="column has-text-centered">
             {% if register == True %}

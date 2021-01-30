@@ -24,12 +24,13 @@
         <span><a href="{{ url_for('edit_story', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted" aria-label="Edit story">Edit story</a>
         </span>
     </div>
-    <div class="column"></div>
-
+    <div class="column has-text-centered">
     <div class="button is-rounded is-info is-inverted delete_story" id="delete_story" aria-label="Delete">Delete</div>
-{% include 'components/modals/modals.html' %}
+        {% include 'components/modals/modals.html' %}
+    </div>
     <div class="column"></div>
 </div>
+<div class="column"></div>
 {% elif (session.user|lower or session.user|lower == "admin"|lower) %}
 <div class="columns mt-6" id="add_content">
     <div class="column"></div>

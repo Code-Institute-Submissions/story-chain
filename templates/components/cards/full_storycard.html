@@ -6,15 +6,15 @@
         <p class="subtitle">
             Author: {{ story.Author }}
         </p>
+        <p class="summary"> <strong>Date created</strong><br>
+            {{ story.created_on }}
+        </p>
         <p class="summary"> <strong>Summary</strong><br>
             {{ story.story_summary }}
         </p>
         <p class="summary"> <strong>Story Content</strong><br>
             {{ story.story_content }}
-        </p>
-        <p class="summary"> <strong>Content</strong><br>
-            {{ story.content.add_content }}
-        </p>    
+        </p>  
         <!-- add_content comes here -->
     </div>
 </div>
