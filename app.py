@@ -166,7 +166,7 @@ def change_password(username):
         return redirect(url_for("profile", user=session["user"]))
 
     if session:
-        return render_template("pages/changePassword.html",
+        return render_template("pages/changepassword.html",
                                 username=username)
 
     return redirect(url_for("log_in"))
@@ -187,7 +187,7 @@ def change_username(username):
         session.pop("user", None)
         return redirect(url_for("log_in"))
 
-    return render_template("pages/change_username.html",
+    return render_template("pages/changeusername.html",
                             username=session["user"])
 
 
@@ -269,7 +269,7 @@ def read_story(story_id):
 
     #newcontent = content_coll.find_all(
         #{"_id": ObjectId(story.get({"_id": ObjectId()}))})
-    return render_template("pages/read_story.html",
+    return render_template("pages/readstory.html",
                             story=story)
 
 

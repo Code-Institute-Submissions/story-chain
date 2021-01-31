@@ -1,6 +1,6 @@
 <div class="card is-fullwidth">
 	<header class="card-header">
-	<p class="card-header-title">{{ story.story_title }}</p>
+	    <p class="card-header-title">{{ story.story_title }}</p>
 		<a class="card-header-icon card-toggle">
 			<i class="fa fa-angle-down"></i>
         </a>
@@ -19,12 +19,12 @@
             {{ story.created_on }}
         </p>
         <footer class="card-footer">
-        <p class="card-footer-item">
-            <span>
-                <a href=" {{ url_for('read_story', story_id=story._id) }} ">Read More</a>
-            </span>
-        </p>
-    </footer>
+            <p class="card-footer-item">
+                <span>
+                    <a href=" {{ url_for('read_story', story_id=story._id) }} ">Read More</a>
+                </span>
+            </p>
+        </footer>
     </div>
 </div>
 

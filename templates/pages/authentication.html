@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-{% include 'components/navigation/hero_navbar.html' %}
+{% include 'components/navigation/heronavbar.html' %}
     {% if register == True %}
 
         <div class="container">
@@ -12,7 +12,7 @@
                                 Register here to start your personal story telling journey!
                             </p>
                         </div>
-                        {% include 'components/toasts/flash_messages.html' %}
+                        {% include 'components/toasts/flashmessages.html' %}
                         {% include 'components/forms/authentication.html' %}
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             Log in
                         </p>
                     </div>
-                    {% include 'components/toasts/flash_messages.html' %}
+                    {% include 'components/toasts/flashmessages.html' %}
                     {% include 'components/forms/authentication.html' %}
                 </div>
             </div>
