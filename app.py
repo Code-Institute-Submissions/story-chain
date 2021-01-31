@@ -234,15 +234,17 @@ def edit_story(story_id):
     """
 
     if request.method == "POST":
+        edited_on = datetime.today().strftime('%Y-%m-%d')
         submit = {
             "story_title": request.form.get("story_title"),
             "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
-            "Author": session["user"]
+            "Author": session["user"],
+            "edited_on": edited_on
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story succesfull")
-        return redirect(url_for("home"))
+        return redirect(url_for("read_story", story_id=story_id))
 
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html", story=story)
