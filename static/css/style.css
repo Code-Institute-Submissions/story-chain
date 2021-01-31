@@ -166,6 +166,11 @@ a {
     margin-right: 1rem;
 }
 
+.help {
+    font-size: 1.25rem;
+    margin-top: .75rem;
+}
+
 /* Footer */
 #footer {
     color: #5f2121;

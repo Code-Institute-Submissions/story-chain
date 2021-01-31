@@ -321,6 +321,24 @@ def something_went_wrong(error):
     return render_template("/pages/error.html"), 500
 
 
+@app.errorhandler(401)
+def permission_denied(error):
+    """
+    Renders a custom 401 error page with a button
+    that takes the user back home
+    """
+    return render_template("/pages/error.html"), 401
+
+
+@app.errorhandler(405)
+def method_not_allowed(error):
+    """
+    Renders a custom 405 error page with a button
+    that takes the user back home
+    """
+    return render_template("/pages/error.html"), 405
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
