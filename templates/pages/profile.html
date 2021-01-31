@@ -19,6 +19,7 @@
                     </p>
                     <a href="{{url_for('add_story', user_id=user_id)}}" class="button is-rounded is-info is-inverted" aria-label="Add story">Add</a>
                 </div>
+                {% include 'components/toasts/flashmessages.html' %}
             </div>
         </div>
         <div class="column"></div>
