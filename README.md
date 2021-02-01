@@ -142,6 +142,7 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 
 ## Testing ##
 
+
 <strong>View for a guest user:</strong>
 
 A user that is not logged in and/or registered, will see a list of all stories on the homepage. There is also a call to action button 'Join Us!' urging them to register. They also have a navigation menu, only containing 'Home', 'Register' and 'Log In'. All other functionality is restricted to a logged in user.
@@ -152,9 +153,11 @@ They are able to click the 'Read More' button when the click a card where the ti
 A logged in user will benefit from the full functionality of the site. The navigation will contain: 'Home', 'Profile (with their username for ease)', 'Add' and 'Logout'.
 This user can then add a new story by clicking the 'Add' button in the navigation or on their profile. 
 The added functionality for this user is the ability to add a story, edit that story and even delete is. This functionality is restricted only to the user that is logged in and the creator of that content.
-A logged in user is also able to add content to a story written by another user. Again, add, edit and delete functionality is restricted only to the user that has created the content.
+A logged in user is also able to add content to a story written by another user. Again, add, edit and delete functionality is restricted only to the user that has created the content. There are 'cancel' and/or 'home' buttons with every form and/or action, to give the user the ability to abort any action without the use of the navigation or the back buttons in the browser.
 In the profile there will also be functions for changing once username, password and even delete their account.
 All this added functionality is also available to the site owner via an "admin" account.
+
+## Testing user stories:
 
 ***Registration***
 
@@ -163,7 +166,7 @@ All this added functionality is also available to the site owner via an "admin" 
 * A red call to action button in the hero image with the text "Join Us!" is presented. There is also a ‘register’ link in the navigation bar at the top.
 When users want to register, they only have to provide a username and password. 
 After registering, they will be redirected to their profile page. There they see an section with an 'add' button at the top of the screen as well as a ‘account options’ section for editing the username and/or password and deleting their account.
-On this page all their submitted content is also displayed.
+On this page all their submitted content is also displayed. At all stages where a user input is given, flash messages direct the user if an action was indeed successful.
 
 * All is working as intended.
 
@@ -171,67 +174,33 @@ On this page all their submitted content is also displayed.
 
 **User story: As a user, I want to login after I created an account and see my previous inserted information.**
 
-* Plan
+* A user can log in by clicking the 'Log In' button in the navigation. He is then directed to a login form, that prompts for the username and password. After the login is successful, the user is redirected to their profile, where an appropriate flash message is given. On the profile, when applicable, any content that is submitted by the user, is presented. Also the ability to change their username, password and delete account is given.
 
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
 
 ***Profile Page***
 
 **User story: As a user, I would like to have a personal environment (profile page) where I can see everything I have posted.**
 
-* Plan
+* After a user has had a successful login or registration, he is redirected to his personal profile page. Here he can see any previous submitted content and have full account control by having the ability to change a username, change a password and delete his account. Also a section for 'add' as story is given.
 
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
 
 ***Add content***
 
 **User story: As a user, I want to be able to add a new story.**
 
-* Plan
-
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
+* Not yet implemented, still working on this user story.
 
 **User story: As a user, I want to be able to add content to an existing story.** 
-* Plan
 
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
+* Not yet implemented, still working on this user story.
 
 ***Edit new and/or existing story***
 
 **User story: As a user, I want to be able to edit the new story or the content I have added to an existing story.** 
-* Plan
 
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
+* A user that is the writer of an story (and/or content) will have buttons presented under that content that allows them to edit it. This is only visible if the logged in user also matches the user that has submitted the content.
+A form is given to be filled and after a successful submission, the user is redirected to the home page and presented with an appropriate flash message. There is also a button that let's the user cancel it's action and return to the home page if he should so desire.
+**Edit content yet to be implemented
 
 ***Delete added content by member***
 
