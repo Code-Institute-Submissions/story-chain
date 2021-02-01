@@ -184,38 +184,34 @@ On this page all their submitted content is also displayed. At all stages where 
 * After a user has had a successful login or registration, he is redirected to his personal profile page. Here he can see any previous submitted content and have full account control by having the ability to change a username, change a password and delete his account. Also a section for 'add' as story is given.
 
 
-***Add content***
+***Add content/new story***
+
+**User story: As a user, I want to be able to add content to a existing story.**
+
+* Not yet implemented, still working on this user story.
+
+**User story: As a user, I want to be able to edit/delete content of an existing story.** 
+
+* Not yet implemented, still working on this user story.
 
 **User story: As a user, I want to be able to add a new story.**
 
-* Not yet implemented, still working on this user story.
+* After an user is logged in, a 'Add' button appears in the navigation, as well as in their profile. This will prompt a form for them to fill. After a successful submit action, the story will be displayed on both the home page as well as their profile page. Before hitting submit, the user also has an option to cancel the action by clicking the 'cancel' button. Appropriate feedback is given by flash messages after clicking the 'submit' button.  
 
-**User story: As a user, I want to be able to add content to an existing story.** 
+***Edit an existing story***
 
-* Not yet implemented, still working on this user story.
-
-***Edit new and/or existing story***
-
-**User story: As a user, I want to be able to edit the new story or the content I have added to an existing story.** 
+**User story: As a user, I want to be able to edit the new story.** 
 
 * A user that is the writer of an story (and/or content) will have buttons presented under that content that allows them to edit it. This is only visible if the logged in user also matches the user that has submitted the content.
 A form is given to be filled and after a successful submission, the user is redirected to the home page and presented with an appropriate flash message. There is also a button that let's the user cancel it's action and return to the home page if he should so desire.
-**Edit content yet to be implemented
 
-***Delete added content by member***
 
-**User story: As a user, I want to be able to delete the stories I have started or contributed to.**
-* Plan:
-The plan was that a user could delete content they had created. But during development I suddenly got an image in my head of 'broken' stories because people where removing pieces of the chain story. I couldn't let that happen.
+***Delete story by user***
 
-* Implementation:
-No implementation of this one, I didn't want the story chain to 'break', so ive dropped the 'delete' function for new story and added content.
+**User story: As a user, I want to be able to delete the stories I have started.**
+* After clicking the 'Read More' button in a story from the home page and if the current user is also the author of the story, a 'edit' and a 'delete' button will appear. After the user clicks the 'delete' button, it will prompt a modal, warning the user that deleting the content seriously affects the flow of the story. A user can then either click a 'cancel' button which will close the modal or click 'delete' once more. This will then delete the story form the database, homepage and the profile. An appropriate flash message will be given.
 
-* Test
 
-* Result
-
-    *
 
 ***Account options***
 
