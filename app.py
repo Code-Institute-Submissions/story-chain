@@ -177,7 +177,13 @@ def change_username(username):
     in user can change the username.
     """
     if request.method == "POST":
-        users_coll.update_one(
+        registered_user = users_coll.find_one(
+                            {"username": request.form['new_username']})
+        if registered_user:
+            flash("Username already taken")
+            return redirect(url_for('change_username', username=session["user"]))
+        else:
+            users_coll.update_one(
                 {"username": username},
                 {"$set": {"username": request.form["new_username"]}},
                             upsert=True)

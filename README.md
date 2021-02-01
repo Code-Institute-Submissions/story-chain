@@ -217,15 +217,9 @@ A form is given to be filled and after a successful submission, the user is redi
 
 **User story: As a user, I want to be able to change my username and password.**
 
-* Plan
+* After a user has had an successful login, he is directed to his profile page. There they see three buttons 'Change username', 'Change password' and 'delete account'. The 'change username' button opens a small form that asks the user to enter a new username. This username is then checked against existing usernames in the database and gives appropriate feedback.
 
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
+* After a user has had an successful login, he is directed to his profile page. There he can click the 'Change password' button. He is then led to a small form, asking for a new password. That password is then hashed and stored in the database.
 
 **User story: As a user, I want to be able to delete my account.**
 
