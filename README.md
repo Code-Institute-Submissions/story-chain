@@ -141,6 +141,21 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 * [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
 
 ## Testing ##
+
+<strong>View for a guest user:</strong>
+
+A user that is not logged in and/or registered, will see a list of all stories on the homepage. There is also a call to action button 'Join Us!' urging them to register. They also have a navigation menu, only containing 'Home', 'Register' and 'Log In'. All other functionality is restricted to a logged in user.
+They are able to click the 'Read More' button when the click a card where the title of the story is, which will lead them to the 'Read Story' page. Here they are also prompted to register/login to benefit from the full functionality of the site.
+
+<strong>View for logged in user:</strong>
+
+A logged in user will benefit from the full functionality of the site. The navigation will contain: 'Home', 'Profile (with their username for ease)', 'Add' and 'Logout'.
+This user can then add a new story by clicking the 'Add' button in the navigation or on their profile. 
+The added functionality for this user is the ability to add a story, edit that story and even delete is. This functionality is restricted only to the user that is logged in and the creator of that content.
+A logged in user is also able to add content to a story written by another user. Again, add, edit and delete functionality is restricted only to the user that has created the content.
+In the profile there will also be functions for changing once username, password and even delete their account.
+All this added functionality is also available to the site owner via an "admin" account.
+
 ***Registration***
 
 **User story: As a user, I would like to be able to register for the website so I can have my personal environment**
@@ -149,6 +164,8 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 When users want to register, they only have to provide a username and password. 
 After registering, they will be redirected to their profile page. There they see an section with an 'add' button at the top of the screen as well as a ‘account options’ section for editing the username and/or password and deleting their account.
 On this page all their submitted content is also displayed.
+
+* All is working as intended.
 
 ***Sign In***
 
