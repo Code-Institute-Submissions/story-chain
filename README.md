@@ -145,15 +145,10 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 
 **User story: As a user, I would like to be able to register for the website so I can have my personal environment**
 
-* Plan
-
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict The test has passed all the criteria and works like planned.
+* A red call to action button in the hero image with the text "Join Us!" is presented. There is also a ‘register’ link in the navigation bar at the top.
+When users want to register, they only have to provide a username and password. 
+After registering, they will be redirected to their profile page. There they see an section with an 'add' button at the top of the screen as well as a ‘account options’ section for editing the username and/or password and deleting their account.
+On this page all their submitted content is also displayed.
 
 ***Sign In***
 
