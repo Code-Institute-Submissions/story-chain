@@ -92,12 +92,10 @@ def log_in():
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": session['user']})
         if user_in_db:
-            # If so redirect user to his profile
             flash("You are logged in already!")
             return redirect(url_for('profile', user=user_in_db['username']))
 
     else:
-            # Render the page for user to be able to log in
         return render_template('pages/authentication.html')
 
 
@@ -268,11 +266,9 @@ def read_story(story_id):
     Displays whole story.
     """
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
-
-    #newcontent = content_coll.find_all(
-        #{"_id": ObjectId(story.get({"_id": ObjectId()}))})
+    content = list(stories_coll.find())
     return render_template("pages/readstory.html",
-                            story=story)
+                            story=story, content=content)
 
 
 # Needs work

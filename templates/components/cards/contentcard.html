@@ -1,21 +1,23 @@
-<div class="card">
+<div class="card is-fullwidth">
+	<header class="card-header">
+	    <p class="card-header-title">Content</p>
+    </header>
     <div class="card-content">
-        <p class="title">
-            <!-- Title of story to which this is an addition of -->
-        </p>
         <p class="subtitle">
-            Author: {{ add_content.created_by }}
+            Author: {{ content.created_by }}
         </p>
         <p class="summary">
-            {{ add_content.content }}
+            {{ content.add_content }}
+        </p>
+        <p class="summary">
+            {{ content.created_on }}
         </p>
     </div>
     <footer class="card-footer">
         <p class="card-footer-item">
             <span>
-                <a href="/">Edit content</a>
+                <a href="/"></a>
             </span>
         </p>
     </footer>
 </div>
-
