@@ -193,6 +193,16 @@ a {
     font-size: 3rem;
 }
 
+.cancel {
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: .75rem;
+    margin-top: -1.5rem;
+    margin-left: 1rem;
+}
+
 /* Flash messages */
 
 .flashes {

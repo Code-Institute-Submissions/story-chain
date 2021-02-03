@@ -4,17 +4,10 @@
     </header>
     <div class="card-content">
         <p class="author-title">
-            Author:<br></p>
-            <p class="author-content">{{ story.Author }}
-        </p>
-        <p class="date">Created on:<br></p>
-            <p class="date-text">{{ story.created_on }}
-        </p>
-        <p class="content-title">Story content:<br>
+            {{ story.Author }} on {{ story.created_on }}
+        </p><br>
             <p class="content-text">
             {{ story.story_content }}
             </p>
-        </p>
     </div>
 </div>
-

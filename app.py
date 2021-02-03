@@ -237,12 +237,12 @@ def edit_story(story_id):
     """
 
     if request.method == "POST":
-        edited_on = datetime.today().strftime('%Y-%m-%d')
+        created_on = datetime.today().strftime('%Y-%m-%d')
         submit = {
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),
             "Author": session["user"],
-            "edited_on": edited_on
+            "created_on": created_on
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story succesfull")
