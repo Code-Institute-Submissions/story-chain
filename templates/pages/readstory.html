@@ -15,7 +15,6 @@
     <div class="column is-three-fifths">
         {% include 'components/toasts/flashmessages.html' %}
         {% include 'components/cards/fullstorycard.html' %}
-        {% include 'components/cards/contentcard.html' %}
     </div>
     <div class="column"></div>
 </div>
@@ -33,21 +32,13 @@
     <div class="column"></div>
 </div>
 <div class="column"></div>
-{% elif (session.user|lower or session.user|lower == "admin"|lower) %}
-<div class="columns mt-6" id="add_content">
-    <div class="column"></div>
-    <div class="column has-text-centered">
-        <span><p class="title">Want to contribute?</p><a href="{{ url_for('add_content', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted" aria-label="Add Content">Add Content</a>
-        </span>
-    </div>
-    <div class="column"></div>
-</div>
 {% else %}
+    {% if register == True %}
 <div class="columns mt-6 mb-6">
     <div class="column"></div>
     <div class="column is-three-fifths">
         <p class="title">
-            You must be logged in to add to this story!
+            Want to join the fun? Log in now or register
         </p>
     </div>
     <div class="column"></div>
@@ -58,10 +49,14 @@
         <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Log In</a>
     </div>
     <div class="column is-2 has-text-centered">
+    <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Register</a>
+    </div>
+    <div class="column is-2 has-text-centered">
     <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back Home</a>
     </div>
     <div class="column"></div>
 </div>
+    {% endif %}
 {% endif %}
 {% include 'components/footer/footer.html' %}
 {% endblock %}

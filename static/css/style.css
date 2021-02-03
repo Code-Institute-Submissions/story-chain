@@ -50,6 +50,12 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 
+.author-title,
+.date,
+.content-title {
+    color: #5f2121;
+}
+
 /* Navbar styling */
 .navbar-item img {
     max-height: 5.75rem;

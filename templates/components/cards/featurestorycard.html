@@ -1,22 +1,19 @@
 <div class="card is-fullwidth">
 	<header class="card-header">
-	    <p class="card-header-title">{{ story.story_title }}</p>
+	    <p class="card-header-title">{{ story.story_title}} - {{ story.created_on }} </p>
 		<a class="card-header-icon card-toggle">
-			<i class="fa fa-angle-down"></i>
+			<i class="fas fa-feather-alt"></i>
         </a>
     </header>
     <div class="card-content is-hidden">
         <p class="subtitle">
             Author: {{ story.Author }}
         </p>
-        <p class="summary"> <strong>Summary</strong><br>
-            {{ story.story_summary }}
-        </p>
-        <p class="summary"> <strong>Content</strong><br>
-            {{ story.story_content }}
-        </p>
         <p class="summary"> <strong>Date created</strong><br>
             {{ story.created_on }}
+        </p>
+        <p class="summary">
+            {{ story.story_content | truncate(200) }}
         </p>
         <footer class="card-footer">
             <p class="card-footer-item">

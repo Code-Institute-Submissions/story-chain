@@ -1,4 +1,3 @@
-
 <form method="POST" action="{{ url_for('add_story') }}">
     <div class="field">
         <label class="label">Title</label>
@@ -6,21 +5,12 @@
             <input id="story_title" name="story_title" type="text" placeholder="Story title" class="input" required>
         </div>
     </div>
-
     <div class="field">
-        <label class="label">Explain what the story could be about, so other people are enticed to contribute.</label>
-        <div class="control">
-            <textarea class="textarea" id="story_summary" name="story_summary" placeholder="Minimum of 20 and maximum of 1000 characters" minlength="20" maxlength="1000" validate required></textarea>
-        </div>
-    </div>
-
-        <div class="field">
         <label class="label">Type your story here</label>
         <div class="control">
             <textarea class="textarea" id="story_content" name="story_content" placeholder="Minimum of 20 and maximum of 3000 characters" minlength="20" maxlength="3000" validate required></textarea>
         </div>
     </div>
-
     <div class="field has-text-centered">
         <p class="control">
             <button type="submit" placeholder="Submit Story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit story">Submit Story

@@ -3,22 +3,18 @@
 	<p class="card-header-title">{{ story.story_title }}</p>
     </header>
     <div class="card-content">
-        <p class="subtitle">
-            Author: {{ story.Author }}
+        <p class="author-title">
+            Author:<br></p>
+            <p class="author-content">{{ story.Author }}
         </p>
-        <p class="summary"> <strong>Date created</strong><br>
-            {{ story.created_on }}
+        <p class="date">Created on:<br></p>
+            <p class="date-text">{{ story.created_on }}
         </p>
-        <p class="summary"> <strong>Edited on</strong><br>
-            {{ story.edited_on }}
-        </p>
-        <p class="summary"> <strong>Summary</strong><br>
-            {{ story.story_summary }}
-        </p>
-        <p class="summary"> <strong>Story Content</strong><br>
+        <p class="content-title">Story content:<br>
+            <p class="content-text">
             {{ story.story_content }}
-        </p>  
-        <!-- add_content comes here -->
+            </p>
+        </p>
     </div>
 </div>
 

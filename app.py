@@ -217,7 +217,6 @@ def add_story():
         date_created = datetime.today().strftime('%Y-%m-%d')
         story = {
             "story_title": request.form.get("story_title"),
-            "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
             "Author": session["user"],
             "created_on": date_created
@@ -241,7 +240,6 @@ def edit_story(story_id):
         edited_on = datetime.today().strftime('%Y-%m-%d')
         submit = {
             "story_title": request.form.get("story_title"),
-            "story_summary": request.form.get("story_summary"),
             "story_content": request.form.get("story_content"),
             "Author": session["user"],
             "edited_on": edited_on
@@ -272,39 +270,8 @@ def read_story(story_id):
     Displays whole story.
     """
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
-    content = list(stories_coll.find())
     return render_template("pages/readstory.html",
-                            story=story, content=content)
-
-
-# Needs work
-@app.route('/add/content/<story_id>', methods=["GET", "POST"])
-def add_content(story_id):
-    """
-    Let's an a logged in user add content to
-    an existing story.
-    Redirects to profile
-    """
-    #grab story id. link content id's to story id.
-    # Needs to add to the story document
-    if request.method == "POST":
-        date_created = datetime.today().strftime('%Y-%m-%d')
-        content = {
-            "add_content": request.form.get("add_content"),
-            "created_by": session["user"],
-            "created_on": date_created
-        }
-        insert_content_into_db = content_coll.insert_one(content)
-
-        stories_coll.update_one(
-            {"_id": ObjectId(story_id)},
-            {"$push": {"content": insert_content_into_db.inserted_id}})
-        flash("Content succesfully added")
-        return redirect(url_for("home"))
-    return render_template("pages/content.html", story_id=story_id)
-
-
-# Make function for delete content, for author only, modal/flash with warning
+                            story=story)
 
 
 @app.errorhandler(404)
