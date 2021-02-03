@@ -14,6 +14,28 @@ Writing stories can be a lot of fun. But what if you could write stories with co
 * The website has to be easy to use and easy to update information 
 * Visually appealing website 
 
+### Scope ###
+
+An easy to navigate and responsive website that is fun to use and allows users to perform CRUD operations. Users can sign up and, once logged in, share their stories. These users manage their own stories, meaning they can edit and delete them when they want.
+Also, they can update their password and username and even delete their account.
+
+### Structure of the website: ###
+
+<strong>View for a guest user:</strong>
+
+A user that is not logged in and/or registered, will see a list of all stories on the homepage. There is also a call to action button 'Join Us!' urging them to register. They also have a navigation menu, only containing 'Home', 'Register' and 'Log In'. All other functionality is restricted to a logged in user.
+They are able to click the 'Read More' button when the click a card where the title of the story is, which will lead them to the 'Read Story' page. Here they are also prompted to register/login to benefit from the full functionality of the site.
+
+<strong>View for logged in user:</strong>
+
+A logged in user will benefit from the full functionality of the site. The navigation will contain: 'Home', 'Profile (with their username for ease)', 'Add' and 'Logout'.
+This user can then add a new story by clicking the 'Add' button in the navigation or on their profile. 
+The added functionality for this user is the ability to add a story, edit that story and even delete is. This functionality is restricted for only to the user that is logged in and is also the creator of that story.
+In the profile there are also functions for changing once username, password and even delete their account.
+All this added functionality is also available to the site owner via an "admin" account.
+
+
+
 ### User Stories ###
 * As a user, I would like to be able to register for the website so I can have my personal environment. 
 * As a user, I want to login after I created an account and see my previous inserted information. 
@@ -95,7 +117,8 @@ I also created a conceptual data model to get a feel for the needed entities, re
 ![Conceptual Data Model](/assets/wireframes/conceptualdatamodel.jpg)
 
 #### Database Structure ####
-For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with the following collections:
+For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas).It contains two collection, 'users' and stories'. When a user signs up, his username and hashed password are added to the users collection.
+When a logged in user adds a story to the website, his username is added as a value for the key 'Author' in the stories collection.
 
 ## Features ##
 
@@ -103,7 +126,7 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 * Registration functionality 
 * Sign-In and Out functionality 
 * Add a new story
-* Add to an existing story
+* Add to an existing story (not implemented yet, see below)
     * CRUD Functions: 
         * Create: possibility to create a new story
         * Read: home page with stories in progress that non-members can also read, as well as a profile page where members can see what the have added.
@@ -111,8 +134,14 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
         * Delete: possibility to delete content that a member has added and delete account.
 
 ### Features to be implemented ###
+* Add to an existing story
+    * For this project I had the idea that a logged in user should also be able to add content to an existing story, creating the 'chain'. But due to personal circumstances and that I just wasn't able to figure this one out, I had to move it to the 'left to implement' section.
+    This is not for lack of trying. I have tried different ways to implement this, using the aggregating pipeline that mongo has to offer, but I sadly never was able to make it work. I do still feel strongly for this functionality and will surely try this again at a later stage, when my knowledge has grown further.
 * Have a 'forget password' functionality
-* Add a search functionality 
+    * The user now has the ability to change their email. But I would really like to have a 'forgot your password' function so a user can reset it.
+* Add a search functionality
+    * To allow a search functionality I am thinking about having people include 'tag' words so other users could search by matching those keywords.
+
 
 ## Technologies used ##
 
@@ -139,23 +168,12 @@ For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas) with
 * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
 * [PyMongo](https://api.mongodb.com/python/current/tutorial.html)
 * [Jinja](https://jinja.palletsprojects.com/en/2.11.x/)
+* [Heroku](https://www.heroku.com/)
+* [Github](https://github.com/)
+* [Chromium](https://www.chromium.org/Home)
+
 
 ## Testing ##
-
-
-<strong>View for a guest user:</strong>
-
-A user that is not logged in and/or registered, will see a list of all stories on the homepage. There is also a call to action button 'Join Us!' urging them to register. They also have a navigation menu, only containing 'Home', 'Register' and 'Log In'. All other functionality is restricted to a logged in user.
-They are able to click the 'Read More' button when the click a card where the title of the story is, which will lead them to the 'Read Story' page. Here they are also prompted to register/login to benefit from the full functionality of the site.
-
-<strong>View for logged in user:</strong>
-
-A logged in user will benefit from the full functionality of the site. The navigation will contain: 'Home', 'Profile (with their username for ease)', 'Add' and 'Logout'.
-This user can then add a new story by clicking the 'Add' button in the navigation or on their profile. 
-The added functionality for this user is the ability to add a story, edit that story and even delete is. This functionality is restricted only to the user that is logged in and the creator of that content.
-A logged in user is also able to add content to a story written by another user. Again, add, edit and delete functionality is restricted only to the user that has created the content. There are 'cancel' and/or 'home' buttons with every form and/or action, to give the user the ability to abort any action without the use of the navigation or the back buttons in the browser.
-In the profile there will also be functions for changing once username, password and even delete their account.
-All this added functionality is also available to the site owner via an "admin" account.
 
 ## Testing user stories:
 
@@ -184,7 +202,7 @@ On this page all their submitted content is also displayed. At all stages where 
 * After a user has had a successful login or registration, he is redirected to his personal profile page. Here he can see any previous submitted content and have full account control by having the ability to change a username, change a password and delete his account. Also a section for 'add' as story is given.
 
 
-***Add content/new story***
+***Add new story***
 
 **User story: As a user, I want to be able to add content to a existing story.**
 
@@ -206,11 +224,21 @@ On this page all their submitted content is also displayed. At all stages where 
 A form is given to be filled and after a successful submission, the user is redirected to the home page and presented with an appropriate flash message. There is also a button that let's the user cancel it's action and return to the home page if he should so desire.
 
 
-***Delete story by user***
+***Delete story***
 
 **User story: As a user, I want to be able to delete the stories I have started.**
 * After clicking the 'Read More' button in a story from the home page and if the current user is also the author of the story, a 'edit' and a 'delete' button will appear. After the user clicks the 'delete' button, it will prompt a modal, warning the user that deleting the content seriously affects the flow of the story. A user can then either click a 'cancel' button which will close the modal or click 'delete' once more. This will then delete the story form the database, homepage and the profile. An appropriate flash message will be given.
 
+
+***Creating, editing and deleting content to an existing story***
+
+**User story: As a user, I want to be able to add content to a existing story.**
+
+* Not yet implemented, still working on this user story.
+
+**User story: As a user, I want to be able to edit/delete content of an existing story.** 
+
+* Not yet implemented, still working on this user story.
 
 
 ***Account options***
