@@ -117,14 +117,14 @@ I also created a conceptual data model to get a feel for the needed entities, re
 ![Conceptual Data Model](/assets/wireframes/conceptualdatamodel.jpg)
 
 #### Database Structure ####
-For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas).It contains two collection, 'users' and stories'. When a user signs up, his username and hashed password are added to the users collection.
+For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas).It contains two collection, 'users' and stories'. When a user registers, his username and hashed password are added to the users collection.
 When a logged in user adds a story to the website, his username is added as a value for the key 'Author' in the stories collection.
 
 ## Features ##
 
 ### Features that are implemented ###
 * Registration functionality 
-* Sign-In and Out functionality 
+* Log In and Out functionality 
 * Add a new story
 * Add to an existing story (not implemented yet, see below)
     * CRUD Functions: 
