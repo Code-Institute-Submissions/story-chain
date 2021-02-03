@@ -141,6 +141,7 @@ When a logged in user adds a story to the website, his username is added as a va
     * The user now has the ability to change their email. But I would really like to have a 'forgot your password' function so a user can reset it.
 * Add a search functionality
     * To allow a search functionality I am thinking about having people include 'tag' words so other users could search by matching those keywords.
+* A way to add the username 'guest' to stories from people who have deleted their account without them deleting their stories. The way it is right now, a new user is technically able to register that username again and own those stories.
 
 
 ## Technologies used ##
@@ -175,7 +176,7 @@ When a logged in user adds a story to the website, his username is added as a va
 
 ## Testing ##
 
-## Testing user stories:
+### Testing user stories:
 
 ***Registration***
 
@@ -251,26 +252,31 @@ A form is given to be filled and after a successful submission, the user is redi
 
 **User story: As a user, I want to be able to delete my account.**
 
-* Implementation
-
-* Test
-
-* Result
-
-    * Verdict: The test has passed all the criteria and works like planned.
+* After a user has had an successful login, he is directed to his profile page. There he can click the 'Delete account' button. A modal pops up, asking the user he is sure about deleting their account. After clicking "I'm sure", their account is deleted from the database. 
 
 ***Log out***
+
 **User story: As a user, I want to be able to log out of my profile.**
 
-* Plan
+* Once a user is logged in, in the navigation, a button appears that has the text 'Log Out' on it. Once clicked, the user is logged out and returned to the homepage. An appropriate flash message will be displayed.
 
-* Implementation
+## Manual testing ##
 
-* Test
+# Home
+* On the homepage, all stories are displayed in cards. They are collapsible, only showing the title and the date they where posted. When clicking on the title, a 'teaser' appears. In the navigation the 'Home', 'Register' and 'Log In' buttons are visible to users without an account. More options will become available as soon as a user has registered or logged in.
 
-* Result
+# Register
+* Before signing up, users see the options Home, Register and Log In in the navigation bar.
+* In the Register form: provide username of less than 2 characters. The form tells a user that the username doesn't meet the criteria (validation message). A help message has been displayed beneath the form field stating: "Only letters (either case) and numbers. No special characters"
+* Provide a password of less than 5 characters. The form tells a user that the password doesn't meet the criteria (validation message). A help message has been displayed beneath the form field stating: "Only letters (either case) and numbers, 6 or more characters".
+* Leave one or more fields empty. The form tells a user that the empty field needs to be filled in (validation message).
+* Provide username or password containing forbidden characters. Only a-z, A-Z, and 0-9 are allowed. The form tells a user that the username or password don't meet the criteria (validation message).
+* Provide a username that already exists and submit the form. The user is redirected back to the sign up page. A flash message is visible: 'Username already taken.'
+* Provide a username and password that meet the criteria, the user is added to the 'users' collection in the database and redirected to their profile page.  On the website, the user sees the options Home, Profile, Add and Log Out in the navigation bar.
 
-    * Verdict: The test has passed all the criteria and works like planned.
+# Log In
+
+
 
 ## Bugs
 
