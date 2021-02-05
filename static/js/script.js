@@ -1,3 +1,5 @@
+//jshint esversion: 6
+
 $(document).ready(function () {
     // Code from: https://bulma.io/documentation/components/navbar/
 
@@ -8,12 +10,13 @@ $(document).ready(function () {
         $(".navbar-menu").toggleClass("is-active");
     });
 
-    $("#delete_story").click(function() {
-        $(".modal").addClass("is-active");
-    });
-    $(".cancel").click(function() {
-        $(".modal").removeClass("is-active");
-})});  
+    // Modal for delete functions
+    $(".button").click(function(){
+    $(".modal").removeClass("is-active");
+    var Type = $(this).data("modal-type");
+    $("#"+Type).addClass("is-active");
+});
+});  
 
 // For collapsible cards and other elements, taken from: https://codepen.io/brussell98/pen/mEwxjP?js-preprocessor=livescript
 document.addEventListener('DOMContentLoaded', function() {

@@ -16,15 +16,19 @@
                 </div>
         </div>
     </div>
-    <div class="profile-story-header" mt-4 mb-4>Stories</div>
-    {% include 'components/toasts/flashmessages.html' %}
-    <div class="columns">
-        <div class="column is-half">
-{% for story in stories %}
-    {% include 'components/cards/featurestorycard.html' %}
-{% endfor %}
+    <div class="columns is-desktop">
+        <div class="column">
+            <div class="profile-story-header" mt-4 mb-4>Stories</div>
+                {% include 'components/toasts/flashmessages.html' %}
+                <div class="column"></div>
+            <div class="column">
+                {% for story in stories %}
+                {% include 'components/cards/featurestorycard.html' %}
+            {% endfor %}
+            </div>
+            <div class="column"></div>
         </div>
     </div>
-</div>  
+</div>
 {% include 'components/footer/footer.html' %}
 {% endblock %}

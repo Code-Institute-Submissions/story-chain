@@ -205,7 +205,7 @@ def delete_account(username):
     users_coll.remove({"username": username.lower()})
     session.pop("user")
     flash("Your account has been removed. Sad to see you go!")
-    return redirect(url_for("home"))
+    return redirect(url_for("home", username=username))
 
 
 @app.route("/add/story/", methods=["GET", "POST"])
@@ -214,7 +214,7 @@ def add_story():
     Allows a user to add a new story
     """
     if request.method == "POST":
-        date_created = datetime.today().strftime('%Y-%m-%d')
+        date_created = datetime.today().strftime('%m/%d/%Y')
         story = {
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),
@@ -237,7 +237,7 @@ def edit_story(story_id):
     """
 
     if request.method == "POST":
-        created_on = datetime.today().strftime('%Y-%m-%d')
+        created_on = datetime.today().strftime('%m/%d/%Y')
         submit = {
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),

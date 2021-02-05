@@ -23,23 +23,21 @@
             </div>
         </div>
         <div class="column"></div>
-    </div>
-
-    <div class="columns mt-6 mb-6">
-        <div class="column"></div>
-        <div class="column is-4">
+        <div class="column is-6">
             <div class="card">
-                <div class="card-content has-text-centered">
+                <div class="card-content has-text-centered is-align-content-space-evenly">
                     <p class="title">
                         Account settings
                     </p>
-                    <a href="{{ url_for('change_password', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="change-password" aria-label="Change your password">Change Password</a>
-                    <a href="{{ url_for('change_username', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="change-username" aria-label="Change your username">Change Username</a>
-                    <a href="{{ url_for('delete_account', username=session['user']) }}" class="button is-rounded is-info is-inverted" id="delete-account" aria-label="Delete account">Delete Account</a>
+                    <a href="{{ url_for('change_password', username=session['user']) }}" class="button is-rounded is-info is-inverted
+                    mb-4" id="change-password" aria-label="Change your password">Change Password</a>
+                    <a href="{{ url_for('change_username', username=session['user']) }}" class="button is-rounded is-info is-inverted mb-4" id="change-username" aria-label="Change your username">Change Username</a>
+                    <div class="button is-rounded is-info is-inverted delete_account" data-modal-type="type2" aria-label="Delete my account">Delete account</div>
+                        {% include 'components/modals/modals.html' %}
                 </div>
             </div>
         </div>
-        <div class="column"></div>
+    <div class="column"></div>
     </div>
     
 {% for story in stories %}

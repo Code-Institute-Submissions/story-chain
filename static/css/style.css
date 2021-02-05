@@ -188,6 +188,10 @@ a {
 
 /* Modal */
 
+.modal {
+    display: none;
+}
+
 .modal-card-body {
     color: #5f2121;
     font-size: 3rem;

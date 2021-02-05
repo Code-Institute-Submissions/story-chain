@@ -1,18 +1,43 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-<div class="modal">
+<div class="modal" id="type1">
     <div class="modal-background"></div>
     <div class="modal-card">
     <header class="modal-card-head">
         <p class="modal-card-title">Delete story</p>
     </header>
     <section class="modal-card-body">
-    Deleting this damages the flow of the story. Are you sure? This action cannot be undone!
+    You are about to delete this story. Are you sure? This action cannot be undone!
     </section>
     <footer class="modal-card-foot">
         <form method="DELETE" action="{{ url_for('delete_story', story_id=story._id) }}">
         <p class="control">
-        <button type="submit" placeholder="Delete story" id="delete_story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Delete story">Delete Story
+        <button type="submit" placeholder="Delete story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Delete story">Delete Story
+        </button>  
+    </p>
+    </form>
+    <div class="columns">
+        <div class="column cancel has-text-centered">
+    <button class="cancel button is-rounded button is-info is-inverted" aria-label="Cancel">Cancel</button>
+        </div>
+        <div class="column"></div>
+    </div>
+    </footer>
+    </div>
+</div>
+<div class="modal" id="type2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+    <header class="modal-card-head">
+        <p class="modal-card-title">Delete account</p>
+    </header>
+    <section class="modal-card-body">
+    You are about to delete your account! Are you sure? You will be missed!
+    </section>
+    <footer class="modal-card-foot">
+        <form method="DELETE" action="{{ url_for('delete_account', username=username) }}">
+        <p class="control">
+        <button type="submit" placeholder="Delete account" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Delete account">Delete account
         </button>  
     </p>
     </form>
