@@ -18,8 +18,8 @@
                     <div class="navbar-end">
                         <a href="{{url_for('home')}}" class="navbar-item">Home</a>
                         {% if session.user %}
-                        <a href="{{url_for('profile', user=session.user, story=story )}}" class="navbar-item {% if 'profile' in request.path %} active {% endif %}">Profile ( {{ session.user }} )</a>
-                        <a href="{{url_for('add_story')}}" class="navbar-item">Add</a>
+                        <a href="{{url_for('profile', user=session.user, user_id=username )}}"  class="navbar-item {% if 'profile' in request.path %} active {% endif %}">Profile ( {{ session.user }} )</a>
+                        <a href="{{url_for('add_story', user=session.user, user_id=username)}}" class="navbar-item">Add</a>
                         <span class="navbar-item">
                             <a href="{{url_for('log_out')}}" class="button is-rounded is-info is-inverted" aria-label="Log out">Log Out</a>
                         </span>

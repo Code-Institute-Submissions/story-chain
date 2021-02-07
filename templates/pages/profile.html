@@ -33,14 +33,16 @@
                     mb-4" id="change-password" aria-label="Change your password">Change Password</a>
                     <a href="{{ url_for('change_username', username=session['user']) }}" class="button is-rounded is-info is-inverted mb-4" id="change-username" aria-label="Change your username">Change Username</a>
                     <div class="button is-rounded is-info is-inverted delete_account" data-modal-type="type2" aria-label="Delete my account">Delete account</div>
-                        {% include 'components/modals/modals.html' %}
+                        {% with username=user._id %}
+                            {% include 'components/modals/modals.html' %}
+                        {% endwith %}
                 </div>
             </div>
         </div>
     <div class="column"></div>
     </div>
     
-{% for story in story %}
+{% for story in stories %}
 {% if (session.user|lower == story.Author) %}
     <div class="columns">
         <div class="column"></div>

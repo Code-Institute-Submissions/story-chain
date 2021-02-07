@@ -99,7 +99,7 @@ def log_in():
         return render_template('pages/authentication.html')
 
 
-@app.route('/userauth', methods=['POST'])
+@app.route('/userauth', methods=["POST"])
 def user_auth():
     form = request.form.to_dict()
     user_in_db = users_coll.find_one({"username": form['username']})
@@ -193,31 +193,32 @@ def change_username(username):
                             username=session["user"])
 
 
-@app.route("/delete/account/<username>", methods=["GET", "DELETE"])
-def delete_account(username):
+@app.route("/delete/account/<user_id>", methods=["GET", "POST"])
+def delete_account(user_id):
     """
     This function removes a user from the "users" collection
     in the database. Ti removes the user from the session
     cookies and redirects to the homepage
     """
-    if 'username' not in session:
+    if 'user' not in session:
         flash('You must be logged in to delete an account!')
-        user = users_coll.find_one({"username": username})
+        return redirect(url_for("log_in"))
+    user = users_coll.find_one({"_id": ObjectId(user_id)})
     # checks if password matches existing password in database
     if check_password_hash(user["password"],
     request.form.get("confirm_password_to_delete")):
-        # Removes all user stories from database
-        user_stories = user.get("user_stories")
-        for story in user_stories:
-            stories_coll.remove({"_id": story})
-        # remove user from database,clear session and redirect to the home page
+    # Removes all user stories from database
+    # user_stories = user.get("user_stories")
+    # for story in user_stories:
+    #     stories_coll.remove({"_id": story})
+    # remove user from database,clear session and redirect to the home page
         flash("Your account has been deleted.")
-        session.pop("username", None)
+        session.pop("user")
         users_coll.remove({"_id": user.get("_id")})
-        return redirect(url_for("home"))
+        return redirect(url_for("log_in"))
     else:
         flash("Password is incorrect! Please try again")
-        return redirect(url_for("profile", username=username))
+        return redirect(url_for("profile", user=user.get("username")))
 
 
 @app.route("/add/story/", methods=["GET", "POST"])
@@ -292,7 +293,7 @@ def page_not_found(error):
     Renders a custom 404 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/404.html"), 404
+    return render_template("/components/errors/404.html", error=True), 404
 
 
 @app.errorhandler(500)
@@ -301,7 +302,7 @@ def something_went_wrong(error):
     Renders a custom 500 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/500.html"), 500
+    return render_template("/components/errors/500.html", error=True), 500
 
 
 @app.errorhandler(401)
@@ -310,7 +311,7 @@ def permission_denied(error):
     Renders a custom 401 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/401.html"), 401
+    return render_template("/components/errors/401.html", error=True), 401
 
 
 @app.errorhandler(405)
@@ -319,7 +320,7 @@ def method_not_allowed(error):
     Renders a custom 405 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/405.html"), 405
+    return render_template("/components/errors/405.html", error=True), 405
 
 
 if __name__ == "__main__":
