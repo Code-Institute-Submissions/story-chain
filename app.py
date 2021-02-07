@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 # MongoDb collection variables
 users_coll = mongo.db.users
 stories_coll = mongo.db.stories
-content_coll = mongo.db.content
+# content_coll = mongo.db.content
 
 
 @app.route('/')
@@ -193,17 +193,31 @@ def change_username(username):
                             username=session["user"])
 
 
-@app.route("/delete/account<username>")
+@app.route("/delete/account/<username>", methods=["GET", "DELETE"])
 def delete_account(username):
     """
     This function removes a user from the "users" collection
     in the database. Ti removes the user from the session
     cookies and redirects to the homepage
     """
-    users_coll.remove({"username": username.lower()})
-    session.pop("user")
-    flash("Your account has been removed. Sad to see you go!")
-    return redirect(url_for("home", username=username))
+    if 'username' not in session:
+        flash('You must be logged in to delete an account!')
+        user = users_coll.find_one({"username": username})
+    # checks if password matches existing password in database
+    if check_password_hash(user["password"],
+    request.form.get("confirm_password_to_delete")):
+        # Removes all user stories from database
+        user_stories = user.get("user_stories")
+        for story in user_stories:
+            stories_coll.remove({"_id": story})
+        # remove user from database,clear session and redirect to the home page
+        flash("Your account has been deleted.")
+        session.pop("username", None)
+        users_coll.remove({"_id": user.get("_id")})
+        return redirect(url_for("home"))
+    else:
+        flash("Password is incorrect! Please try again")
+        return redirect(url_for("profile", username=username))
 
 
 @app.route("/add/story/", methods=["GET", "POST"])
@@ -278,7 +292,7 @@ def page_not_found(error):
     Renders a custom 404 error page with a button
     that takes the user back home
     """
-    return render_template("/pages/error.html"), 404
+    return render_template("/components/errors/404.html"), 404
 
 
 @app.errorhandler(500)
@@ -287,7 +301,7 @@ def something_went_wrong(error):
     Renders a custom 500 error page with a button
     that takes the user back home
     """
-    return render_template("/pages/error.html"), 500
+    return render_template("/components/errors/500.html"), 500
 
 
 @app.errorhandler(401)
@@ -296,7 +310,7 @@ def permission_denied(error):
     Renders a custom 401 error page with a button
     that takes the user back home
     """
-    return render_template("/pages/error.html"), 401
+    return render_template("/components/errors/401.html"), 401
 
 
 @app.errorhandler(405)
@@ -305,7 +319,7 @@ def method_not_allowed(error):
     Renders a custom 405 error page with a button
     that takes the user back home
     """
-    return render_template("/pages/error.html"), 405
+    return render_template("/components/errors/405.html"), 405
 
 
 if __name__ == "__main__":

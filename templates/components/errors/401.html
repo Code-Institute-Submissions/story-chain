@@ -1,0 +1,21 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<section class="hero error is-fullheight">
+    <div class="hero-body">
+        <div class="container mb-6">
+            <h1 class="error-title">
+                Oh no... 
+            </h1>
+            <h2 class="error-subtitle">
+                You are not authorized to view this page!
+            </h2>
+            <h2 class="error-subtitle">
+                (Maybe you misspelled your username or password? I don't know... Please try again!  <i class="far fa-kiss-wink-heart"></i> )
+            </h2>
+            <div class="home-button mt-6">
+            <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">TAKE ME BACK!</a>
+            </div>  
+    </div>
+        </div>
+</section>
+{% endblock %}

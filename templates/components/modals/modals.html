@@ -32,10 +32,21 @@
         <p class="modal-card-title">Delete account</p>
     </header>
     <section class="modal-card-body">
-    You are about to delete your account! Are you sure? You will be missed!
+    Deleting your account also deletes your stories! Are you sure? You will be missed!
     </section>
     <footer class="modal-card-foot">
         <form method="DELETE" action="{{ url_for('delete_account', username=username) }}">
+            <div class="field">
+        <label class="label">Confirm password</label>
+        <div class="control has-icons-left">
+            <input id="confirm_password_to_delete" name="confirm_password_to_delete" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required
+                title="6 or more characters">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
+        </div>
+    </div>
         <p class="control">
         <button type="submit" placeholder="Delete account" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Delete account">Delete account
         </button>  
