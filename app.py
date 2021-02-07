@@ -137,12 +137,10 @@ def profile(user):
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    stories = list(stories_coll.find().sort('_id', -1))
+    story = list(stories_coll.find().sort('_id', -1))
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": user})
-        return render_template('pages/profile.html',
-                                user=user_in_db, 
-                                stories=stories)
+        return render_template('pages/profile.html', user=user_in_db, story=story)
     else:
         flash("You must be logged in!")
         return redirect(url_for('home'))
