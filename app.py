@@ -65,6 +65,7 @@ def register():
                     {
                         'username': form['username'],
                         'password': hashed_password
+                        # user_stories[]?
                     }
                 )
                 user_in_db = users_coll.find_one(
@@ -223,6 +224,20 @@ def delete_account(user_id):
 
 @app.route("/add/story/", methods=["GET", "POST"])
 def add_story():
+    # user = users_coll.find_one({"_id": ObjectId(user_id)})
+    # if request.method == "POST":
+    #     date_created = datetime.today().strftime('%m/%d/%Y')
+    #     story = {
+    #         "story_title": request.form.get("story_title"),
+    #         "story_content": request.form.get("story_content"),
+    #         "Author": session["user"],
+    #         "created_on": date_created
+    #     }
+    #     add_story = stories_coll.insert_one(story)
+    #     users_coll.update_one(
+    #         {"_id": ObjectId(user)},
+    #         {"$push": {"user_stories": add_story.inserted_id}})
+    #     flash("Story Successfully Added")
     """
     Allows a user to add a new story
     """
