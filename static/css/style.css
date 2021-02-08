@@ -24,8 +24,8 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 .card {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .card-header-title {
@@ -111,6 +111,15 @@ body {
     box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
 }
 
+.registration {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.link {
+    color: #5f2121;
+    text-decoration: underline;
+}
 /* List styling */
 .content ol {
     list-style-position: inside;

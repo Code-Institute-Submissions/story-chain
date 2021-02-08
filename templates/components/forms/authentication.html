@@ -43,25 +43,21 @@
             </button>    
         </p>
     </div>
-    <div class="columns ">
-            <div class="column is-6 has-text-centered">
-            {% if register == True %}
-            <h4 class="title">Already have an account?</h4>
-            {% else %}
-            <h4 class="title"> Don't have an account yet?</h4>
-            </div>
-            {% endif %}
+    <div class="columns has-text-centered">
+        <div class="column registration">
+        {% if register == True %}
+        <p class="title">Already have an account?</p>
+        {% else %}
+        <p class="title"> Don't have an account yet?</p>
+        </div>
+        {% endif %}
     </div>
-    <div class="columns">
-        <div class="column has-text-centered">
-            {% if register == True %}
-            <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Click here to Log in</a>
-            {% else %}
-            <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Click here to register</a>
-            {% endif %}
-        </div>
-        <div class="column has-text-centered">
-            <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back home</a>
-        </div>
+    <div class="column mb-5">
+    {% if register == True %}
+    <a href="{{ url_for('log_in') }}" class="link">Log in here!</a>
+    {% else %}
+    <a href="{{ url_for('register') }}" class="link">Register here!</a>
+    {% endif %}
     </div>
 </form>
+<a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted mb-6 mr-6" aria-label="Home">Home</a>
