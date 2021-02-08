@@ -10,7 +10,7 @@
     You are about to delete this story. Are you sure? This action cannot be undone!
     </section>
     <footer class="modal-card-foot">
-        <form method="DELETE" action="{{ url_for('delete_story', story_id=story._id) }}">
+        <form method="POST" action="{{ url_for('delete_story', story_id=story._id) }}">
         <p class="control">
         <button type="submit" placeholder="Delete story" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Delete story">Delete Story
         </button>  

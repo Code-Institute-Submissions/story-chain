@@ -138,10 +138,11 @@ def profile(user):
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    story = list(stories_coll.find().sort('_id', -1))
+    stories = list(stories_coll.find().sort('_id', 1))
+    story = list(stories_coll.find().sort('_id', 1))
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": user})
-        return render_template('pages/profile.html', user=user_in_db, story=story)
+        return render_template('pages/profile.html', user=user_in_db, story=story, stories=stories)
     else:
         flash("You must be logged in!")
         return redirect(url_for('home'))
@@ -280,7 +281,7 @@ def edit_story(story_id):
     return render_template("pages/story.html", story=story)
 
 
-@app.route("/delete/story/<story_id>", methods=["GET", "DELETE"])
+@app.route("/delete/story/<story_id>", methods=["GET", "POST"])
 def delete_story(story_id):
     """
     This functions allows for the user to delete their story.
