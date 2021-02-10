@@ -28,14 +28,14 @@ stories_coll = mongo.db.stories
 def home():
     """
     Function for loading the home page and showing
-    existing stories.
+    existing stories. Newest stories are shown first.
     """
     stories = stories_coll.find().sort('_id', -1)
     return render_template('pages/home.html',
                             stories=stories)
 
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route('/register', methods=["GET", "POST"])
 def register():
     """
     Function for registering a new user.
@@ -43,28 +43,27 @@ def register():
     already exists in the database.
     Redirects to profile
     """
-    # checks if user is not already logged in
+    # Checks if user is not already logged in
     if 'user' in session:
         flash('You are already registered!')
         return redirect(url_for('home'))
-
+    # Checks if the passwords match
     if request.method == "POST":
         form = request.form.to_dict()
         if form['password'] == form['password1']:
             registered_user = users_coll.find_one(
                             {"username": form['username']})
-
+    # Checks if username already exists
             if registered_user:
                 flash("Username already taken")
                 return redirect(url_for('register'))
-
+    # Hashes the password and puts new user in db
             else:
                 hashed_password = generate_password_hash(form['password'])
                 users_coll.insert_one(
                     {
                         'username': form['username'],
                         'password': hashed_password
-                        # user_stories[]?
                     }
                 )
                 user_in_db = users_coll.find_one(
@@ -89,6 +88,7 @@ def log_in():
     Allows user to sign in with username and password
     Redirects user to profile
     """
+    # Only visible for user who are logged in
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": session['user']})
         if user_in_db:
@@ -119,7 +119,7 @@ def user_auth():
         return redirect(url_for('register'))
 
 
-@app.route("/logout")
+@app.route('/logout')
 def log_out():
     """
     Allows the user to log out
@@ -131,12 +131,12 @@ def log_out():
                             stories=stories)
 
 
-@app.route("/profile/<user>", methods=["GET", "POST"])
+@app.route('/profile/<user>', methods=["GET", "POST"])
 def profile(user):
     """
     This function renders the profile page. This page displays the stories
     submitted by the currently logged in user and is only visible for that
-    user.
+    user. Newest stories are shown first.
     """
     stories = stories_coll.find().sort('_id', -1)
     story = list(stories_coll.find().sort('_id', 1))
@@ -151,7 +151,7 @@ def profile(user):
         return redirect(url_for('home'))
 
 
-@app.route("/change/password/<username>", methods=["GET", "POST"])
+@app.route('/change/password/<username>', methods=["GET", "POST"])
 def change_password(username):
     """
     This function renders the change password page which is only
@@ -174,7 +174,7 @@ def change_password(username):
     return redirect(url_for("log_in"))
 
 
-@app.route("/change/username/<username>", methods=["GET", "POST"])
+@app.route('/change/username/<username>', methods=["GET", "POST"])
 def change_username(username):
     """
     This function renders the change username page, where a logged
@@ -200,18 +200,22 @@ def change_username(username):
                             username=session["user"])
 
 
-@app.route("/delete/account/<user_id>", methods=["GET", "POST"])
+@app.route('/delete/account/<user_id>', methods=["GET", "POST"])
 def delete_account(user_id):
     """
     This function removes a user from the "users" collection
-    in the database. Ti removes the user from the session
-    cookies and redirects to the homepage
+    in the database. It removes the user from the session
+    cookies and redirects to the homepage.
+    A modal pops up that askes for the users password
+    to have some extra security.
     """
+    # Only visible for logged in user
     if 'user' not in session:
         flash('You must be logged in to delete an account!')
         return redirect(url_for("log_in"))
     user = users_coll.find_one({"_id": ObjectId(user_id)})
-    # checks if password matches existing password in database
+    # Defensive programming to assure no one else does this
+    # Checks if password matches existing password in database
     if check_password_hash(user["password"],
     request.form.get("confirm_password_to_delete")):
         flash("Your account has been deleted.")
@@ -223,10 +227,11 @@ def delete_account(user_id):
         return redirect(url_for("profile", user=user.get("username")))
 
 
-@app.route("/add/story/", methods=["GET", "POST"])
+@app.route('/add/story/', methods=["GET", "POST"])
 def add_story():
     """
-    Allows a user to add a new story
+    Allows a user to add a new story, after successful
+    submit, he is redirected to the homepage. 
     """
     if request.method == "POST":
         date_created = datetime.today().strftime('%m/%d/%Y')
@@ -243,7 +248,7 @@ def add_story():
     return render_template("pages/story.html", story=True)
 
 
-@app.route("/edit/story/<story_id>", methods=["GET", "POST"])
+@app.route('/edit/story/<story_id>', methods=["GET", "POST"])
 def edit_story(story_id):
     """
     Allows the user that has created the story,
@@ -269,12 +274,12 @@ def edit_story(story_id):
                             story=story)
 
 
-@app.route("/delete/story/<story_id>", methods=["GET", "POST"])
+@app.route('/delete/story/<story_id>', methods=["GET", "POST"])
 def delete_story(story_id):
     """
     This functions allows for the user to delete their story.
-    Because this obstructs the flow of the story, a warning
-    is shown
+    Because this action cannot be undone, a modal is shown
+    to ask the user if he is sure.
     """
     stories_coll.remove({"_id": ObjectId(story_id)})
     flash("Your story has been removed")
@@ -284,7 +289,8 @@ def delete_story(story_id):
 @app.route('/read/story/<story_id>')
 def read_story(story_id):
     """
-    Displays whole story.
+    Displays whole story. Also gives the author of the
+    story two buttons, to edit or delete the story. 
     """
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/readstory.html",
