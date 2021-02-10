@@ -192,7 +192,7 @@ def change_username(username):
                 {"username": username},
                 {"$set": {"username": request.form["new_username"]}},
                             upsert=True)
-        flash("Your username has been updated. Please login with your new username")
+        flash("Your username has been updated.Please login with your new username")
         session.pop("user", None)
         return redirect(url_for("log_in"))
 
@@ -231,7 +231,7 @@ def delete_account(user_id):
 def add_story():
     """
     Allows a user to add a new story, after successful
-    submit, he is redirected to the homepage. 
+    submit, he is redirected to the homepage.
     """
     if request.method == "POST":
         date_created = datetime.today().strftime('%m/%d/%Y')
@@ -270,7 +270,7 @@ def edit_story(story_id):
                                 story_id=story_id))
 
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
-    return render_template("pages/story.html", 
+    return render_template("pages/story.html",
                             story=story)
 
 
@@ -290,7 +290,7 @@ def delete_story(story_id):
 def read_story(story_id):
     """
     Displays whole story. Also gives the author of the
-    story two buttons, to edit or delete the story. 
+    story two buttons, to edit or delete the story.
     """
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/readstory.html",

@@ -2,19 +2,13 @@
 {% block content %}
 {% include 'components/navigation/heronavbar.html' %}
 {% if story==True %}
-<div class="columns mt-6" id="add_story">
-    <div class="column"></div>
-    <div class="column is-8">
-        <div class="card">
-            <div class="card-content">
-                <p class="page-title">
-                    Add a new story
-                </p>
-            </div>
+<p class="page-title">Add Story</p>
+    <div class="columns">
+            <div class="column"></div>
+            <div class="column is-4">
             {% include 'components/toasts/flashmessages.html' %}
             {% include 'components/forms/addstory.html' %}
         </div>
-    </div>  
     <div class="column"></div>
 </div>
 {% else %}

@@ -3,36 +3,28 @@
 {% include 'components/navigation/heronavbar.html' %}
     {% if register == True %}
     <div class="container">
-        <div class="columns mt-6">
+        <div class="columns">
             <div class="column"></div>
-            <div class="column is-5">
-                <div class="card">
-                    <div class="card-content has-text-centered">
-                        <p class="page-title">
-                            Register here to start your personal story telling journey!
-                        </p>
-                    </div>
-                    {% include 'components/toasts/flashmessages.html' %}
-                    {% include 'components/forms/authentication.html' %}
-                </div>
+            <div class="column is-4">
+                <p class="page-title">
+                    Register here to start your personal story telling journey!
+                </p>
+                {% include 'components/toasts/flashmessages.html' %}
+                {% include 'components/forms/authentication.html' %}
             </div>
+            <div class="column"></div>
         </div>
-        <div class="column"></div>
     </div>
     {% else %}
     <div class="container">
-        <div class="columns mt-6">
+        <div class="columns">
             <div class="column"></div>
-            <div class="column is-5">
-                <div class="card">
-                    <div class="card-content has-text-centered">
-                        <p class="page-title">
-                            Log In
-                        </p>
-                    </div>
-                    {% include 'components/toasts/flashmessages.html' %}
-                    {% include 'components/forms/authentication.html' %}
-                </div>
+            <div class="column is-4">
+                <p class="page-title">
+                    Log In
+                </p>
+                {% include 'components/toasts/flashmessages.html' %}
+                {% include 'components/forms/authentication.html' %}
             </div>
             <div class="column"></div>
         </div>
