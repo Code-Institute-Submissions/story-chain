@@ -2,6 +2,7 @@
 {% block content %}
 {% include 'components/navigation/heronavbar.html' %}
 {% include 'components/toasts/flashmessages.html' %}
+<div class="container">
     <div class="columns">
         <div class="column"></div>
         <div class="column is-8">
@@ -39,28 +40,19 @@
                 </div>
             </div>
         </div>
-    <div class="column"></div>
     </div>
-    
-{% for story in stories %}
-{% if (session.user|lower == story.Author) %}
     <div class="columns">
         <div class="column"></div>
-        <div class="column is-4">
-            <div class="card">
-                <div class="card-content has-text-centered">
-                    <p class="title">
-                        Stories you have added
-                    </p>
-                </div>
+        <div class="column profile-story-header mt-4 mb-4">Stories you have added:</div>
+            <div class="column is-9">
+                {% for story in stories %}
+                    {% if (session.user|lower == story.Author) %}
+                        {% include 'components/cards/featurestorycard.html' %}
+                    {% endif %}
+                {% endfor %}
             </div>
-        <div class="column">
-            {% include 'components/cards/featurestorycard.html' %}
-        </div>
         </div>
         <div class="column"></div>
-    </div>
-{% endif %}
-{% endfor %}
+</div>  
 {% include 'components/footer/footer.html' %}
 {% endblock %}
