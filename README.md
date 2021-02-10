@@ -299,6 +299,21 @@ redirected to the 'Read Story' page.
 
 # Profile
 
+* Add story
+    * An 'add' button is displayed that leads to the 'add story' form.
+* Display stories
+    * All stories the user that is logged in has created, are being displayed.  
+* Account options:
+    * Change username
+        * A button is displayed that allows the user to trigger a form that allows the user to change their username.
+    * Change password
+        * A button is displayed that allows the user to trigger a form that allows the user to change their password.
+    * Delete account
+        * Clicking the delete account button triggers a modal that asks the user if they are really sure. They are prompted to enter their password,
+        as an extra check. Once clicked, their user details are deleted from the database. For now, the stories that this user
+        has submitted, are not deleted on the deletion of the account. So technically, if a new user registers that username,
+        he could control those stories. I will figure something out for this in the future.
+
 # Errors
 
 

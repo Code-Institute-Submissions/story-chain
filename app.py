@@ -166,11 +166,9 @@ def change_password(username):
         flash("Your password has been updated")
         return redirect(url_for("profile",
                                 user=session["user"]))
-
     if session:
         return render_template("pages/changepassword.html",
                                 username=username)
-
     return redirect(url_for("log_in"))
 
 
