@@ -31,10 +31,8 @@ def home():
     existing stories.
     """
     stories = stories_coll.find().sort('_id', -1)
-    date_created = "date created (newest to oldest)"
     return render_template('pages/home.html',
-                            stories=stories,
-                            date_created=date_created)
+                            stories=stories)
 
 
 @app.route("/register", methods=["GET", "POST"])
