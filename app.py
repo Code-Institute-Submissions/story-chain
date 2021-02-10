@@ -22,7 +22,6 @@ mongo = PyMongo(app)
 # MongoDb collection variables
 users_coll = mongo.db.users
 stories_coll = mongo.db.stories
-# content_coll = mongo.db.content
 
 
 @app.route('/')
@@ -31,9 +30,11 @@ def home():
     Function for loading the home page and showing
     existing stories.
     """
-    stories = list(stories_coll.find())
+    stories = stories_coll.find().sort('_id', -1)
+    date_created = "date created (newest to oldest)"
     return render_template('pages/home.html',
-                            stories=stories)
+                            stories=stories,
+                            date_created=date_created)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -128,7 +129,8 @@ def log_out():
     """
     session.clear()
     stories = list(stories_coll.find())
-    return render_template("pages/home.html", stories=stories)
+    return render_template("pages/home.html",
+                            stories=stories)
 
 
 @app.route("/profile/<user>", methods=["GET", "POST"])
@@ -138,11 +140,14 @@ def profile(user):
     submitted by the currently logged in user and is only visible for that
     user.
     """
-    stories = list(stories_coll.find().sort('_id', 1))
+    stories = stories_coll.find().sort('_id', -1)
     story = list(stories_coll.find().sort('_id', 1))
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": user})
-        return render_template('pages/profile.html', user=user_in_db, story=story, stories=stories)
+        return render_template('pages/profile.html',
+                                user=user_in_db,
+                                story=story,
+                                stories=stories)
     else:
         flash("You must be logged in!")
         return redirect(url_for('home'))
@@ -161,7 +166,8 @@ def change_password(username):
         }
         users_coll.update({"username": username.lower()}, submit)
         flash("Your password has been updated")
-        return redirect(url_for("profile", user=session["user"]))
+        return redirect(url_for("profile",
+                                user=session["user"]))
 
     if session:
         return render_template("pages/changepassword.html",
@@ -181,7 +187,8 @@ def change_username(username):
                             {"username": request.form['new_username']})
         if registered_user:
             flash("Username already taken")
-            return redirect(url_for('change_username', username=session["user"]))
+            return redirect(url_for('change_username',
+                                    username=session["user"]))
         else:
             users_coll.update_one(
                 {"username": username},
@@ -209,11 +216,6 @@ def delete_account(user_id):
     # checks if password matches existing password in database
     if check_password_hash(user["password"],
     request.form.get("confirm_password_to_delete")):
-    # Removes all user stories from database
-    # user_stories = user.get("user_stories")
-    # for story in user_stories:
-    #     stories_coll.remove({"_id": story})
-    # remove user from database,clear session and redirect to the home page
         flash("Your account has been deleted.")
         session.pop("user")
         users_coll.remove({"_id": user.get("_id")})
@@ -225,20 +227,6 @@ def delete_account(user_id):
 
 @app.route("/add/story/", methods=["GET", "POST"])
 def add_story():
-    # user = users_coll.find_one({"_id": ObjectId(user_id)})
-    # if request.method == "POST":
-    #     date_created = datetime.today().strftime('%m/%d/%Y')
-    #     story = {
-    #         "story_title": request.form.get("story_title"),
-    #         "story_content": request.form.get("story_content"),
-    #         "Author": session["user"],
-    #         "created_on": date_created
-    #     }
-    #     add_story = stories_coll.insert_one(story)
-    #     users_coll.update_one(
-    #         {"_id": ObjectId(user)},
-    #         {"$push": {"user_stories": add_story.inserted_id}})
-    #     flash("Story Successfully Added")
     """
     Allows a user to add a new story
     """
@@ -275,10 +263,12 @@ def edit_story(story_id):
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story succesfull")
-        return redirect(url_for("read_story", story_id=story_id))
+        return redirect(url_for("read_story",
+                                story_id=story_id))
 
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
-    return render_template("pages/story.html", story=story)
+    return render_template("pages/story.html", 
+                            story=story)
 
 
 @app.route("/delete/story/<story_id>", methods=["GET", "POST"])
@@ -309,7 +299,7 @@ def page_not_found(error):
     Renders a custom 404 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/404.html", error=True), 404
+    return render_template("/components/errors/404.html"), 404
 
 
 @app.errorhandler(500)
@@ -318,7 +308,7 @@ def something_went_wrong(error):
     Renders a custom 500 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/500.html", error=True), 500
+    return render_template("/components/errors/500.html"), 500
 
 
 @app.errorhandler(401)
@@ -327,7 +317,7 @@ def permission_denied(error):
     Renders a custom 401 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/401.html", error=True), 401
+    return render_template("/components/errors/401.html"), 401
 
 
 @app.errorhandler(405)
@@ -336,7 +326,7 @@ def method_not_allowed(error):
     Renders a custom 405 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/405.html", error=True), 405
+    return render_template("/components/errors/405.html"), 405
 
 
 if __name__ == "__main__":
