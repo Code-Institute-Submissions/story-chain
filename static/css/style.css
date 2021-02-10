@@ -113,8 +113,6 @@ a {
 /* About on home page */
 #about {
     color: #000;
-    text-align: center;
-    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
 }
 
 /* Authentication */
