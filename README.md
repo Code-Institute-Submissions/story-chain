@@ -34,8 +34,6 @@ The added functionality for this user is the ability to add a story, edit that s
 In the profile there are also functions for changing once username, password and even delete their account.
 All this added functionality is also available to the site owner via an "admin" account.
 
-
-
 ### User Stories ###
 * As a user, I would like to be able to register for the website so I can have my personal environment. 
 * As a user, I want to login after I created an account and see my previous inserted information. 
@@ -81,6 +79,7 @@ I have used [Coolors](https://coolors.co/) for creating a color scheme.
 * 5F2121: This will be the font color for the logo and the titles on the homepage.
 
 I have used a contrast checker in order to make sure that the contrast is sufficient. This way my content will be easily readable.
+
 ### Fonts ###
 The fonts I’ll be using are:
 
@@ -99,7 +98,6 @@ For the structure I have used [Bulma.](https://bulma.io/) I wanted to challenge 
 ## Wireframes, Flowcharts and Data Models ##
 
 ### Wireframes ###
-
 For wireframing I have used [Pencil.](https://pencil.evolus.vn/)
 
 View my wireframes [here](https://github.com/byIlsa/story-chain/blob/master/wireframes/wireframes.pdf).
@@ -129,7 +127,7 @@ When a logged in user adds a story to the website, his username is added as a va
 * Add to an existing story (not implemented yet, see below)
     * CRUD Functions: 
         * Create: possibility to create a new story
-        * Read: home page with stories in progress that non-members can also read, as well as a profile page where members can see what the have added.
+        * Read: home page with stories that non-members can also read, as well as a profile page where members can see what the have added.
         * Update: possibility to edit the content that a member has added and change username and/or password.
         * Delete: possibility to delete content that a member has added and delete account.
 
@@ -142,7 +140,6 @@ When a logged in user adds a story to the website, his username is added as a va
 * Add a search functionality
     * To allow a search functionality I am thinking about having people include 'tag' words so other users could search by matching those keywords.
 * A way to add the username 'guest' to stories from people who have deleted their account without them deleting their stories. The way it is right now, a new user is technically able to register that username again and own those stories.
-
 
 ## Technologies used ##
 
@@ -182,7 +179,7 @@ When a logged in user adds a story to the website, his username is added as a va
 
 **User story: As a user, I would like to be able to register for the website so I can have my personal environment**
 
-* A red call to action button in the hero image with the text "Join Us!" is presented. There is also a ‘register’ link in the navigation bar at the top.
+* A reddish call to action button in the hero image with the text "Join Us!" is presented. There is also a ‘register’ link in the navigation bar at the top.
 When users want to register, they only have to provide a username and password. 
 After registering, they will be redirected to their profile page. There they see an section with an 'add' button at the top of the screen as well as a ‘account options’ section for editing the username and/or password and deleting their account.
 On this page all their submitted content is also displayed. At all stages where a user input is given, flash messages direct the user if an action was indeed successful.
@@ -193,15 +190,18 @@ On this page all their submitted content is also displayed. At all stages where 
 
 **User story: As a user, I want to login after I created an account and see my previous inserted information.**
 
-* A user can log in by clicking the 'Log In' button in the navigation. He is then directed to a login form, that prompts for the username and password. After the login is successful, the user is redirected to their profile, where an appropriate flash message is given. On the profile, when applicable, any content that is submitted by the user, is presented. Also the ability to change their username, password and delete account is given.
-
+* A user can log in by clicking the 'Log In' button in the navigation.
+He is then directed to a login form, that prompts for the username and password.
+After the login is successful, the user is redirected to their profile, where an appropriate flash message is given.
+On the profile, when applicable, any content that is submitted by the user, is presented. Also the ability to change their username, password and delete account is given.
 
 ***Profile Page***
 
 **User story: As a user, I would like to have a personal environment (profile page) where I can see everything I have posted.**
 
-* After a user has had a successful login or registration, he is redirected to his personal profile page. Here he can see any previous submitted content and have full account control by having the ability to change a username, change a password and delete his account. Also a section for 'add' as story is given.
-
+* After a user has had a successful login or registration, he is redirected to his personal profile page.
+Here he can see any previous submitted content and have full account control by having the ability to change a username, change a password and delete his account.
+Also a section for 'add' as story is given.
 
 ***Add new story***
 
@@ -215,20 +215,27 @@ On this page all their submitted content is also displayed. At all stages where 
 
 **User story: As a user, I want to be able to add a new story.**
 
-* After an user is logged in, a 'Add' button appears in the navigation, as well as in their profile. This will prompt a form for them to fill. After a successful submit action, the story will be displayed on both the home page as well as their profile page. Before hitting submit, the user also has an option to cancel the action by clicking the 'cancel' button. Appropriate feedback is given by flash messages after clicking the 'submit' button.  
+* After an user is logged in, an 'Add' button appears in the navigation, as well as in their profile.
+This will prompt a form for them to fill. After a successful submit action, the story will be displayed on both the home page as well as their profile page.
+Before hitting submit, the user also has an option to cancel the action by clicking the 'cancel' button. Appropriate feedback is given by flash messages after clicking the 'submit' button.  
 
 ***Edit an existing story***
 
 **User story: As a user, I want to be able to edit the new story.** 
 
-* A user that is the writer of an story (and/or content) will have buttons presented under that content that allows them to edit it. This is only visible if the logged in user also matches the user that has submitted the content.
-A form is given to be filled and after a successful submission, the user is redirected to the home page and presented with an appropriate flash message. There is also a button that let's the user cancel it's action and return to the home page if he should so desire.
+* A user that is the writer of an story (and/or content) will have buttons presented under that content that allows them to edit it.
+This is only visible if the logged in user also matches the user that has submitted the content.
+A form is given to be filled and after a successful submission, the user is redirected to the home page and presented with an appropriate flash message.
+There is also a button that let's the user cancel it's action and return to the home page if he should so desire.
 
 
 ***Delete story***
 
 **User story: As a user, I want to be able to delete the stories I have started.**
-* After clicking the 'Read More' button in a story from the home page and if the current user is also the author of the story, a 'edit' and a 'delete' button will appear. After the user clicks the 'delete' button, it will prompt a modal, warning the user that deleting the content seriously affects the flow of the story. A user can then either click a 'cancel' button which will close the modal or click 'delete' once more. This will then delete the story form the database, homepage and the profile. An appropriate flash message will be given.
+* After clicking the 'Read More' button in a story from the home page and if the current user is also the author of the story, a 'edit' and a 'delete' button will appear.
+After the user clicks the 'delete' button, it will prompt a modal, warning the user that deleting the content seriously affects the flow of the story.
+A user can then either click a 'cancel' button which will close the modal or click 'delete' once more. This will then delete the story form the database, homepage and the profile.
+An appropriate flash message will be given.
 
 
 ***Creating, editing and deleting content to an existing story***
@@ -246,24 +253,29 @@ A form is given to be filled and after a successful submission, the user is redi
 
 **User story: As a user, I want to be able to change my username and password.**
 
-* After a user has had an successful login, he is directed to his profile page. There they see three buttons 'Change username', 'Change password' and 'delete account'. The 'change username' button opens a small form that asks the user to enter a new username. This username is then checked against existing usernames in the database and gives appropriate feedback.
+* After a user has had an successful login, he is directed to his profile page. There they see three buttons 'Change username', 'Change password' and 'delete account'.
+The 'change username' button opens a small form that asks the user to enter a new username. 
+This username is then checked against existing usernames in the database and gives appropriate feedback.
 
-* After a user has had an successful login, he is directed to his profile page. There he can click the 'Change password' button. He is then led to a small form, asking for a new password. That password is then hashed and stored in the database.
+* After a user has had an successful login, he is directed to his profile page. There he can click the 'Change password' button.
+He is then led to a small form, asking for a new password. That password is then hashed and stored in the database.
 
 **User story: As a user, I want to be able to delete my account.**
 
-* After a user has had an successful login, he is directed to his profile page. There he can click the 'Delete account' button. A modal pops up, asking the user he is sure about deleting their account. After clicking "I'm sure", their account is deleted from the database. 
+* After a user has had an successful login, he is directed to his profile page. There he can click the 'Delete account' button.
+A modal pops up, asking the user he is sure about deleting their account. After clicking "I'm sure", their account is deleted from the database. 
 
 ***Log out***
 
 **User story: As a user, I want to be able to log out of my profile.**
 
-* Once a user is logged in, in the navigation, a button appears that has the text 'Log Out' on it. Once clicked, the user is logged out and returned to the homepage. An appropriate flash message will be displayed.
+* Once a user is logged in, in the navigation, a button appears that has the text 'Log Out' on it.
+Once clicked, the user is logged out and returned to the homepage. An appropriate flash message will be displayed.
 
 ## Manual testing ##
 
 # Home
-* On the homepage, all stories are displayed in cards. They are collapsible, only showing the title and the date they where posted. When clicking on the title, a 'teaser' appears. In the navigation the 'Home', 'Register' and 'Log In' buttons are visible to users without an account. More options will become available as soon as a user has registered or logged in.
+* On the homepage, all stories are displayed in cards, only showing the title, the date they where posted and a small portion of the text and a 'Read More link'.
 
 # Register
 * Before signing up, users see the options Home, Register and Log In in the navigation bar.
@@ -275,6 +287,20 @@ A form is given to be filled and after a successful submission, the user is redi
 * Provide a username and password that meet the criteria, the user is added to the 'users' collection in the database and redirected to their profile page.  On the website, the user sees the options Home, Profile, Add and Log Out in the navigation bar.
 
 # Log In
+
+# Read Story
+*  When clicking on the Read More link on a story on the home page, a new page opens and the full story can be read.
+* If the user is also the author of the story, a 'edit' and 'delete' button appears. If the user is not the author, these buttons do not show.
+* If the 'edit' button is clicked, a form opens up, that allows the author to edit both the title and the content. Both fields need to be filled. When the 'edit story' button is clicked, an appropriate flash message is shown and the user is
+redirected to the 'Read Story' page. 
+* When the 'delete' button is clicked, a modal is triggered, where the user is made aware that this process cannot be undone and asked to click 'delete' again. There is also a 'cancel' button which closes the modal and no action is taken.
+
+# Add story
+
+# Profile
+
+# Errors
+
 
 
 
