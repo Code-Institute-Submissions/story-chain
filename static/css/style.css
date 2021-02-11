@@ -44,7 +44,6 @@ body {
 
 .fas {
     color: #5f2121;
-    margin-top: 1rem;
     margin-left: 1rem;
 }
 
@@ -198,10 +197,6 @@ a {
 
 .control {
     text-align: center;
-}
-
-.control.has-icons-left .icon, .control.has-icons-right .icon {
-    height: 1.5rem;
 }
 
 /* Footer */

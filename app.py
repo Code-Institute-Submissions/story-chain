@@ -78,7 +78,6 @@ def register():
         else:
             flash("Passwords don't match")
             return redirect(url_for('register'))
-
     return render_template('pages/authentication.html', register=True)
 
 
@@ -93,27 +92,31 @@ def log_in():
         user_in_db = users_coll.find_one({"username": session['user']})
         if user_in_db:
             flash("You are logged in already!")
-            return redirect(url_for('profile', user=user_in_db['username']))
-
+            return redirect(url_for('profile',
+            user=user_in_db['username']))
     else:
         return render_template('pages/authentication.html')
 
 
 @app.route('/userauth', methods=["POST"])
 def user_auth():
+    """
+    Authentication function. Makes sure the passwords
+    match before a user is logged in
+    """
     form = request.form.to_dict()
     user_in_db = users_coll.find_one({"username": form['username']})
-
     if user_in_db:
-        if check_password_hash(user_in_db['password'], form['password']):
-            session['user'] = form['username']
-            flash("You were logged in")
-            return redirect(url_for('profile', user=user_in_db['username']))
-
-        else:
-            flash("Wrong password or username")
-            return redirect(url_for('log_in'))
-
+        if check_password_hash(user_in_db['password'],
+                                form['password']):
+            if form['password'] == form['password1']:
+                session['user'] = form['username']
+                flash("You were logged in")
+                return redirect(url_for('profile',
+                                user=user_in_db['username']))
+            else:
+                flash("Wrong password or username")
+                return redirect(url_for('log_in'))
     else:
         flash("You must be registered")
         return redirect(url_for('register'))
@@ -168,7 +171,7 @@ def change_password(username):
         return redirect(url_for("profile",
                                 user=session["user"]))
     if session:
-        return render_template("pages/changepassword.html",
+        return render_template("pages/account.html",
                                 username=username)
     return redirect(url_for("log_in"))
 
@@ -195,8 +198,9 @@ def change_username(username):
         session.pop("user", None)
         return redirect(url_for("log_in"))
 
-    return render_template("pages/changeusername.html",
-                            username=session["user"])
+    return render_template("pages/account.html",
+                            username=session["user"],
+                            changeusername=True)
 
 
 @app.route('/delete/account/<user_id>', methods=["GET", "POST"])

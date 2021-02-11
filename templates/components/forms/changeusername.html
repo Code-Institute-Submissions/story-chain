@@ -1,20 +1,18 @@
-
 <form action="{{ url_for('change_username', username=session['user']) }}" method="POST">
     <div class="field">
-        <label for="username">New username</label>
-        <div class=" input control has-icons-left">
-            <input id="new_username" name="new_username" value="new_username" required>
+        <label class="label">New username</label>
+        <div class="control has-icons-left">
+            <input id="new_username" name="new_username" type="text" class="input is-rounded is-large" required>
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                 </span>
                 <p class="help">Only letters (either case) and numbers. No special characters</p>
         </div>
     </div>
-
     <div class="field">
         <p class="control">
-            <button type="submit" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Change username">Change username</button>    
+            <button type="submit" class="button is-rounded is-info is-inverted mb-6 mr-4" name="action" aria-label="Change username">Change username</button>    
+            <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted" aria-label="Cancel">Cancel</a>
         </p>
-        <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted" aria-label="Cancel">Cancel</a>
     </div>
 </form>

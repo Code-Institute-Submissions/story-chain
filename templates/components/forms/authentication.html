@@ -6,7 +6,7 @@
     <div class="field">
         <label class="label" for="username">Username</label>
         <div class="control has-icons-left">
-            <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{2,15}$" class="input" required
+            <input id="username" name="username" type="text" pattern="^[a-zA-Z0-9]{2,15}$" class="input is-rounded is-large" required
                 title="Only letters (either case) and numbers. No special characters">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
@@ -17,7 +17,7 @@
     <div class="field">
         <label class="label">Password</label>
         <div class="control has-icons-left">
-            <input id="password" name="password" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+            <input id="password" name="password" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="input is-rounded is-large" required
                 title="6 or more characters">
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
@@ -25,10 +25,10 @@
                 <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
         </div>
     </div>
-    <div class="field">
+    <div class="field mb-6">
         <label class="label">Confirm password</label>
         <div class="control has-icons-left">
-            <input id="password1" name="password1" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="input" required
+            <input id="password1" name="password1" type="password" pattern="^[a-zA-Z0-9]{5,15}$" class="input is-rounded is-large" required
                 title="6 or more characters">
                 <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
@@ -36,7 +36,7 @@
             <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
         </div>
     </div>
-    <div class="field mb-6">
+    <div class="field mb-6 mt-6">
         <p class="control is-centered has-text-centered">
             <button type="submit" class="button is-rounded is-info is-inverted mr-4 mb-6" name="action" aria-label="Log In button">
                 {% if register == True %} Register {% else %} Log Me In {% endif %}
