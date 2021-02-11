@@ -366,11 +366,16 @@ Now working as expected.
 
 **Name**
 
-* Bug description
+* Bug description:
+Register form and login form did not center both, although seemingly, they were both on the same CSS and HTML because of the templating. Originally I used empty columns to center
+the column(s) with the content. Where this worked for the most part, it didn't in this instance.
 
-* Fix
+* Fix:
+The fix wasn't all that difficult. Don't use empty columns as it tends to get messy when there is more content. A fellow student pointed out to me Bulma had this amazing thing called flexbox :)
+Ditch the empty columns and use 'is-centered' on the ```<div class="columns is-centered"></div>``` and give the column with the content an ```<div class="column is-half"></div>``` and the problem is solved.
 
 * Verdict
+Solved! Nice and centered. Like it should be :)
 
 **Name**
 
