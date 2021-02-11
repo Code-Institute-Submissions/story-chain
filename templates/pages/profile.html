@@ -43,7 +43,7 @@
     </div>
     <div class="columns">
         <div class="column"></div>
-        <div class="column profile-story-header profile-story-box mt-4 mb-4">Stories you have added:</div>
+        <div class="column story-header profile-story-box mt-4 mb-4">Stories you have added:</div>
             <div class="column is-9">
                 {% for story in stories %}
                     {% if (session.user|lower == story.Author) %}

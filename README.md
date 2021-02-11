@@ -325,65 +325,87 @@ redirected to the 'Read Story' page.
 
 ### In development:
 
-**Name:** Navbar collapse not working.
+**Name:** 
+
+<strong>Navbar collapse not working</strong>
 
 * Bug description:
-After finishing the basic and extended navbar, I quickly noticed that the hamburger menu wasn't behaving as expected.
+    * After finishing the basic and extended navbar, I quickly noticed that the hamburger menu wasn't behaving as expected.
 
 * Fix:
- I looked on the bulma.io site and quickly realized that bulma did not have JS baked in, as bootstrap does have. The fix was on the bottom of the navbar documentation page, both a Vanilla JS and a JQuery snippet.
+    * I looked on the bulma.io site and quickly realized that bulma did not have JS baked in, as bootstrap does have. The fix was on the bottom of the navbar documentation page, both a Vanilla JS and a JQuery snippet.
 
 * Verdict:
-JQuery code added to the scripts.js file worked like a charm and the navbar is now working as expected.
+    * JQuery code added to the scripts.js file worked like a charm and the navbar is now working as expected.
 
-**Name** Flash messages not showing
+**Name:**
 
-* Bug description
-The flash messages for log in and registration error handling weren't showing.
+<strong>Flash messages not showing</strong>
 
-* Fix:
-Forgot to put 
-```     {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div class="columns">
-                    <div class="column"></div>
-                    <div class="column is-8">
-                        <p class="flashes">
-                        {{ message }}
-                        </p>
+* Bug description:
+
+    * The flash messages for log in and registration error handling weren't showing.
+
+    * Fix:
+    Forgot to put 
+    ```     {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="columns">
+                        <div class="column"></div>
+                        <div class="column is-8">
+                            <p class="flashes">
+                            {{ message }}
+                            </p>
+                        </div>
+                        <div class="column"></div>
                     </div>
-                    <div class="column"></div>
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-```
-in the flash_messages file.
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    ```
+    in the flash_messages file.
 
-* Verdict:
-Now working as expected.
+    * Verdict:
+    * Now working as expected.
 
-**Name**
+**Name:**
+
+<strong>Register and Login form not centering</strong>
 
 * Bug description:
-Register form and login form did not center both, although seemingly, they were both on the same CSS and HTML because of the templating. Originally I used empty columns to center
+
+    * Register form and login form did not center both, although seemingly, they were both on the same CSS and HTML because of the templating. Originally I used empty columns to center
 the column(s) with the content. Where this worked for the most part, it didn't in this instance.
 
 * Fix:
-The fix wasn't all that difficult. Don't use empty columns as it tends to get messy when there is more content. A fellow student pointed out to me Bulma had this amazing thing called flexbox :)
+    * The fix wasn't all that difficult. Don't use empty columns as it tends to get messy when there is more content. A fellow student pointed out to me Bulma had this amazing thing called flexbox :)
 Ditch the empty columns and use 'is-centered' on the ```<div class="columns is-centered"></div>``` and give the column with the content an ```<div class="column is-half"></div>``` and the problem is solved.
 
-* Verdict
-Solved! Nice and centered. Like it should be :)
+* Verdict:
+    * Solved! Nice and centered. Like it should be :)
 
-**Name**
+**Name:**
 
-* Bug description
+<strong>Modals for delete functions not working as expected</strong>
 
-* Fix
+* Bug description:
 
-* Verdict
+    * I wanted to have two modals that gave some extra security on the delete story and delete account function. I build the modals and wired them up,
+    to discover that the JS couldn't discern correctly between the two. Also, me thinking about the DRY principal, didn't feel for building two
+    separate, yet similar functions so I went on an online search. 
+
+* Fix:
+    * The fix came from the almighty Stack Overflow( see script.js for credit). I now have two modals wired up with four lines of code :) 
+    ``` 
+        $(".button").click(function(){
+        $(".modal").removeClass("is-active");
+        var Type = $(this).data("modal-type");
+        $("#"+Type).addClass("is-active");
+    ```
+
+* Verdict:
+    * All good!
 
 ## Deployment ##
 
@@ -452,7 +474,7 @@ This project can be ran locally by following the following steps: ( I used Gitpo
 ## Credit ##
 
 Credits
-    • Texts are all created by myself.
+    • Texts are all created by myself or the user who submitted it.
 
 **Image credits**
 

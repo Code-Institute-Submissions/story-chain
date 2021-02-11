@@ -4,11 +4,12 @@
 {% include 'components/toasts/flashmessages.html' %}
 <div class="container">
     <div class="columns mb-6 mt-6">
-        <div class="column" id="about">
+        <div class="column is-centered">
             <p class="title mt-6"> How does this work?</p>
-            <p id="about-text"> In times like this, it is always fun to read other people's stories. So go ahead, the sky is the limit!</p><br>
+            <p class="about"> I have always loved to read and write stories and grabbed this opportunity to allow other people to write
+                stories as well, for other people to enjoy! So go ahead, the sky is the limit!</p><br>
             <p class="about-title"> This is the deal:</p>
-                <div class="content is-normal">
+                <div class="content is-normal about">
                     <ul>
                         <li>Start your own story</li>
                         <li>Make sure you are logged in</li>
@@ -21,7 +22,7 @@
     </div>
     <div class="columns is-desktop">
         <div class="column">
-            <div class="profile-story-header mt-4 mb-4">Stories</div>
+            <div class="story-header mt-4 mb-4">Stories</div>
                 <div class="column"></div>
             <div class="column">
                 {% for story in stories %}

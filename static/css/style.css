@@ -116,7 +116,7 @@ a {
 }
 
 /* About on home page */
-#about {
+.about {
     color: #000;
 }
 
@@ -130,6 +130,7 @@ a {
     color: #5f2121;
     text-decoration: underline;
 }
+
 /* List styling */
 .content ol {
     list-style-position: inside;
@@ -159,7 +160,7 @@ a {
     background-color: #bc5609;
 }
 
-.profile-story-header {
+.story-header {
     color: #5f2121;
     text-align: center;
     font-size: 3.5rem;
