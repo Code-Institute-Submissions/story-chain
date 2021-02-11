@@ -1,14 +1,12 @@
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}
-            <div class="columns mt-4" id="flash">
-                <div class="column"></div>
-                <div class="column is-8 has-text-centered">
+            <div class="columns is-centered mt-4">
+                <div class="column is-half has-text-centered">
                     <p class="flashes">
                     {{ message }}
                     </p>
                 </div>
-                <div class="column"></div>
             </div>
         {% endfor %}
     {% endif %}

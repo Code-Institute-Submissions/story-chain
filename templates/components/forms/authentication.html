@@ -36,32 +36,28 @@
             <p class="help">Only letters (either case) and numbers, 6 or more characters</p>
         </div>
     </div>
-    <div class="field has-text-centered mb-6">
-        <p class="control">
-            <button type="submit" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Log In button">
+    <div class="field mb-6">
+        <p class="control is-centered has-text-centered">
+            <button type="submit" class="button is-rounded is-info is-inverted mr-4 mb-6" name="action" aria-label="Log In button">
                 {% if register == True %} Register {% else %} Log Me In {% endif %}
-            </button>    
+            </button>
+            <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted mb-6 mr-6 ml-6" aria-label="Home">Home</a>    
         </p>
     </div>
-    <div class="columns has-text-centered">
+    <div class="columns is-centered">
         <div class="column registration">
         {% if register == True %}
         <p class="title">Already have an account?</p>
         {% else %}
         <p class="title"> Don't have an account yet?</p>
-        </div>
         {% endif %}
+        </div>
     </div>
-    <div class="columns has-text-centered">
-    <div class="column mb-5">
+    <div class="column has-text-centered mb-5">
     {% if register == True %}
     <a href="{{ url_for('log_in') }}" class="link">Log in here!</a>
     {% else %}
     <a href="{{ url_for('register') }}" class="link">Register here!</a>
     {% endif %}
     </div>
-    <div class="column">
-    <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted mb-6 mr-6" aria-label="Home">Home</a>
-    </div>
-</div>  
 </form>

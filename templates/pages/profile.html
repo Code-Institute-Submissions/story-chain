@@ -3,16 +3,13 @@
 {% include 'components/navigation/heronavbar.html' %}
 {% include 'components/toasts/flashmessages.html' %}
 <div class="container">
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column is-8">
+    <div class="columns is-centered">
+        <div class="column is-half">
             <p class="page-title">Profile</p>
         </div>
-        <div class="column"></div>
     </div>
-    <div class="columns mt-6 mb-6">
-        <div class="column"></div>
-        <div class="column is-4">
+    <div class="columns is-centered mt-6 mb-6">
+        <div class="column is-half">
             <div class="card">
                 <div class="card-content has-text-centered">
                     <p class="title">
@@ -22,8 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="column"></div>
-        <div class="column is-5">
+        <div class="column is-half">
             <div class="card">
                 <div class="card-content has-text-centered">
                     <p class="title">
@@ -41,18 +37,20 @@
             </div>
         </div>
     </div>
-    <div class="columns">
-        <div class="column"></div>
-        <div class="column story-header profile-story-box mt-4 mb-4">Stories you have added:</div>
-            <div class="column is-9">
-                {% for story in stories %}
-                    {% if (session.user|lower == story.Author) %}
-                        {% include 'components/cards/featurestorycard.html' %}
-                    {% endif %}
-                {% endfor %}
-            </div>
+    <div class="columns is-centered">
+        <div class="column is-full">
+            <p class="page-title">Stories you have added</p>
         </div>
-        <div class="column"></div>
-</div>  
+    </div>
+    <div class="columns is-centered">
+        <div class="column is-half">
+            {% for story in stories %}
+                {% if (session.user|lower == story.Author) %}
+                    {% include 'components/cards/featurestorycard.html' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% include 'components/footer/footer.html' %}
 {% endblock %}

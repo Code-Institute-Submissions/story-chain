@@ -191,7 +191,7 @@ def change_username(username):
                 {"username": username},
                 {"$set": {"username": request.form["new_username"]}},
                             upsert=True)
-        flash("Your username has been updated.Please login with your new username")
+        flash("Username updated. Please login with your new username")
         session.pop("user", None)
         return redirect(url_for("log_in"))
 
