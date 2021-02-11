@@ -127,6 +127,7 @@ def log_out():
     """
     session.clear()
     stories = list(stories_coll.find())
+    flash("You were logged out")
     return render_template("pages/home.html",
                             stories=stories)
 

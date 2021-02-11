@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include 'components/navigation/heronavbar.html' %}
+    {% if username == True %}
+    <div class="columns mt-6" id="change-username">
+        <div class="column"></div>
+        <div class="column is-8">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        Change username
+                    </p>
+                </div>
+                {% include 'components/toasts/flashmessages.html' %}
+                {% include 'components/forms/changeusername.html' %}
+            </div>
+        </div>  
+        <div class="column"></div>
+    </div>
+    <div class="columns mt-6" id="change-password">
+        <div class="column"></div>
+        <div class="column is-8">
+            <div class="card">
+                <div class="card-content">
+                    <p class="title">
+                        Change password
+                    </p>
+                </div>
+                {% include 'components/toasts/flashmessages.html' %}
+                {% include 'components/forms/changepassword.html' %}
+            </div>
+        </div>  
+        <div class="column"></div>
+    </div>
+{% include 'components/footer/footer.html' %}
+{% endblock %}

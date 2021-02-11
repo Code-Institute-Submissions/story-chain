@@ -3,30 +3,26 @@
 {% include 'components/navigation/heronavbar.html' %}
     {% if register == True %}
     <div class="container">
-        <div class="columns">
-            <div class="column"></div>
-            <div class="column is-4">
-                <p class="page-title">
+        <div class="columns is-centered">
+            <div class="column is-half mb-2">
+                <p class="page-title mb-4">
                     Register here to start your personal story telling journey!
                 </p>
                 {% include 'components/toasts/flashmessages.html' %}
                 {% include 'components/forms/authentication.html' %}
             </div>
-            <div class="column"></div>
         </div>
     </div>
     {% else %}
     <div class="container">
-        <div class="columns">
-            <div class="column"></div>
-            <div class="column is-4">
-                <p class="page-title">
+        <div class="columns is-centered">
+            <div class="column is-half mb-2">
+                <p class="page-title mb-4">
                     Log In
                 </p>
                 {% include 'components/toasts/flashmessages.html' %}
                 {% include 'components/forms/authentication.html' %}
             </div>
-            <div class="column"></div>
         </div>
     </div>
     {% endif %}
