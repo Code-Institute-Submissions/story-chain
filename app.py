@@ -70,6 +70,7 @@ def register():
                         {"username": form['username']})
                 if user_in_db:
                     session['user'] = user_in_db['username']
+                    flash("Account successfully created")
                     return redirect(url_for('profile',
                                     user=user_in_db['username']))
                 else:
@@ -306,7 +307,7 @@ def page_not_found(error):
     Renders a custom 404 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/404.html"), 404
+    return render_template("/components/errors/404.html", error=error), 404
 
 
 @app.errorhandler(500)
@@ -315,7 +316,7 @@ def something_went_wrong(error):
     Renders a custom 500 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/500.html"), 500
+    return render_template("/components/errors/500.html", error=error), 500
 
 
 @app.errorhandler(401)
@@ -324,7 +325,7 @@ def permission_denied(error):
     Renders a custom 401 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/401.html"), 401
+    return render_template("/components/errors/401.html", error=error), 401
 
 
 @app.errorhandler(405)
@@ -333,7 +334,7 @@ def method_not_allowed(error):
     Renders a custom 405 error page with a button
     that takes the user back home
     """
-    return render_template("/components/errors/405.html"), 405
+    return render_template("/components/errors/405.html", error=error), 405
 
 
 if __name__ == "__main__":

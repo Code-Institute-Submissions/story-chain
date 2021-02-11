@@ -2,25 +2,21 @@
 {% block content %}
 {% include 'components/navigation/heronavbar.html' %}
 {% if story==True %}
-<p class="page-title">Add Story</p>
-    <div class="columns">
-            <div class="column"></div>
-            <div class="column is-4">
+<p class="page-title mt-6">Add Story</p>
+    <div class="columns is-centered">
+            <div class="column is-half">
             {% include 'components/toasts/flashmessages.html' %}
             {% include 'components/forms/addstory.html' %}
         </div>
-    <div class="column"></div>
-</div>
+    </div>
 {% else %}
     {% if (session.user|lower == story.Author|lower) %}
-    <p class="page-title">Edit Story</p>
-    <div class="columns">
-            <div class="column"></div>
-            <div class="column is-4">
+    <p class="page-title mt-6">Edit Story</p>
+    <div class="columns is-centered">
+            <div class="column is-half">
                 {% include 'components/toasts/flashmessages.html' %}
                 {% include 'components/forms/editstory.html' %}
             </div>
-            <div class="column"></div>
     </div>
     {% endif %}
 {% endif %}
