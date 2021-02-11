@@ -45,7 +45,7 @@
     <div class="columns is-centered">
         <div class="column is-half">
             {% for story in stories %}
-                {% if (session.user|lower == story.Author) %}
+                {% if (session.user == story.author) %}
                     {% include 'components/cards/featurestorycard.html' %}
                 {% endif %}
             {% endfor %}

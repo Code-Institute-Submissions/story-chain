@@ -10,7 +10,7 @@
         </div>
     </div>
 {% else %}
-    {% if (session.user|lower == story.Author|lower) %}
+    {% if (session.user == story.author) %}
     <p class="page-title mt-6">Edit Story</p>
     <div class="columns is-centered">
             <div class="column is-half">

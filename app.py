@@ -167,7 +167,7 @@ def change_password(username):
             "username": session["user"],
             "password": generate_password_hash(request.form.get("password")),
         }
-        users_coll.update({"username": username.lower()}, submit)
+        users_coll.update({"username": username}, submit)
         flash("Your password has been updated")
         return redirect(url_for("profile",
                                 user=session["user"]))
@@ -210,7 +210,7 @@ def delete_account(user_id):
     This function removes a user from the "users" collection
     in the database. It removes the user from the session
     cookies and redirects to the homepage.
-    A modal pops up that askes for the users password
+    A modal pops up that asks for the users password
     to have some extra security.
     """
     # Only visible for logged in user
@@ -242,7 +242,7 @@ def add_story():
         story = {
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),
-            "Author": session["user"],
+            "author": session["user"],
             "created_on": date_created
         }
         stories_coll.insert_one(story)
@@ -265,7 +265,7 @@ def edit_story(story_id):
         submit = {
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),
-            "Author": session["user"],
+            "author": session["user"],
             "created_on": created_on
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
