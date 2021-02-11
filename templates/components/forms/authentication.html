@@ -52,6 +52,7 @@
         </div>
         {% endif %}
     </div>
+    <div class="columns has-text-centered">
     <div class="column mb-5">
     {% if register == True %}
     <a href="{{ url_for('log_in') }}" class="link">Log in here!</a>
@@ -59,5 +60,9 @@
     <a href="{{ url_for('register') }}" class="link">Register here!</a>
     {% endif %}
     </div>
+    <div class="column">
     <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted mb-6 mr-6" aria-label="Home">Home</a>
+    </div>
+</div>  
+</form>
 </form>

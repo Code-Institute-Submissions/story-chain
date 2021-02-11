@@ -24,6 +24,11 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 
+.about-title {
+    color:#bc5609;
+    font-size: 3rem;
+    font-family: 'Indie Flower', cursive;
+}
 /* Card styling */
 .card {
     margin-left: 2rem;
