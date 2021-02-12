@@ -244,8 +244,8 @@ def add_story():
             "story_content": request.form.get("story_content"),
             "author": session["user"],
             "created_on": date_created,
-            "story_chains": [],
-            "edited": False
+            "edited": False,
+            "story_chains": []
         }
         stories_coll.insert_one(story)
         flash("Story Successfully Added")
@@ -261,7 +261,7 @@ def edit_story(story_id):
     to edit the story. After doing so,
     the user is then redirected to the 'Read Story' page.
     """
-
+# Needs a way to retain the chains from the original story
     if request.method == "POST":
         created_on = datetime.today().strftime('%m/%d/%Y')
         submit = {
@@ -269,8 +269,8 @@ def edit_story(story_id):
             "story_content": request.form.get("story_content"),
             "author": session["user"],
             "created_on": created_on,
-            "story_chains": [],
-            "edited": True
+            "edited": True,
+            "story_chains": []
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story succesfull")
@@ -289,6 +289,7 @@ def delete_story(story_id):
     Because this action cannot be undone, a modal is shown
     to ask the user if he is sure.
     """
+    # also needs to pull the chains that are in the chains_coll
     stories_coll.remove({"_id": ObjectId(story_id)})
     flash("Your story has been removed")
     return redirect(url_for("home"))
@@ -296,22 +297,27 @@ def delete_story(story_id):
 
 @app.route('/chains/<story_id>', methods=["GET", "POST"])
 def chains(story_id):
-    # story = stories_coll.find_one({"_id": ObjectId(story_id)})
-
     if request.method == "POST":
         created_on = datetime.today().strftime('%m/%d/%Y')
         new_chain = {
             "chain_content": request.form.get("chain_content"),
             "author": session["user"],
-            "created_on": created_on
+            "created_on": created_on,
+            "deleted": False,
+            "edited": False
         }
+        # Inserts the new chain to the chains-collection
         insert_chain_inDB = chains_coll.insert_one(new_chain)
+        # Updates the story with this chain-id
         stories_coll.update_one({"_id": ObjectId(story_id)},
+        # Pushes the chain ID into the story_chains array
         {"$push": {"story_chains": insert_chain_inDB.inserted_id}})
         flash("Insert chain successful")
-        return redirect(url_for("read_story", story_id=story_id))
+        return redirect(url_for("read_story",
+                        story_id=story_id))
 
-    return render_template("pages/chain.html", story_id=story_id)
+    return render_template("pages/chain.html",
+                            story_id=story_id)
 
 
 @app.route('/read/story/<story_id>')
@@ -320,18 +326,18 @@ def read_story(story_id):
     Displays whole story. Also gives the author of the
     story two buttons, to edit or delete the story.
     """
-    print("Gets here")
-    
-    # chain = chains_coll.find_one({"_id": ObjectId(chain_id)})
-    # print(chain)
+    # Finds the story connected to the "Read More" link
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
-    print("STORY_CHAINS")
+    # Create an empty list for the chains that need to chain to the story
     chains_list = []
+    # Loops over the ObjectId's in the story_chains array in the story document
     for chain in story["story_chains"]:
         temp_chain = chains_coll.find_one({"_id": ObjectId(chain)})
+        # pushes those chain id's into the empty list so the can be used in the template (chaincard)
         chains_list.append(temp_chain)
     return render_template("pages/readstory.html",
-                            story=story, chains_list=chains_list)
+                            story=story,
+                            chains_list=chains_list)
 
 
 @app.errorhandler(404)
