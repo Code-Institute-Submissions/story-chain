@@ -1,19 +1,19 @@
 <div class="card is-fullwidth mb-5">
 	<header class="card-header has-icon-left">
         <i class="fas fa-feather-alt"></i>
-	    <p class="card-header-title">{{ story.story_title}} - {{ story.created_on }} </p>
+	    <p class="card-header-title">Chains</p>
     </header>
     <div class="card-content">
         <p class="author-title">
-            {{ story.author }} on {{ story.created_on }}
+            {{ chain.author }} on {{ chain.created_on }}
         </p>
         <p class="content-text">
-            {{ story.story_content | truncate(200) }}
+            {{ chain.chain_content }}
         </p>
         <footer class="card-footer">
             <p class="card-footer-item">
                 <span>
-                    <a href=" {{ url_for('read_story', story_id=story._id, chain_id=chain_id ) }} ">Read More</a>
+                    <a href=" {{ url_for('read_story', story_id=story._id) }} ">Read More</a>
                 </span>
             </p>
         </footer>

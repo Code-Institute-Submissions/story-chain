@@ -291,10 +291,10 @@ def delete_story(story_id):
     return redirect(url_for("home"))
 
 
-@app.route('/chains/<story_id>', methods=["GET", "POST"])
-def chains(story_id):
-    # story = stories_coll.find_one({"_id": ObjectId(story_id)})
-
+@app.route('/chains/<story_id>/<chain_id>', methods=["GET", "POST"])
+def chains(story_id, chain_id):
+    # story = stories_coll.find_one({"_id": ObjectId(story_id)})        
+    chain = chains_coll.find_all({"_id": ObjectId(chain_id)})
     if request.method == "POST":
         created_on = datetime.today().strftime('%m/%d/%Y')
         new_chain = {
@@ -306,7 +306,7 @@ def chains(story_id):
         stories_coll.update_one({"_id": ObjectId(story_id)},
         {"$push": {"story_chains": insert_chain_inDB.inserted_id}})
         flash("Insert chain successful")
-        return redirect(url_for("read_story", story_id=story_id))
+        return redirect(url_for("read_story", story_id=story_id, chain=chain))
 
     return render_template("pages/chain.html", story_id=story_id)
 
@@ -317,9 +317,11 @@ def read_story(story_id):
     Displays whole story. Also gives the author of the
     story two buttons, to edit or delete the story.
     """
+    chain = chains_coll.find_all({"_id": ObjectId(chain_id)})
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/readstory.html",
-                            story=story)
+                            story=story,
+                            chain=chain)
 
 
 @app.errorhandler(404)
