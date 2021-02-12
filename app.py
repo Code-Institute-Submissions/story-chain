@@ -243,8 +243,9 @@ def add_story():
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),
             "author": session["user"],
-            "created_on": date_created
-            # "story_chains": []
+            "created_on": date_created,
+            "story_chains": [],
+            "edited": False
         }
         stories_coll.insert_one(story)
         flash("Story Successfully Added")
@@ -267,12 +268,14 @@ def edit_story(story_id):
             "story_title": request.form.get("story_title"),
             "story_content": request.form.get("story_content"),
             "author": session["user"],
-            "created_on": created_on
+            "created_on": created_on,
+            "story_chains": [],
+            "edited": True
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story succesfull")
         return redirect(url_for("read_story",
-                                story_id=story_id))
+                                story_id=story_id, edited=True))
 
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html",

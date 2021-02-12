@@ -3,10 +3,10 @@
 <div class="card is-fullwidth mb-5">
 	<header class="card-header has-icon-left">
         <i class="fas fa-feather-alt"></i>
-	    <p class="card-header-title">Chains</p>
+	    <p class="card-header-title">Chain added by: {{ chain.author }}</p>
     </header>
     <div class="card-content">
-        <p class="author-title">{{ chain.author}} on {{ chain.created_on }} </p>
+        <p class="author-title">created on {{ chain.created_on }} </p>
         <p class="content-text">
                 {{ chain.chain_content }}
         </p>
