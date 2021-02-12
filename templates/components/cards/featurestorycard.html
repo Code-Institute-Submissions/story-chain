@@ -9,10 +9,13 @@
         </p>
         <p class="content-text">
             {{ story.story_content | truncate(200) }}
+            {{story.story_chains}}
+            {{story._id}}
         </p>
         <footer class="card-footer">
             <p class="card-footer-item">
                 <span>
+                    
                     <a href=" {{ url_for('read_story', story_id=story._id, chain_id=chain_id ) }} ">Read More</a>
                 </span>
             </p>
