@@ -22,7 +22,7 @@ mongo = PyMongo(app)
 # MongoDb collection variables
 users_coll = mongo.db.users
 stories_coll = mongo.db.stories
-
+chains_coll = mongo.db.chains
 
 @app.route('/')
 def home():
@@ -88,7 +88,7 @@ def log_in():
     Allows user to sign in with username and password
     Redirects user to profile
     """
-    # Only visible for user who are logged in
+    # Only visible for users who are logged in
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": session['user']})
         if user_in_db:
@@ -244,6 +244,7 @@ def add_story():
             "story_content": request.form.get("story_content"),
             "author": session["user"],
             "created_on": date_created
+            # "story_chains": []
         }
         stories_coll.insert_one(story)
         flash("Story Successfully Added")
@@ -288,6 +289,26 @@ def delete_story(story_id):
     stories_coll.remove({"_id": ObjectId(story_id)})
     flash("Your story has been removed")
     return redirect(url_for("home"))
+
+
+@app.route('/chains/<story_id>', methods=["GET", "POST"])
+def chains(story_id):
+    # story = stories_coll.find_one({"_id": ObjectId(story_id)})
+
+    if request.method == "POST":
+        created_on = datetime.today().strftime('%m/%d/%Y')
+        new_chain = {
+            "chain_content": request.form.get("chain_content"),
+            "author": session["user"],
+            "created_on": created_on
+        }
+        insert_chain_inDB = chains_coll.insert_one(new_chain)
+        stories_coll.update_one({"_id": ObjectId(story_id)},
+        {"$push": {"story_chains": insert_chain_inDB.inserted_id}})
+        flash("Insert chain successful")
+        return redirect(url_for("read_story", story_id=story_id))
+
+    return render_template("pages/chain.html", story_id=story_id)
 
 
 @app.route('/read/story/<story_id>')

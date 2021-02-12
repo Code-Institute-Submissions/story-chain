@@ -1,0 +1,12 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% include 'components/navigation/heronavbar.html' %}
+<p class="page-title mt-6">Add Chain</p>
+    <div class="columns is-centered">
+            <div class="column is-half">
+            {% include 'components/toasts/flashmessages.html' %}
+            {% include 'components/forms/addchain.html' %}
+        </div>
+    </div>
+{% include 'components/footer/footer.html' %}
+{% endblock %}

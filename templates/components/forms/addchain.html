@@ -1,0 +1,15 @@
+<form method="POST" action="{{ url_for('chains', story_id=story_id) }}">
+    <div class="field">
+        <label class="label">Type your story here</label>
+        <div class="control">
+            <textarea class="textarea is-large" rows="10" id="chain_content" name="chain_content" placeholder="Minimum of 20 and maximum of 3000 characters" minlength="20" maxlength="3000" validate required></textarea>
+        </div>
+    </div>
+    <div class="field has-text-centered mt-2">
+        <p class="control">
+            <button type="submit" placeholder="Submit chain" class="button is-rounded is-info is-inverted mb-6" name="action" aria-label="Submit chain">Submit chain
+            </button>    
+        </p>
+        <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted mb-6" aria-label="Cancel">Cancel</a>
+    </div>
+</form>
