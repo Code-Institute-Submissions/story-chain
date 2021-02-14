@@ -7,9 +7,6 @@
             {{ story.author }} on {{ story.created_on }}
         </p><br>
             <p class="content-text">
-            {% if edited == True %}
-                {% include 'components/toasts/notification.html' %}
-            {% endif %}
             {{ story.story_content }}
             </p>
     </div>

@@ -270,7 +270,7 @@ def edit_story(story_id):
             "story_content": request.form.get("story_content"),
             "author": session["user"],
             "created_on": created_on,
-            "edited": True,
+            "edited": False,
             "story_chains": []
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
@@ -319,7 +319,7 @@ def chains(story_id):
                         story_id=story_id))
 
     return render_template("pages/chain.html",
-                           story_id=story_id)
+                           story_id=story_id, chain=True)
 
 
 @app.route('/read/story/<story_id>')

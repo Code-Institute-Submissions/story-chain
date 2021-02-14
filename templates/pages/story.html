@@ -4,19 +4,19 @@
 {% if story==True %}
 <p class="page-title mt-6">Add Story</p>
     <div class="columns is-centered">
-            <div class="column is-half">
-            {% include 'components/toasts/flashmessages.html' %}
-            {% include 'components/forms/addstory.html' %}
+        <div class="column is-half">
+        {% include 'components/toasts/flashmessages.html' %}
+        {% include 'components/forms/addstory.html' %}
         </div>
     </div>
 {% else %}
-    {% if (session.user == story.author) %}
+    {% if (session.user == story.author or session.user == "admin") %}
     <p class="page-title mt-6">Edit Story</p>
     <div class="columns is-centered">
-            <div class="column is-half">
-                {% include 'components/toasts/flashmessages.html' %}
-                {% include 'components/forms/editstory.html' %}
-            </div>
+        <div class="column is-half">
+            {% include 'components/toasts/flashmessages.html' %}
+            {% include 'components/forms/editstory.html' %}
+        </div>
     </div>
     {% endif %}
 {% endif %}

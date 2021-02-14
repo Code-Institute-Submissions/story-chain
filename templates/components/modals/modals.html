@@ -59,30 +59,4 @@
     </footer>
     </div>
 </div>
-<div class="modal" id="type3">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-        <header class="modal-card-head">
-            <p class="modal-card-title">Delete chain</p>
-        </header>
-        <section class="modal-card-body">
-        Deleting this chain might greatly affect the flow of the story! Are you sure?
-        </section>
-        <footer class="modal-card-foot">
-            <form method="POST" action="{{ url_for('delete_chain', chain_id=chain._id) }}">
-                <div class="field">
-                    <p class="control">
-                    <button type="submit" placeholder="Delete account" class="button is-rounded is-info is-inverted mb-6" aria-label="Delete account">Delete account
-                    </button>  
-                    </p>
-                </div>
-            </form>
-            <div class="columns">
-                <div class="column cancel has-text-centered">
-                    <button class="cancel button is-rounded button is-info is-inverted" aria-label="Cancel">Cancel</button>
-                </div>
-            </div>
-        </footer>
-    </div>
-</div>
 {% endblock %}

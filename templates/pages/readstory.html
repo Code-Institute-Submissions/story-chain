@@ -11,23 +11,35 @@
 <div class="columns is-centered">
     <div class="column is-three-fifths">
         {% include 'components/toasts/flashmessages.html' %}
+        {% if edited == True %}
+            {% include 'components/toasts/notification.html' %}
+            {% else %}
+            <p class="title">
+            notify test
+        </p>
+        {% endif %}
         {% include 'components/cards/fullstorycard.html' %}
         {% include 'components/cards/chaincard.html' %}
     </div>
 </div>
-<div class="columns is-centered mt-6">
-    <div class="column is-2 has-text-centered">
-        <span><a href="{{ url_for('chains', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted mr-4" aria-label="Add Chain">Add Chain</a>
-        </span>
-    </div>
-</div>
 {% if (session.user == story.author or session.user == "admin") %}
 <div class="columns is-centered mt-6">
-    <div class="column is-2 has-text-centered">
-        <span><a href="{{ url_for('edit_story', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted mr-4" aria-label="Edit story">Edit story</a>
-        </span>
-        <div class="button is-rounded is-info is-inverted" data-modal-type="type1" aria-label="Delete">Delete</div>
+    <div class="column is-4 has-text-centered">
+    <p class="title">
+            Story options
+        </p>
+    <div class="column is-4 has-text-centered"><a href="{{ url_for('edit_story', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted mr-4 mb-4" aria-label="Edit story">Edit</a></div>
+    <div class="column button is-rounded is-info is-inverted has-text-centered" data-modal-type="type1" aria-label="Delete">Delete</div>
         {% include 'components/modals/modals.html' %}
+    </div>
+</div>
+{% endif %}
+{% if session.user %}
+<div class="columns is-centered mt-6">
+    <div class="column has-text-centered">
+        <span><a href="{{ url_for('chains', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted mr-4 mb-4" aria-label="Add Chain">Add Chain</a>
+        </span>
+    <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6 has-text-centered">Home</a>
     </div>
 </div>
 {% else %}
@@ -39,13 +51,13 @@
     </div>
 </div>
 <div class="columns is-centered">
-    <div class="column is-2 has-text-centered">
+    <div class="column is-half has-text-centered">
         <a href="{{ url_for('log_in') }}" class= "button is-rounded is-info is-inverted mb-6" >Log In</a>
     </div>
-    <div class="column is-2 has-text-centered mr-4">
+    <div class="column is-half has-text-centered mr-4">
     <a href="{{ url_for('register') }}" class= "button is-rounded is-info is-inverted mb-6">Register</a>
     </div>
-    <div class="column is-2 has-text-centered">
+    <div class="column is-half has-text-centered">
     <a href="{{ url_for('home') }}" class= "button is-rounded is-info is-inverted mb-6">Back Home</a>
     </div>
 </div>

@@ -246,6 +246,13 @@ a {
     color: #5f2121;
 }
 
+.notification > button.delete {
+    border: none;
+}
+
+.is-hidden {
+    display: none;
+}
 
 /* Styling for error pages */
 .error {

@@ -18,3 +18,8 @@ $(document).ready(function () {
     $("#"+Type).addClass("is-active");
 });
 });
+// Close function for notifications: https://martincarlin.uk/2016/02/15/bulma-css-framework-add-functionality-to-dismiss-notifications/
+$(document).on('click', '.notification > button.delete', function() {
+    $(this).parent().addClass('is-hidden');
+    return false;
+});
