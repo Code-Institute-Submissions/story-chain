@@ -24,6 +24,7 @@ users_coll = mongo.db.users
 stories_coll = mongo.db.stories
 chains_coll = mongo.db.chains
 
+
 @app.route('/')
 def home():
     """
@@ -32,7 +33,7 @@ def home():
     """
     stories = stories_coll.find().sort('_id', -1)
     return render_template('pages/home.html',
-                            stories=stories)
+                           stories=stories)
 
 
 @app.route('/register', methods=["GET", "POST"])
@@ -94,7 +95,7 @@ def log_in():
         if user_in_db:
             flash("You are logged in already!")
             return redirect(url_for('profile',
-            user=user_in_db['username']))
+                            user=user_in_db['username']))
     else:
         return render_template('pages/authentication.html')
 
@@ -109,7 +110,7 @@ def user_auth():
     user_in_db = users_coll.find_one({"username": form['username']})
     if user_in_db:
         if check_password_hash(user_in_db['password'],
-                                form['password']):
+                               form['password']):
             if form['password'] == form['password1']:
                 session['user'] = form['username']
                 flash("You were logged in")
@@ -133,7 +134,7 @@ def log_out():
     stories = list(stories_coll.find())
     flash("You were logged out")
     return render_template("pages/home.html",
-                            stories=stories)
+                           stories=stories)
 
 
 @app.route('/profile/<user>', methods=["GET", "POST"])
@@ -148,9 +149,9 @@ def profile(user):
     if 'user' in session:
         user_in_db = users_coll.find_one({"username": user})
         return render_template('pages/profile.html',
-                                user=user_in_db,
-                                story=story,
-                                stories=stories)
+                               user=user_in_db,
+                               story=story,
+                               stories=stories)
     else:
         flash("You must be logged in!")
         return redirect(url_for('home'))
@@ -173,7 +174,7 @@ def change_password(username):
                                 user=session["user"]))
     if session:
         return render_template("pages/account.html",
-                                username=username)
+                               username=username)
     return redirect(url_for("log_in"))
 
 
@@ -194,14 +195,14 @@ def change_username(username):
             users_coll.update_one(
                 {"username": username},
                 {"$set": {"username": request.form["new_username"]}},
-                            upsert=True)
+                upsert=True)
         flash("Username updated. Please login with your new username")
         session.pop("user", None)
         return redirect(url_for("log_in"))
 
     return render_template("pages/account.html",
-                            username=session["user"],
-                            changeusername=True)
+                           username=session["user"],
+                           changeusername=True)
 
 
 @app.route('/delete/account/<user_id>', methods=["GET", "POST"])
@@ -221,7 +222,7 @@ def delete_account(user_id):
     # Defensive programming to assure no one else does this
     # Checks if password matches existing password in database
     if check_password_hash(user["password"],
-    request.form.get("confirm_password_to_delete")):
+                           request.form.get("confirm_password_to_delete")):
         flash("Your account has been deleted.")
         session.pop("user")
         users_coll.remove({"_id": user.get("_id")})
@@ -273,13 +274,13 @@ def edit_story(story_id):
             "story_chains": []
         }
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
-        flash("Edit story succesfull")
+        flash("Edit story successful")
         return redirect(url_for("read_story",
                                 story_id=story_id, edited=True))
 
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html",
-                            story=story)
+                           story=story)
 
 
 @app.route('/delete/story/<story_id>', methods=["GET", "POST"])
@@ -309,15 +310,16 @@ def chains(story_id):
         # Inserts the new chain to the chains-collection
         insert_chain_inDB = chains_coll.insert_one(new_chain)
         # Updates the story with this chain-id
+        # Pushes chain ID into the story_chains array
         stories_coll.update_one({"_id": ObjectId(story_id)},
-        # Pushes the chain ID into the story_chains array
-        {"$push": {"story_chains": insert_chain_inDB.inserted_id}})
+                                {"$push": {"story_chains":
+                                 insert_chain_inDB.inserted_id}})
         flash("Insert chain successful")
         return redirect(url_for("read_story",
                         story_id=story_id))
 
     return render_template("pages/chain.html",
-                            story_id=story_id)
+                           story_id=story_id)
 
 
 @app.route('/read/story/<story_id>')
@@ -333,11 +335,11 @@ def read_story(story_id):
     # Loops over the ObjectId's in the story_chains array in the story document
     for chain in story["story_chains"]:
         temp_chain = chains_coll.find_one({"_id": ObjectId(chain)})
-        # pushes those chain id's into the empty list so the can be used in the template (chaincard)
+        # pushes those chain id's into the empty list)
         chains_list.append(temp_chain)
     return render_template("pages/readstory.html",
-                            story=story,
-                            chains_list=chains_list)
+                           story=story,
+                           chains_list=chains_list)
 
 
 @app.errorhandler(404)
