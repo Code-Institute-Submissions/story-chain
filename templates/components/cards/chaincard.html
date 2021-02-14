@@ -11,6 +11,15 @@
                 {{ chain.chain_content }}
         </p>
     </div>
+    {% if (session.user == chain.author or session.user == "admin") %}
+        <div class="columns is-centered mt-6">
+            <div class="column is-2 has-text-centered">
+            <span><a href="{{ url_for('edit_chain', chain_id=chain._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted mr-4" aria-label="Edit chain">Edit chain</a>
+            </span>
+                <div class="button is-rounded is-info is-inverted" data-modal-type="type3" aria-label="Delete">Delete</div>
+                {% include 'components/modals/modals.html' %}
+            </div>
+        </div>
 </div>
     {% endif %}
 {% endfor %}

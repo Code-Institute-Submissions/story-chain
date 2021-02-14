@@ -22,6 +22,8 @@
 "emmet.extensionsPath": ".theia",
 "python.pythonPath": "/home/gitpod/.pyenv/shims/python",
 "cSpell.words": [
+    "bson",
+    "pymongo",
     "wireframes"
 ]
 }
