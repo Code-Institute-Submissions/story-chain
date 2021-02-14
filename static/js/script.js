@@ -17,14 +17,4 @@ $(document).ready(function () {
     var Type = $(this).data("modal-type");
     $("#"+Type).addClass("is-active");
 });
-});  
-
-// For collapsible cards and other elements, taken from: https://codepen.io/brussell98/pen/mEwxjP?js-preprocessor=livescript
-document.addEventListener('DOMContentLoaded', function() {
-	let cardToggles = document.getElementsByClassName('card-toggle');
-	for (let i = 0; i < cardToggles.length; i++) {
-		cardToggles[i].addEventListener('click', e => {
-			e.currentTarget.parentElement.parentElement.childNodes[3].classList.toggle('is-hidden');
-		});
-	}
 });
