@@ -126,12 +126,20 @@ When a logged in user adds a story to the website, his username is added as a va
 * Registration functionality 
 * Log In and Out functionality 
 * Add a new story
-* Add to an existing story (not implemented yet, see below)
+* Add to an existing story (See "The big struggle")
     * CRUD Functions: 
-        * Create: possibility to create a new story
+        * Create: possibility to create a new story and add to an existing story.
         * Read: home page with stories that non-members can also read, as well as a profile page where members can see what the have added.
         * Update: possibility to edit the content that a member has added and change username and/or password.
         * Delete: possibility to delete content that a member has added and delete account.
+
+### The Big Struggle
+As might be clear now, the whole 'add to an existing story' has been quit a challenge. But, what is important, is that the function itself has been implemented, a few days shy from the project deadline. 
+
+I could  not let this one go. It toke two tutors (Johann and Miklos) and a very patient fellow student [Karina](https://github.com/kairosity) who have been an instrumental help to getting
+this function up and running!
+
+My eternal thanks go out to them for this one.
 
 ### Features to be implemented ###
 * Add to an existing story

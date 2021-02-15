@@ -28,7 +28,8 @@
     <p class="title">
             Story options
         </p>
-        <div class="button is-rounded is-info is-inverted is-small-mobile mr-4 mb-4"> <a href="{{ url_for('edit_story', story_id=story._id, user_id=user_id) }}" aria-label="Edit story">Edit</a></div>
+        <span><a href="{{ url_for('edit_story', story_id=story._id, user_id=user_id) }}" class="button is-rounded is-info is-inverted is-small-mobile mr-4" aria-label="Edit story">Edit story</a>
+        </span>
         <div class="button is-rounded is-info is-inverted is-small-mobile has-text-centered" data-modal-type="type1" aria-label="Delete">Delete</div>
         {% include 'components/modals/modals.html' %}
     </div>
