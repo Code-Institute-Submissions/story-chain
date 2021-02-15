@@ -407,6 +407,31 @@ Ditch the empty columns and use 'is-centered' on the ```<div class="columns is-c
 * Verdict:
     * All good!
 
+**Name:**
+
+<strong>Buttons not responsive</strong>
+
+* Bug description:
+
+    * All buttons where not responsive, making them look very big on smaller screens.  Bulma is a very 'basic' framework, allowing you to customize it. Downside is that you might overlook certain things
+    that are built in in say Bootstrap. For me, this was one of them.  
+
+* Fix:
+    * The fix came from the almighty Stack Overflow https://stackoverflow.com/questions/54371733/responsive-buttons-and-spacing-helpers
+    ``` 
+        @media screen and (max-width: 768px) {
+            .button.is-small-mobile {
+            font-size: 1.75rem;
+            border-radius: 290486px;
+            padding-left: calc(1em + .25em);
+            padding-right: calc(1em + .25em);
+        }
+    }
+    ```
+
+* Verdict:
+    * All good!
+
 ## Deployment ##
 
 ### Local Deployment ###

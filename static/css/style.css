@@ -139,7 +139,8 @@ a {
 }
 
 /* Profile Styling */
-#account-settings {
+#account-settings,
+.about-box {
     background-color: #fff;
     border-radius: .25rem;
     box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
@@ -279,3 +280,12 @@ a {
 .hero.is-info .navbar-menu {
     background-color: rgba(248, 248, 255, 0.7);
 } }
+
+@media screen and (max-width: 768px) {
+    .button.is-small-mobile {
+        font-size: 1.75rem;
+        border-radius: 290486px;
+        padding-left: calc(1em + .25em);
+        padding-right: calc(1em + .25em);
+        }
+    }

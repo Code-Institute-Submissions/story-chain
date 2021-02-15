@@ -15,7 +15,7 @@
                     <p class="title">
                         Add a story and it will be displayed here
                     </p>
-                    <a href="{{url_for('add_story', user_id=user._id)}}" class="button is-rounded is-info is-inverted" aria-label="Add story">Add</a>
+                    <a href="{{url_for('add_story', user_id=user._id)}}" class="button is-rounded is-info is-inverted is-small-mobile" aria-label="Add story">Add</a>
                 </div>
             </div>
         </div>
@@ -25,10 +25,10 @@
                     <p class="title">
                         Account settings
                     </p>
-                    <a href="{{ url_for('change_password', username=session['user']) }}" class="button is-rounded is-info is-inverted
+                    <a href="{{ url_for('change_password', username=session['user']) }}" class="button is-rounded is-info is-inverted is-small-mobile
                     mb-4" id="change-password" aria-label="Change your password">Change Password</a>
-                    <a href="{{ url_for('change_username', username=session['user']) }}" class="button is-rounded is-info is-inverted mb-4" id="change-username" aria-label="Change your username">Change Username</a>
-                    <div class="button is-rounded is-info is-inverted delete_account" data-modal-type="type2" aria-label="Delete my account">Delete account</div>
+                    <a href="{{ url_for('change_username', username=session['user']) }}" class="button is-rounded is-info is-inverted is-small-mobile mb-4" id="change-username" aria-label="Change your username">Change Username</a>
+                    <div class="button is-rounded is-info is-inverted is-small-mobile delete_account" data-modal-type="type2" aria-label="Delete my account">Delete account</div>
                         <!-- From Tim from Tutor support: -->
                         {% with username=user._id %}
                             {% include 'components/modals/modals.html' %}
