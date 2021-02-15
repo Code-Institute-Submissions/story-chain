@@ -225,6 +225,8 @@ def delete_account(user_id):
                            request.form.get("confirm_password_to_delete")):
         flash("Your account has been deleted.")
         session.pop("user")
+        # users_coll.update_one({"username": user},
+        #                       {"$set": {"username": "guest"}}, upsert=True)
         users_coll.remove({"_id": user.get("_id")})
         return redirect(url_for("log_in"))
     else:
@@ -273,10 +275,16 @@ def edit_story(story_id):
             "edited": False,
             "story_chains": []
         }
+        # story = stories_coll.find_one({"_id": ObjectId(story_id)})
+        # chains_list = []
+        # for chain in story["story_chains"]:
+        #     temp_chain = chains_coll.find_one({"_id": ObjectId(chain)})
+        #     chains_list.append(temp_chain)
         stories_coll.update({"_id": ObjectId(story_id)}, submit)
         flash("Edit story successful")
         return redirect(url_for("read_story",
-                                story_id=story_id, edited=True))
+                        story_id=story_id,
+                        edited=True))
 
     story = stories_coll.find_one({"_id": ObjectId(story_id)})
     return render_template("pages/story.html",
@@ -304,7 +312,6 @@ def chains(story_id):
             "chain_content": request.form.get("chain_content"),
             "author": session["user"],
             "created_on": created_on,
-            "deleted": False,
             "edited": False
         }
         # Inserts the new chain to the chains-collection

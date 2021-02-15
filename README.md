@@ -71,7 +71,7 @@ I have based the designs for this website on the image used for the hero header.
 ### Colors ###
 I have used [Coolors](https://coolors.co/) for creating a color scheme.
 
-![Color scheme](/wireframes/colorscheme.png)
+![Color scheme](readme_content/images/colorscheme.png)
 
 * #F8F8FF: This is a more off white color, to keep the more darker toned colors together and create a more warming atmosphere. This will be the background color.
 * #000000: This will be the main font color. 
@@ -127,7 +127,7 @@ A more accurate Data model can be viewed here ![dbdiagram](/readme_content/image
 * Registration functionality 
 * Log In and Out functionality 
 * Add a new story
-* Add to an existing story (See "The big struggle")
+* Add to an existing story (See ["The big struggle"](#the-big-struggle))
     * CRUD Functions: 
         * Create: possibility to create a new story and add to an existing story.
         * Read: home page with stories that non-members can also read, as well as a profile page where members can see what the have added.
@@ -182,6 +182,7 @@ He can then submit again (and a malicious script can overload the site and cause
 * [GitPod](https://www.gitpod.io/)
 * [Heroku](https://www.heroku.com/)
 * [Pencil](https://pencil.evolus.vn/)
+* [PEP8](http://pep8online.com/)
 * [W3C HTML Validation Service](https://validator.w3.org/)
 * [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
 * [MongoDB Atlas](https://www.mongodb.com/)
@@ -274,6 +275,7 @@ the user is redirected to the 'Read Story' page where the chain is added.
 The 'change username' button opens a small form that asks the user to enter a new username.
 
 This username is then checked against existing usernames in the database and gives appropriate feedback. Unfortunately, all content added by this user under his old username, will no longer be accessible with the new username. This needs a fix.
+See [Known issues](#known-issues)
 
 * After a user has had an successful login, he is directed to his profile page. There he can click the 'Change password' button.
 He is then led to a small form, asking for a new password. That password is then hashed and stored in the database.
@@ -282,7 +284,7 @@ He is then led to a small form, asking for a new password. That password is then
 
 * After a user has had an successful login, he is directed to his profile page. There he can click the 'Delete account' button.
 A modal pops up, asking the user he is sure about deleting their account. After clicking "I'm sure", their account is deleted from the database. If a new user picks the username of the user that has
-deleted their account, all that content by that username is now accessible for that new user. This needs a fix.
+deleted their account, all that content by that username is now accessible for that new user. This needs a fix. See [Known issues](#known-issues)
 
 ***Log out***
 
@@ -330,6 +332,13 @@ A help text will be displayed, giving information about why submitting isn't all
 # Errors
 * Four custom error pages where added to handle the most common http errors (404, 401, 500 and 405).
 
+
+### From validating ###
+
+* Python code has been validated for pep8 compliance with http://pep8online.com/ and gave no errors.
+![pep8 result](/readme_content/images/pep8.png)
+
+* HTML code has been validated with: 
 ## Bugs
 
 ### In development:
