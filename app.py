@@ -133,7 +133,13 @@ def log_out():
     session.clear()
     stories = list(stories_coll.find())
     flash("You were logged out")
-    return render_template("pages/home.html",
+    return render_template("pages/home.html",**User story: As a user, I want to be able to add content to a existing story.**
+
+* Not yet implemented, still working on this user story.
+
+**User story: As a user, I want to be able to edit/delete content of an existing story.** 
+
+* Not yet implemented, still working on this user story.
                            stories=stories)
 
 

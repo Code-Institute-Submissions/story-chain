@@ -133,7 +133,7 @@ When a logged in user adds a story to the website, his username is added as a va
         * Update: possibility to edit the content that a member has added and change username and/or password.
         * Delete: possibility to delete content that a member has added and delete account.
 
-### The Big Struggle
+### The Big Struggle ###
 As might be clear now, the whole 'add to an existing story' has been quit a challenge. But, what is important, is that the function itself has been implemented, a few days shy from the project deadline. 
 
 I could  not let this one go. It toke two tutors (Johann and Miklos) and a very patient fellow student [Karina](https://github.com/kairosity) who have been an instrumental help to getting
@@ -142,14 +142,24 @@ this function up and running!
 My eternal thanks go out to them for this one.
 
 ### Features to be implemented ###
-* Add to an existing story
-    * For this project I had the idea that a logged in user should also be able to add content to an existing story, creating the 'chain'. But due to personal circumstances and that I just wasn't able to figure this one out, I had to move it to the 'left to implement' section.
-    This is not for lack of trying. I have tried different ways to implement this, using the aggregating pipeline that mongo has to offer, but I sadly never was able to make it work. I do still feel strongly for this functionality and will surely try this again at a later stage, when my knowledge has grown further.
+
 * Have a 'forget password' functionality
     * The user now has the ability to change their email. But I would really like to have a 'forgot your password' function so a user can reset it.
 * Add a search functionality
     * To allow a search functionality I am thinking about having people include 'tag' words so other users could search by matching those keywords.
 * A way to add the username 'guest' to stories from people who have deleted their account without them deleting their stories. The way it is right now, a new user is technically able to register that username again and own those stories.
+
+### Known issues ###
+
+* When a user changes his username, all the content he has added, is no longer accessible by the new username.
+* When a user deletes his account without removing their content first, a new user that picks the username of the account that has been deleted, gets access to that content.
+I want to find a way to change the username of the deleted account to "guest" to prevent this.
+* When a user edits a story, all the chains associated with that original story, disappear. I need to find a way to retain those chains and add them back in after an update to the original story.
+* When a user has successfully submitted a form, he is redirected. But when the user clicks the 'back' button on the browser, the form is back with the information that has already been submitted.
+He can then submit again (and a malicious script can overload the site and cause many issues ).
+
+### Nice to haves ###
+* Pre-filled forms when editing.
 
 ## Technologies used ##
 
@@ -215,14 +225,6 @@ Also a section for 'add' as story is given.
 
 ***Add new story***
 
-**User story: As a user, I want to be able to add content to a existing story.**
-
-* Not yet implemented, still working on this user story.
-
-**User story: As a user, I want to be able to edit/delete content of an existing story.** 
-
-* Not yet implemented, still working on this user story.
-
 **User story: As a user, I want to be able to add a new story.**
 
 * After an user is logged in, an 'Add' button appears in the navigation, as well as in their profile.
@@ -252,9 +254,10 @@ An appropriate flash message will be given.
 
 **User story: As a user, I want to be able to add content to a existing story.**
 
-* Not yet implemented, still working on this user story.
+* When a logged in user is on the 'Read More' page, an 'Add Chain' button is presented, which leads to a form that enables the user to add chain. On successful submit,
+the user is redirected to the 'Read Story' page where the chain is added.
 
-**User story: As a user, I want to be able to edit/delete content of an existing story.** 
+**User story: As a user, I want to be able to edit/delete content to an existing story.** 
 
 * Not yet implemented, still working on this user story.
 
@@ -264,8 +267,9 @@ An appropriate flash message will be given.
 **User story: As a user, I want to be able to change my username and password.**
 
 * After a user has had an successful login, he is directed to his profile page. There they see three buttons 'Change username', 'Change password' and 'delete account'.
-The 'change username' button opens a small form that asks the user to enter a new username. 
-This username is then checked against existing usernames in the database and gives appropriate feedback.
+The 'change username' button opens a small form that asks the user to enter a new username.
+
+This username is then checked against existing usernames in the database and gives appropriate feedback. Unfortunately, all content added by this user under his old username, will no longer be accessible with the new username. This needs a fix.
 
 * After a user has had an successful login, he is directed to his profile page. There he can click the 'Change password' button.
 He is then led to a small form, asking for a new password. That password is then hashed and stored in the database.
@@ -273,7 +277,8 @@ He is then led to a small form, asking for a new password. That password is then
 **User story: As a user, I want to be able to delete my account.**
 
 * After a user has had an successful login, he is directed to his profile page. There he can click the 'Delete account' button.
-A modal pops up, asking the user he is sure about deleting their account. After clicking "I'm sure", their account is deleted from the database. 
+A modal pops up, asking the user he is sure about deleting their account. After clicking "I'm sure", their account is deleted from the database. If a new user picks the username of the user that has
+deleted their account, all that content by that username is now accessible for that new user. This needs a fix.
 
 ***Log out***
 
@@ -283,9 +288,10 @@ A modal pops up, asking the user he is sure about deleting their account. After 
 Once clicked, the user is logged out and returned to the homepage. An appropriate flash message will be displayed.
 
 ## Manual testing ##
+All manual testing was done using Chromium Developer Tools and testing on an iPhone 11 and an iPad Pro. 
 
 # Home
-* On the homepage, all stories are displayed in cards, only showing the title, the date they where posted and a small portion of the text and a 'Read More link'.
+* On the homepage, all stories are displayed in cards, only showing the title, the author, the date they where posted and a small portion of the text and a 'Read More' link.
 
 # Register
 * Before signing up, users see the options Home, Register and Log In in the navigation bar.
@@ -297,6 +303,8 @@ Once clicked, the user is logged out and returned to the homepage. An appropriat
 * Provide a username and password that meet the criteria, the user is added to the 'users' collection in the database and redirected to their profile page.  On the website, the user sees the options Home, Profile, Add and Log Out in the navigation bar.
 
 # Log In
+* Click the 'Log in" button in the navigation menu. The user is lead to a log in form. Same rules apply as the register form. Only one password field present. 
+* After a successful login, the user is redirected to their profile page. 
 
 # Read Story
 *  When clicking on the Read More link on a story on the home page, a new page opens and the full story can be read.
@@ -304,30 +312,19 @@ Once clicked, the user is logged out and returned to the homepage. An appropriat
 * If the 'edit' button is clicked, a form opens up, that allows the author to edit both the title and the content. Both fields need to be filled. When the 'edit story' button is clicked, an appropriate flash message is shown and the user is
 redirected to the 'Read Story' page. 
 * When the 'delete' button is clicked, a modal is triggered, where the user is made aware that this process cannot be undone and asked to click 'delete' again. There is also a 'cancel' button which closes the modal and no action is taken.
+* An 'Add Chain' button is presented to everyone who is logged in.
+* A 'Home' button is presented to avoid using the back button of the browser. 
 
 # Add story
+* When an user is logged in, an 'Add' button appears in both the navigation and their personal profile. When clicked, a form opens, allowing for a story to be started. A title and some content is required and if this is not added correctly, the form will not be submitted.
+A help text will be displayed, giving information about why submitting isn't allowed at that stage. When the submit is successful, an appropriate success flash message is displayed and the user is redirected to the home page, where the story is displayed.
 
 # Profile
-
-* Add story
-    * An 'add' button is displayed that leads to the 'add story' form.
-* Display stories
-    * All stories the user that is logged in has created, are being displayed.  
-* Account options:
-    * Change username
-        * A button is displayed that allows the user to trigger a form that allows the user to change their username.
-    * Change password
-        * A button is displayed that allows the user to trigger a form that allows the user to change their password.
-    * Delete account
-        * Clicking the delete account button triggers a modal that asks the user if they are really sure. They are prompted to enter their password,
-        as an extra check. Once clicked, their user details are deleted from the database. For now, the stories that this user
-        has submitted, are not deleted on the deletion of the account. So technically, if a new user registers that username,
-        he could control those stories. I will figure something out for this in the future.
+* When an user has logged in, he is redirected to his profile. On this personal page, the user has a couple of options. There is the ability to change the username, change the password and delete their account (see 'Known issues').
+* There is also an extra call to action button to add a new story and there is a space where the submitted stories of that user are being displayed (also has a 'Read More' link that leads to the 'Read Story' page and gives extra options for editing and deleting this content).
 
 # Errors
-
-
-
+* Four custom error pages where added to handle the most common http errors (404, 401, 500 and 405).
 
 ## Bugs
 
@@ -449,60 +446,73 @@ This project can be ran locally by following the following steps: ( I used Gitpo
 
 **To clone the project:**
 
-    1. From the application's repository, click the "code" button and download the zip of the repository. Alternatively, you can clone the repository using the following line in your terminal:
-       git clone https://github.com/byIlsa/story-chain.git
-    2. Access the folder in your terminal window and install the application's required modules using the following command:
-       pip3 install -r requirements.txt
-    3. Sign-in or sign-up to MongoDB and create a new cluster
-        ◦ Within the Sandbox, click the collections button and after click Create Database (Add My Own Data) called story_chain
-        ◦ Set up the following collections: users, dogs, logs, food_metrics and weight Click here to see the exact Database Structure
-          
-        ◦ Under the Security Menu on the left, select Database Access.
-        ◦ Add a new database user, and keep the credentials secure
-        ◦ Within the Network Access option, add IP Address 0.0.0.0
-    4. In your IDE, create a file containing your environmental variables called env.py at the root level of the application. It will need to contain the following lines and variables:
-       import os
-       
-       os.environ["IP"] = "0.0.0.0"
-       os.environ["PORT"] = "5000"
-       os.environ["SECRET_KEY"] = "YOUR_SECRET_KEY"
-       os.environ["DEBUG"] = "True"
-       os.environ["MONGO_URI"] = "YOUR_MONGODB_URI"
-       os.environ["MONGO_DBNAME"]= "DATABASE_NAME" 
-       Please note that you will need to update the SECRET_KEY with your own secret key, as well as the MONGO_URI and MONGO_DBNAME variables with those provided by MongoDB. Tip for your SECRET_KEY, you can use a Password Generator in order to have a secure secret key. I personlly recommend a length of 24 characters and exclude Symbols. To find your MONGO_URI, go to your clusters and click on connect. Choose connect your application and copy the link provided. Don't forget to update the necessary fields like password and database name.
-       If you plan on pushing this application to a public repository, ensure that env.py is added to your .gitignore file.
-    5. The application can now be run locally. In your terminal, type the following command
-       python3 app.py.
+1. From the application's repository, click the "code" button and download the zip of the repository. Alternatively, you can clone the repository using the following line in your terminal:
+    git clone https://github.com/byIlsa/story-chain.git
+2. Access the folder in your terminal window and install the application's required modules using the following command:
+    pip3 install -r requirements.txt
+3. Sign-in or sign-up to MongoDB and create a new cluster
+    ◦ Within the Sandbox, click the collections button and after click Create Database (Add My Own Data) called story_chain
+    ◦ Set up the following collections: users, stories and chains. Click [here]() to see the exact Database Structure
+        
+    ◦ Under the Security Menu on the left, select Database Access.
+
+    ◦ Add a new database user, and keep the credentials secure
+
+    ◦ Within the Network Access option, add IP Address 0.0.0.0
+
+4. In your IDE, create a file containing your environmental variables called env.py at the root level of the application. It will need to contain the following lines and variables:
+    import os
+    ```
+    os.environ["IP"] = "0.0.0.0"
+    os.environ["PORT"] = "5000"
+    os.environ["SECRET_KEY"] = "YOUR_SECRET_KEY"
+    os.environ["DEBUG"] = "True"
+    os.environ["MONGO_URI"] = "YOUR_MONGODB_URI"
+    os.environ["MONGO_DBNAME"]= "DATABASE_NAME"
+    ```
+
+    Please note that you will need to update the SECRET_KEY with your own secret key, as well as the MONGO_URI and MONGO_DBNAME variables with those provided by MongoDB. Tip for your SECRET_KEY, you can use a Password Generator in order to have a secure secret key. I personlly recommend a length of 24 characters and exclude Symbols. To find your MONGO_URI, go to your clusters and click on connect. Choose connect your application and copy the link provided. Don't forget to update the necessary fields like password and database name.
+    If you plan on pushing this application to a public repository, ensure that env.py is added to your .gitignore file.
+
+5. The application can now be run locally. In your terminal, type the following command
+    python3 app.py.
 
 **To deploy your project on Heroku, use the following steps:**
 
-    1. Login to your Heroku account and create a new app. Choose your region.
-    2. Ensure the Procfile and requirements.txt files exist are present and up-to-date in your local repository.
+1. Login to your Heroku account and create a new app. Choose your region.
+2. Ensure the Procfile and requirements.txt files exist are present and up-to-date in your local repository.
 
 **Requirements:**
 
-       pip3 freeze --local > requirements.txt
+    pip3 freeze --local > requirements.txt
 
 **Procfile:**
 
-       echo web: python app.py > Procfile
+    echo web: python app.py > Procfile
 
-    3. The Procfile should contain the following line:
-       web: python app.py
+3. The Procfile should contain the following line:
+
+        web: python app.py
 
 **And then:**       
 
-    4. Scroll down to "deployment method"-section. Choose "Github" for automatic deployment.
-    5. From the inputs below, make sure your github user is selected, and then enter the name for your repo. Click "search". When it finds the repo, click the "connect" button.
-    6. Scroll back up and click "settings". Scroll down and click "Reveal config vars". Set up the same variables as in your env.py (IP, PORT, SECRET_KEY, MONGO_URI and MONGODB_NAME): !You shouldn't set the DEBUG variable in under config vars, only in your env.py to prevent DEBUG being active on live website.
-       IP = 0.0.0.0
-       PORT = 5000
-       SECRET_KEY = YOUR_SECRET_KEY
-       MONGO_URI = YOUR_MONGODB_URI
-       MONGO_DBNAME = DATABASE_NAME
-    7. Scroll back up and click "Deploy". Scroll down and click "Enable automatic deployment".
-    8. Just beneath, click "Deploy branch". Heroku will now start building the app. When the build is complete, click "view app" to open it.
-    9. In order to commit your changes to the branch, use git push to push your changes.
+4. Scroll down to "deployment method"-section. Choose "Github" for automatic deployment.
+
+5. From the inputs below, make sure your github user is selected, and then enter the name for your repo. Click "search". When it finds the repo, click the "connect" button.
+
+6. * Scroll back up and click "settings". 
+    * Scroll down and click "Reveal config vars". 
+    * Set up the same variables as in your env.py (IP, PORT, SECRET_KEY, MONGO_URI and MONGODB_NAME): !You shouldn't set the DEBUG variable in under config vars, only in your env.py to prevent DEBUG being active on live website.
+    ```
+        IP = 0.0.0.0
+        PORT = 5000
+        SECRET_KEY = YOUR_SECRET_KEY
+        MONGO_URI = YOUR_MONGODB_URI
+        MONGO_DBNAME = DATABASE_NAME
+    ```
+7. Scroll back up and click "Deploy". Scroll down and click "Enable automatic deployment".
+8. Just beneath, click "Deploy branch". Heroku will now start building the app. When the build is complete, click "view app" to open it.
+9. In order to commit your changes to the branch, use git push to push your changes.
 
 ## Credit ##
 
