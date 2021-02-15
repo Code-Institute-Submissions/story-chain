@@ -2,20 +2,22 @@
     <div class="field">
         <label class="label">Title</label>
         <div class="control">
-            <input id="story_title" name="story_title" type="text" placeholder="New story title" class="input is-rounded is-large" required>
+            <input id="story_title" name="story_title" value="{{ story.story_title }}" type="text" placeholder="New story title" class="input is-rounded is-large" required>
         </div>
     </div>
     <div class="field">
         <label class="label">Type your story here</label>
         <div class="control">
-            <textarea class="textarea is-large" rows="10" id="story_content" name="story_content" placeholder="Minimum of 20 and maximum of 3000 characters" minlength="20" maxlength="3000" validate required></textarea>
+            <textarea class="textarea is-large" rows="10" id="story_content" name="story_content" placeholder="Minimum of 20 and maximum of 3000 characters" minlength="20" maxlength="3000" validate required>
+                {{ story.story_content }}
+            </textarea>
         </div>
     </div>
     <div class="field has-text-centered mt-2">
-        <p class="control">
+        <div class="control">
             <button type="submit" placeholder="Edit story" class="button is-rounded is-info is-inverted is-small-mobile mb-6" name="action" aria-label="Edit story">Edit Story
             </button>    
-        </p>
+        </div>
         <a href="{{url_for('home')}}" class="button is-rounded is-info is-inverted is-small-mobile" aria-label="Cancel">Cancel</a>
     </div>
 </form>

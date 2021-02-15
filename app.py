@@ -272,15 +272,9 @@ def edit_story(story_id):
             "story_content": request.form.get("story_content"),
             "author": session["user"],
             "created_on": created_on,
-            "edited": False,
-            "story_chains": []
+            "edited": True
         }
-        # story = stories_coll.find_one({"_id": ObjectId(story_id)})
-        # chains_list = []
-        # for chain in story["story_chains"]:
-        #     temp_chain = chains_coll.find_one({"_id": ObjectId(chain)})
-        #     chains_list.append(temp_chain)
-        stories_coll.update({"_id": ObjectId(story_id)}, submit)
+        stories_coll.update({"_id": ObjectId(story_id)}, {"$set": submit})
         flash("Edit story successful")
         return redirect(url_for("read_story",
                         story_id=story_id,
