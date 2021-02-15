@@ -225,8 +225,6 @@ def delete_account(user_id):
                            request.form.get("confirm_password_to_delete")):
         flash("Your account has been deleted.")
         session.pop("user")
-        # users_coll.update_one({"username": user},
-        #                       {"$set": {"username": "guest"}}, upsert=True)
         users_coll.remove({"_id": user.get("_id")})
         return redirect(url_for("log_in"))
     else:
@@ -247,7 +245,6 @@ def add_story():
             "story_content": request.form.get("story_content"),
             "author": session["user"],
             "created_on": date_created,
-            "edited": False,
             "story_chains": []
         }
         stories_coll.insert_one(story)
@@ -264,7 +261,6 @@ def edit_story(story_id):
     to edit the story. After doing so,
     the user is then redirected to the 'Read Story' page.
     """
-# Needs a way to retain the chains from the original story
     if request.method == "POST":
         created_on = datetime.today().strftime('%m/%d/%Y')
         submit = {
