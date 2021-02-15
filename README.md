@@ -109,16 +109,19 @@ I have decided to make a flowchart for the sign-in / register process to complet
 
 You can view this below:
 
-![Flowchart](/wireframes/flowchart.jpg)
+![Flowchart](/readme_content/images/flowchart.jpg)
 
 ### Data Models ###
 I also created a conceptual data model to get a feel for the needed entities, relationships and attributes, which have also helped me form the user stories.
 
-![Conceptual Data Model](/assets/wireframes/conceptualdatamodel.jpg)
+![Conceptual Data Model](/readme_content/images/conceptualdatamodel.jpg)
 
 #### Database Structure ####
-For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas).It contains two collection, 'users' and stories'. When a user registers, his username and hashed password are added to the users collection.
-When a logged in user adds a story to the website, his username is added as a value for the key 'Author' in the stories collection.
+For this project I have used [MongoDB](https://www.mongodb.com/cloud/atlas).It contains three collection, 'users', 'stories' and 'chains'. When a user registers, his username and hashed password are added to the users collection.
+When a logged in user adds a story to the website, his username is added as a value for the key 'author' in the stories collection. When a user adds a chain, the chain id is passed into the 'story_chains' array in the 
+stories collection, as well as the username from the users collection, as author.
+
+A more accurate Data model can be viewed here ![dbdiagram](/readme_content/images/storychain.png)
 
 ## Features ##
 
@@ -160,6 +163,7 @@ He can then submit again (and a malicious script can overload the site and cause
 
 ### Nice to haves ###
 * Pre-filled forms when editing.
+* A notification when a story or a chain has been edited, because doing so, might influence the flow of the story.
 
 ## Technologies used ##
 
