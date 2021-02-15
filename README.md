@@ -370,16 +370,18 @@ A help text will be displayed, giving information about why submitting isn't all
 
 ### From validating ###
 
-* Python code has been validated for pep8 compliance with [pep8 validator](http://pep8online.com/) and gave no errors.
-![pep8 result](/readme_content/images/pep8.png)
+* Python code has been validated for pep8 compliance with [pep8 validator](http://pep8online.com/) and gave no errors. [result](/readme_content/images/pep8.png)
 
-* HTML code has been validated with:
+* HTML code has been validated with [HTML validator](https://validator.w3.org/nu/) and gave no errors. [result](/readme_content/images/htmlvalidator.png)
+
+* CSS code has been validated with [CSS validator](https://jigsaw.w3.org/css-validator/). For the style.css file there where no errors.
+I did get a lot of errors that where linked to the css files from Bulma (in the CDN). [result](/readme_content/images/cssvalidator.png)
 
 ## Bugs ##
 
 ### In development ###
 
-### Navbar collapse not working ###
+#### Navbar collapse not working ####
 
 * Bug description:
   * After finishing the basic and extended navbar, I quickly noticed that the hamburger menu wasn't behaving as expected.
@@ -390,7 +392,7 @@ A help text will be displayed, giving information about why submitting isn't all
 * Verdict:
   * JQuery code added to the scripts.js file worked like a charm and the navbar is now working as expected.
 
-### Flash messages not showing ###
+#### Flash messages not showing ####
 
 * Bug description:
 
@@ -420,7 +422,7 @@ A help text will be displayed, giving information about why submitting isn't all
 
     * Verdict: Now working as expected.
 
-### Register and Login form not centering ###
+#### Register and Login form not centering ####
 
 * Bug description:
 
@@ -434,7 +436,7 @@ Ditch the empty columns and use 'is-centered' on the ```<div class="columns is-c
 * Verdict:
   * Solved! Nice and centered. Like it should be :)
 
-### Modals for delete functions not working as expected ####
+#### Modals for delete functions not working as expected #####
 
 * Bug description:
 
@@ -454,7 +456,7 @@ Ditch the empty columns and use 'is-centered' on the ```<div class="columns is-c
 * Verdict:
   * All good!
 
-### Buttons not responsive ###
+#### Buttons not responsive ####
 
 * Bug description:
 
