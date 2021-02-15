@@ -5,8 +5,6 @@
 
 ## Project goals ##
 Writing stories can be a lot of fun. But what if you could write stories with complete strangers? In this app you can start a new story or add to an existing story. This way, you'll never know what is going to happen, making writing both more challenging and fun!
-Update to include changes:
-
 
 ## UX ##
 ### User Goals ###
@@ -50,13 +48,13 @@ All this added functionality is also available to the site owner via an "admin" 
 * As a user, I want to be able to delete my account.
 
 ### Site owner goals ###
-* To have an appealing website that writes use to write stories. 
+* To have an appealing website that enables people to write stories. 
 * To have a great functionality so the user feels like this website enables them to practice writing or just enjoy reading what other user have wrote.
 * To make the website more personal, by having everything the user has written, be on display on their profile page.
 
 ## User Requirements and Expectations
 ### Requirements ###
-* Easy to navigate by using the few buttons 
+* Easy to navigate by using buttons 
 * Appealing profile page with a functional overview 
 * Easy way to add a a new story
 * Easy way to add onto an existing story 
@@ -196,6 +194,8 @@ He can then submit again (and a malicious script can overload the site and cause
 
 
 ## Testing ##
+
+The site was tested by using the LightHouse function for Chromium Developer Tools. A report can be found [here](/readme_content/images/storychainlighthousetest.pdf)
 
 ### Testing user stories:
 
