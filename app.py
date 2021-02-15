@@ -298,7 +298,6 @@ def delete_story(story_id):
     Because this action cannot be undone, a modal is shown
     to ask the user if he is sure.
     """
-    # also needs to pull the chains that are in the chains_coll
     stories_coll.remove({"_id": ObjectId(story_id)})
     flash("Your story has been removed")
     return redirect(url_for("home"))
