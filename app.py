@@ -186,7 +186,7 @@ def change_username(username):
     """
     if request.method == "POST":
         registered_user = users_coll.find_one(
-                            {"username": request.form['new_username']})
+                            {"username": request.form['new-username']})
         if registered_user:
             flash("Username already taken")
             return redirect(url_for('change_username',
@@ -194,7 +194,7 @@ def change_username(username):
         else:
             users_coll.update_one(
                 {"username": username},
-                {"$set": {"username": request.form["new_username"]}},
+                {"$set": {"username": request.form["new-username"]}},
                 upsert=True)
         flash("Username updated. Please login with your new username")
         session.pop("user", None)
@@ -222,7 +222,7 @@ def delete_account(user_id):
     # Defensive programming to assure no one else does this
     # Checks if password matches existing password in database
     if check_password_hash(user["password"],
-                           request.form.get("confirm_password_to_delete")):
+                           request.form.get("confirm-password-to-delete")):
         flash("Your account has been deleted.")
         session.pop("user")
         users_coll.remove({"_id": user.get("_id")})
@@ -241,8 +241,8 @@ def add_story():
     if request.method == "POST":
         date_created = datetime.today().strftime('%m/%d/%Y')
         story = {
-            "story_title": request.form.get("story_title"),
-            "story_content": request.form.get("story_content"),
+            "story_title": request.form.get("story-title"),
+            "story_content": request.form.get("story-content"),
             "author": session["user"],
             "created_on": date_created,
             "story_chains": []
@@ -264,8 +264,8 @@ def edit_story(story_id):
     if request.method == "POST":
         created_on = datetime.today().strftime('%m/%d/%Y')
         submit = {
-            "story_title": request.form.get("story_title"),
-            "story_content": request.form.get("story_content"),
+            "story_title": request.form.get("story-title"),
+            "story_content": request.form.get("story-content"),
             "author": session["user"],
             "created_on": created_on,
             "edited": True
@@ -298,10 +298,9 @@ def chains(story_id):
     if request.method == "POST":
         created_on = datetime.today().strftime('%m/%d/%Y')
         new_chain = {
-            "chain_content": request.form.get("chain_content"),
+            "chain_content": request.form.get("chain-content"),
             "author": session["user"],
-            "created_on": created_on,
-            "edited": False
+            "created_on": created_on
         }
         # Inserts the new chain to the chains-collection
         insert_chain_inDB = chains_coll.insert_one(new_chain)
