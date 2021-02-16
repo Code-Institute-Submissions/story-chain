@@ -119,6 +119,9 @@ def user_auth():
             else:
                 flash("Wrong password or username")
                 return redirect(url_for('log_in'))
+        else:
+            flash("Passwords don't match")
+            return redirect(url_for('log_in'))
     else:
         flash("You must be registered")
         return redirect(url_for('register'))

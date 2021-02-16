@@ -35,12 +35,10 @@
         </nav>
     </div>
     {% if not session.user %}
-    <div class="columns">
-        <div class="column"></div>
-            <div class="column mb-6" id="join-button">
-                <a class="button is-rounded button is-info is-inverted is-small-mobile" href="{{url_for('register')}}" role="button" rel="noopener" aria-label="Join Us button">Join Us!</a>
+        <div class="columns is-centered">
+            <div class="column mb-6 join-button">
+                <div class="button is-rounded button is-info is-inverted is-small-mobile" href="{{url_for('register')}}" role="button" rel="noopener" aria-label="Join Us button">Join Us!</div>
             </div>
-            <div class="column"></div>
-    </div>
+            </div>
     {% endif %}
 </div>

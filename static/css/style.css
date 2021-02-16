@@ -17,6 +17,10 @@ body {
     overflow-y: hidden;
 }
 
+a {
+    color: #5f2121
+}
+
 .title {
     color:#bc5609;
     text-align: center;
@@ -29,6 +33,21 @@ body {
     font-size: 3rem;
     font-family: 'Indie Flower', cursive;
 }
+
+.page-title {
+    color:#bc5609;
+    text-align: center;
+    font-size: 5rem;
+    font-family: 'Indie Flower', cursive;
+    margin-left: 1rem;
+}
+
+.author-title,
+.date,
+.content-title {
+    color: #5f2121;
+}
+
 /* Card styling */
 .card {
     margin-left: 2rem;
@@ -49,27 +68,17 @@ body {
     margin-bottom: 1.5rem;
 }
 
-a {
-    color: #5f2121
-}
-
-.page-title {
-    color:#bc5609;
-    text-align: center;
-    font-size: 5rem;
-    font-family: 'Indie Flower', cursive;
-    margin-left: 1rem;
-}
-
-.author-title,
-.date,
-.content-title {
-    color: #5f2121;
-}
-
 /* Navbar styling */
 .navbar-item img {
     max-height: 5.75rem;
+}
+
+.hero .navbar {
+    background: rgba(248, 248, 255, 0.7);
+}
+
+.navbar-burger {
+    margin-top: 1.5rem;
 }
 
 /* Hero header styling */
@@ -89,14 +98,6 @@ a {
     background-size: cover;
 }
 
-.hero .navbar {
-    background: rgba(248, 248, 255, 0.7);
-}
-
-.navbar-burger {
-    margin-top: 1.5rem;
-}
-
 /* Buttons */
 .button {
     font-size: 2rem;;
@@ -112,7 +113,7 @@ a {
     background-color: #bc5609
 }
 
-#join-button {
+.join-button {
     text-align: center;
 }
 
@@ -139,7 +140,6 @@ a {
 }
 
 /* Profile Styling */
-#account-settings,
 .about-box {
     background-color: #fff;
     border-radius: .25rem;
@@ -148,13 +148,6 @@ a {
     max-width: 100%;
     overflow: hidden;
     position: relative;
-}
-
-.change-username,
-.change-password,
-.delete-account {
-    color: #5f2121;
-    background-color: #bc5609;
 }
 
 .story-header {
@@ -167,11 +160,6 @@ a {
 .profile-story-box {
     border-top: 1px dotted #5f2121;
     border-left: 1px dotted #5f2121;
-}
-
-#profile {
-    background-color: #5f2121;
-    color: #bc5609;
 }
 
 .is-horizontal-center {
@@ -206,7 +194,7 @@ a {
 }
 
 /* Footer */
-#footer {
+.footer {
     color: #5f2121;
     font-size: 3rem;
     font-family: 'Indie Flower', cursive;
