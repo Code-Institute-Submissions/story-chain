@@ -17,6 +17,7 @@
   - [Requirements](#requirements)
   - [Expectations](#expectations)
 - [Design Choices](#design-choices)
+  - [When and why i've diverted from the wireframes](#when-and-why-i've-diverted-from-the-wireframes)
   - [Colors](#colors)
   - [Fonts](#fonts)
   - [Icons](#icons)
@@ -71,15 +72,16 @@ Also, they can update their password and username and even delete their account.
 
 ### View for a guest user ###
 
-A user that is not logged in and/or registered, will see a list of all stories on the homepage. There is also a call to action button 'Join Us!' urging them to register. They also have a navigation menu, only containing 'Home', 'Register' and 'Log In'. All other functionality is restricted to a logged in user.
-They are able to click the 'Read More' button when the click a card where the title of the story is, which will lead them to the 'Read Story' page. Here they are also prompted to register/login to benefit from the full functionality of the site.
+A user that is not logged in and/or registered, will see a list of all stories on the homepage. There is also a call to action button 'Join Us!' urging them to register. They also have a navigation menu, only containing 'Home', 'Register' and 'Log In'.
+All other functionality is restricted to a logged in user.
+They are able to click the 'Read More' button in the story card, which will lead them to the 'Read Story' page. Here they are also prompted to register/login to benefit from the full functionality of the site.
 
 ### View for logged in user ###
 
 A logged in user will benefit from the full functionality of the site. The navigation will contain: 'Home', 'Profile (with their username for ease)', 'Add' and 'Logout'.
 This user can then add a new story by clicking the 'Add' button in the navigation or on their profile.
 The added functionality for this user is the ability to add a story, edit that story and even delete is. This functionality is restricted for only to the user that is logged in and is also the creator of that story.
-In the profile there are also functions for changing once username, password and even delete their account.
+In the profile there are also functions for changing once username, password and even delete their account. The can also add a 'chain' to content created by a different user.
 All this added functionality is also available to the site owner via an "admin" account.
 
 ### User Stories ###
@@ -122,11 +124,18 @@ All this added functionality is also available to the site owner via an "admin" 
 
 I have based the designs for this website on the image used for the hero header. I wanted to create an atmosphere of warmth and welcome any user to join the fun.
 
+### When and why i've diverted from the wireframes ###
+
+For the homepage I had originally decided on a 3-by-3 card system (for larger screen views). But when implementing this, I really didn't like the look of it. So I decided to add the stories to the homepage as it is now. I also changed the text color of the buttons to white,
+so it would be easier to read (contrast). I also did not implement the 'add chain' on the same page as the story, because I felt this became to busy with the buttons and all.
+The profile styling was simplified, as there isn't much functionality as is now, to justify diverting from the overall styling of the site. The log in form on the wireframes has one password field. For simplicity sake and as an extra security measure, i've decided to keep
+the second password field from the register form.
+
 ### Colors ###
 
 I have used [Coolors](https://coolors.co/) for creating a color scheme.
 
-![Color scheme](readmecontent/images/colorscheme.jpg)
+![Color scheme](/readmecontent/images/colorscheme.jpg)
 
 - #F8F8FF: This is a more off white color, to keep the more darker toned colors together and create a more warming atmosphere. This will be the background color.
 - #000000: This will be the main font color.
@@ -164,17 +173,17 @@ View my wireframes [here](https://github.com/byIlsa/story-chain/blob/master/wire
 
 ### Flowcharts ###
 
-I have decided to make a flowchart for the sign-in / register process to completely understand each step of the process.
+I have decided to make a flowchart for the sign-in / register process to better understand each step of the process.
 
 You can view this below:
 
-![Flowchart](./readmecontent/images/flowchart.jpg)
+![Flowchart](/readmecontent/images/flowchart.jpg)
 
 ### Data Models ###
 
 I also created a conceptual data model to get a feel for the needed entities, relationships and attributes, which have also helped me form the user stories.
 
-![Conceptual Data Model](./readmecontent/images/conceptualdatamodel.jpg)
+![Conceptual Data Model](/readmecontent/images/conceptualdatamodel.jpg)
 
 #### Database Structure ####
 
@@ -184,7 +193,7 @@ stories collection, as well as the username from the users collection, as author
 
 A more accurate Data model can be viewed here:
 
-![dbdiagram](./readmecontent/images/storychain.jpg)
+![dbdiagram](/readmecontent/images/storychain.jpg)
 
 ## Features ##
 
@@ -203,6 +212,7 @@ A more accurate Data model can be viewed here:
 ### The Big Struggle ###
 
 As might be clear now, the whole 'add to an existing story' has been quit a challenge. But, what is important, is that the function itself has been implemented, a few days shy from the project deadline.
+I also, with some help from my mentor, was able to not have all chains being removed if a user changed the original story.
 
 I could  not let this one go. It toke two tutors (Johann and Miklos) and a very patient fellow student [Karina](https://github.com/kairosity) who have been an instrumental help to getting
 this function up and running!
@@ -216,13 +226,12 @@ My eternal thanks go out to them for this one.
 - Add a search functionality
   - To allow a search functionality I am thinking about having people include 'tag' words so other users could search by matching those keywords.
 - A way to add the username 'guest' to stories from people who have deleted their account without them deleting their stories.
-The way it is right now, a new user is technically able to register that username again and own those stories.
+  - The way it is right now, a new user is technically able to register that username again and own those stories.
 
 ### Known issues ###
 
 - When a user changes his username, all the content he has added, is no longer accessible by the new username.
 - When a user deletes his account without removing their content first, a new user that picks the username of the account that has been deleted, gets access to that content.
-I want to find a way to change the username of the deleted account to "guest" to prevent this.
 - When a user has successfully submitted a form, he is redirected. But when the user clicks the 'back' button on the browser, the form is back with the information that has already been submitted.
 He can then submit again (and a malicious script can overload the site and cause many issues.
 
@@ -261,7 +270,7 @@ He can then submit again (and a malicious script can overload the site and cause
 
 ## Testing ##
 
-The site was tested by using the LightHouse function for Chromium Developer Tools. A report can be found [here](./readmecontent/images/storychainlighthousetest.pdf)
+The site was tested by using the LightHouse function for Chromium Developer Tools. A report can be found [here](/readmecontent/images/storychainlighthousetest.pdf)
 
 ### Testing user stories ###
 
@@ -272,7 +281,7 @@ User story: As a user, I would like to be able to register for the website so I 
 - A reddish call to action button in the hero image with the text "Join Us!" is presented. There is also a ‘register’ link in the navigation bar at the top.
 When users want to register, they only have to provide a username and password.
 After registering, they will be redirected to their profile page. There they see an section with an 'add' button at the top of the screen as well as a ‘account options’ section for editing the username and/or password and deleting their account.
-On this page all their submitted content is also displayed. At all stages where a user input is given, flash messages direct the user if an action was indeed successful.
+On this page all stories they have started are also displayed. At all stages where a user input is given, flash messages direct the user if an action was indeed successful or explain what went wrong.
 
 - All is working as intended.
 
@@ -293,8 +302,8 @@ Also the ability to change their username, password and delete account is given.
 User story: As a user, I would like to have a personal environment (profile page) where I can see everything I have posted.
 
 - After a user has had a successful login or registration, he is redirected to his personal profile page.
-Here he can see any previous submitted content and have full account control by having the ability to change a username, change a password and delete his account.
-Also a section for 'add' as story is given.
+Here he can see any previous started stories and have full account control by having the ability to change a username, change a password and delete his account.
+Also a section for 'add' a story is given.
 
 - All is working as intended.
 
@@ -313,10 +322,12 @@ Appropriate feedback is given by flash messages after clicking the 'submit' butt
 
 User story: As a user, I want to be able to edit the new story.
 
-- A user that is the writer of an story will have buttons presented under that content that allows them to edit it.
+- A user that is the writer of a story will have buttons presented under that content that allows them to edit it.
 This is only visible if the logged in user also matches the user that has submitted the content.
 A pre filled form is given to be edited and after a successful submission, the user is redirected to the home page and presented with an appropriate flash message.
 There is also a button that let's the user cancel it's action and return to the home page if he should so desire.
+
+- All is working as intended.
 
 ***Delete story***
 
@@ -324,7 +335,7 @@ User story: As a user, I want to be able to delete the stories I have started.
 
 - After clicking the 'Read More' button in a story from the home page and if the current user is also the author of the story, a 'edit' and a 'delete' button will appear.
 After the user clicks the 'delete' button, it will prompt a modal, warning the user that deleting the content seriously affects the flow of the story.
-A user can then either click a 'cancel' button which will close the modal or click 'delete' once more. This will then delete the story form the database, homepage and the profile.
+A user can then either click a 'cancel' button which will close the modal or click 'delete' once more. This will then delete the story from the database, homepage and the profile.
 An appropriate flash message will be given.
 
 ***Creating, editing and deleting content to an existing story***
@@ -334,6 +345,8 @@ User story: As a user, I want to be able to add content to a existing story.
 - When a logged in user is on the 'Read More' page, an 'Add Chain' button is presented, which leads to a form that enables the user to add chain. On successful submit,
 the user is redirected to the 'Read Story' page where the chain is added.
 
+- All is working as intended.
+
 User story: As a user, I want to be able to edit/delete content to an existing story.
 
 - Not yet implemented, still working on this user story.
@@ -342,10 +355,11 @@ User story: As a user, I want to be able to edit/delete content to an existing s
 
 User story: As a user, I want to be able to change my username and password.
 
-- After a user has had an successful login, he is directed to his profile page. There they see three buttons 'Change username', 'Change password' and 'delete account'.
+- After a user has had an successful login, he is directed to his profile page. There they see three buttons 'Change username', 'Change password' and 'Delete account'.
 The 'change username' button opens a small form that asks the user to enter a new username.
 
-This username is then checked against existing usernames in the database and gives appropriate feedback. Unfortunately, all content added by this user under his old username, will no longer be accessible with the new username. This needs a fix.
+This username is then checked against existing usernames in the database and gives appropriate feedback. The old user is logged out and is asked to log in with the new username.
+Unfortunately, all content added by this user under his old username, will no longer be accessible with the new username. This needs a fix.
 See [Known issues](#known-issues)
 
 - After a user has had an successful login, he is directed to his profile page. There he can click the 'Change password' button.
@@ -364,6 +378,8 @@ User story: As a user, I want to be able to log out of my profile.
 - Once a user is logged in, in the navigation, a button appears that has the text 'Log Out' on it.
 Once clicked, the user is logged out and returned to the homepage. An appropriate flash message will be displayed.
 
+- All is working as intended.
+
 ## Manual testing ##
 
 All manual testing was done using Chromium Developer Tools and testing on an iPhone 11 and an iPad Pro.
@@ -375,8 +391,8 @@ Home
 Register
 
 - Before signing up, users see the options Home, Register and Log In in the navigation bar.
-- In the Register form: provide username of less than 2 characters. The form tells a user that the username doesn't meet the criteria (validation message). A help message has been displayed beneath the form field stating: "Only letters (either case) and numbers. No special characters"
-- Provide a password of less than 5 characters. The form tells a user that the password doesn't meet the criteria (validation message). A help message has been displayed beneath the form field stating: "Only letters (either case) and numbers, 6 or more characters".
+- In the Register form: provide username of more than 2 and less then 15 characters. The form tells a user that the username doesn't meet the criteria (validation message). A help message has been displayed beneath the form field stating: "Only letters (either case) and numbers. No special characters"
+- Provide a password of more than 5 and less then 15 characters. The form tells a user that the password doesn't meet the criteria (validation message). A help message has been displayed beneath the form field stating: "Only letters (either case) and numbers, 6 or more characters".
 - Leave one or more fields empty. The form tells a user that the empty field needs to be filled in (validation message).
 - Provide username or password containing forbidden characters. Only a-z, A-Z, and 0-9 are allowed. The form tells a user that the username or password don't meet the criteria (validation message).
 - Provide a username that already exists and submit the form. The user is redirected back to the sign up page. A flash message is visible: 'Username already taken.'
@@ -384,12 +400,12 @@ Register
 
 Log In
 
-- Click the 'Log in" button in the navigation menu. The user is lead to a log in form. Same rules apply as the register form. Only one password field present.
+- Click the 'Log in" button in the navigation menu. The user is lead to a log in form. Same rules apply as the register form.
 - After a successful login, the user is redirected to their profile page.
 
 Read Story
 
-- When clicking on the Read More link on a story on the home page, a new page opens and the full story can be read.
+- When clicking on the Read More link on a story on the home page, a new page opens and the full story (with chains if there are some) can be read.
 - If the user is also the author of the story, a 'edit' and 'delete' button appears. If the user is not the author, these buttons do not show.
 - If the 'edit' button is clicked, a form opens up, that allows the author to edit both the title and the content. Both fields need to be filled. When the 'edit story' button is clicked, an appropriate flash message is shown and the user is
 redirected to the 'Read Story' page.
