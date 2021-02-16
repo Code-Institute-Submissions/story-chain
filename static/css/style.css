@@ -61,6 +61,12 @@ a {
     font-family: 'Indie Flower', cursive;
 }
 
+.chain-card-header-title {
+    color: #bc5609;
+    font-size: 1.75rem;
+    font-family: 'Indie Flower', cursive;
+}
+
 .fas {
     color: #5f2121;
     margin-left: 1rem;
