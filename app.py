@@ -242,7 +242,7 @@ def add_story():
     submit, he is redirected to the homepage.
     """
     if request.method == "POST":
-        date_created = datetime.today().strftime('%m/%d/%Y')
+        date_created = datetime.today().strftime('%m/%d/%Y, %H:%M:%S')
         story = {
             "story_title": request.form.get("story-title"),
             "story_content": request.form.get("story-content"),
@@ -265,7 +265,7 @@ def edit_story(story_id):
     the user is then redirected to the 'Read Story' page.
     """
     if request.method == "POST":
-        created_on = datetime.today().strftime('%m/%d/%Y')
+        created_on = datetime.today().strftime('%m/%d/%Y, %H:%M:%S')
         submit = {
             "story_title": request.form.get("story-title"),
             "story_content": request.form.get("story-content"),
@@ -299,7 +299,7 @@ def delete_story(story_id):
 @app.route('/chains/<story_id>', methods=["GET", "POST"])
 def chains(story_id):
     if request.method == "POST":
-        created_on = datetime.today().strftime('%m/%d/%Y')
+        created_on = datetime.today().strftime('%m/%d/%Y, %H:%M:%S')
         new_chain = {
             "chain_content": request.form.get("chain-content"),
             "author": session["user"],

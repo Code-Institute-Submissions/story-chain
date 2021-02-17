@@ -42,6 +42,8 @@
   - [From validating](#from-validating)
 - [Bugs](#bugs)
   - [In development](#in-development)
+  - [From peer code review](#from-peer-code-review)
+  - [From friends and family testing](#from-friends-and-family-testing)
 - [Deployment](#deployment)
   - [Local Deployment](#local-deployment)
 - [Credit](#credit)
@@ -539,6 +541,61 @@ Buttons not responsive
 
 - Verdict:
   - All good!
+
+### From peer code review ###
+
+'About' content being a bit squished when centered.
+
+- Bug description:
+  - Especially on mobile devices the about content on the homepage got squished.
+
+- Fix:
+  - I added some padding to the list items to move them apart a bit more.
+
+- Verdict:
+  - All good.
+
+Burger menu icon push to right on mobile
+
+- Bug description:
+  - On mobile devices the burger menu icon was pushed a bit to far to the right side of the screen.
+
+- Fix:
+  - Added some margin to the burger menu icon.
+
+- Verdict:
+  - Now working as expected.
+
+Textarea field of add chain had overflow
+
+- Bug description:
+  - On mobile devices, the textarea field had some overflow.
+
+- Fix:
+  - Gave the field some more margin to the right and removed overflow-x: hidden.
+
+- Verdict:
+  - Behaves better now
+
+### From friends and family testing ###
+
+There weren't bugs from them per se, but more some things they would like to see.
+
+Implemented:
+
+- Want:
+  - Time added to the date on the story cards so the time of posting (and order of posting and linking) becomes more obvious.
+    - Added time to the app route and new stories and content now show the time of posting, next to the date.
+
+Feature implements:
+
+- Want:
+  - When someone adds a chain and someone else also does this, the flow might become distorted because of some 'double posting'.
+    - I want to figure out a way that I can maybe 'lock' the add function if someone is already started a new chain.
+
+- Want:
+  - A way to get notified when someone has added something.
+    - This would require the email-address being added to the register function and find a way to build a notification function.
 
 ## Deployment ##
 
