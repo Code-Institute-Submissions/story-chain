@@ -13,7 +13,6 @@ body {
     font-size: 2rem;
     font-family: "Raleway", sans-serif;
     color: #f8f8ff;
-    overflow-x: hidden;
     overflow-y: hidden;
 }
 
@@ -85,6 +84,7 @@ a {
 
 .navbar-burger {
     margin-top: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 /* Hero header styling */
@@ -145,6 +145,10 @@ a {
     margin-right: 2em;
 }
 
+li {
+    margin-bottom: 3rem;;
+}
+
 /* Profile Styling */
 .about-box {
     background-color: #fff;
@@ -183,7 +187,7 @@ a {
 .field:not(:last-child) {
     margin-bottom: 2rem;
     margin-left: 1rem;
-    margin-right: 1rem;
+    margin-right: 3rem;
 }
 
 .help {
