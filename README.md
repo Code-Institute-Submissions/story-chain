@@ -229,6 +229,8 @@ My eternal thanks go out to them for this one.
   - To allow a search functionality I am thinking about having people include 'tag' words so other users could search by matching those keywords.
 - A way to add the username 'guest' to stories from people who have deleted their account without them deleting their stories.
   - The way it is right now, a new user is technically able to register that username again and own those stories.
+- Pagination
+  - I want to add pagination especially when there are a lot of stories.
 
 ### Known issues ###
 
